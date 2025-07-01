@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique - Circular Navbar Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #161616;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .navbar-container {
+            position: fixed;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-container.animate-in {
+            top: 50px;
+        }
+
+        .navbar {
+            width: 83px;
+            height: 83px;
+            background: rgba(22, 22, 22, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(144, 144, 144, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar.expanded {
+            width: min(640px, 90vw);
+            height: 83px;
+            border-radius: 14px;
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 clamp(16px, 4vw, 32px);
+            opacity: 0;
+            transition: opacity 0.3s ease 0.7s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar.expanded .navbar-content {
+            opacity: 1;
+        }
+
+        .logo {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 700;
+            color: #909090;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(16px, 4vw, 32px);
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #909090;
+            font-weight: 500;
+            font-size: clamp(13px, 2.5vw, 15px);
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a .char {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: calc(var(--i) * 0.05s);
+        }
+
+        .nav-links a:hover .char {
+            transform: translateY(-100%);
+        }
+
+        .nav-links a .char-clone {
+            top: 100%;
+            left: 0;
+            transform: translateY(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: calc(var(--i) * 0.05s);
+        }
+
+        .nav-links a:hover .char-clone {
+            transform: translateY(-100%);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #161616;
+            padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px);
+            border: none;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: clamp(12px, 2.5vw, 14px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-button .char {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: calc(var(--i) * 0.05s);
+        }
+
+        .cta-button:hover .char {
+            transform: translateY(-100%);
+        }
+
+        .cta-button .char-clone {
+            top: 100%;
+            left: 0;
+            transform: translateY(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: calc(var(--i) * 0.05s);
+        }
+
+        .cta-button:hover .char-clone {
+            transform: translateY(-100%);
+        }
+
+        .initial-icon {
+            position: absolute;
+            left: 25%;
+            font-size: clamp(24px, 5vw, 32px);
+            color: #909090;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar.expanded .initial-icon {
+            opacity: 0;
+            
+        }
+
+        .progress-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: inherit;
+            transition: width 0.3s ease;
+            z-index: 1;
+        }
+
+        .hero-section {
+            padding: 200px 40px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-tagline {
+            font-size: clamp(12px, 2vw, 16px);
+            font-weight: 500;
+            color: #909090;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            line-height: 0.9;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            height: clamp(4rem, 12vw, 8rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title-text {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-title-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-underline {
+            width: clamp(200px, 40vw, 400px);
+            height: 6px;
+            background: linear-gradient(90deg, #FF6A00, #D62D00);
+            /* Updated colors */
+            border-radius: 3px;
+            margin: 1rem auto 2rem;
+            position: relative;
+            opacity: 0;
+            animation: expandWidth 1s ease 1.1s forwards;
+        }
+
+        .hero-underline::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #FF6A00;
+            /* Use the lighter end of the gradient */
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
+            /* Soft glow to match the color */
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #909090;
+            font-weight: 400;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.4s forwards;
+        }
+
+        .subtitle-letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: letterFadeIn 0.5s ease forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandWidth {
+            from {
+                opacity: 0;
+                width: 0;
+            }
+
+            to {
+                opacity: 1;
+                width: clamp(200px, 40vw, 400px);
+            }
+        }
+
+        @keyframes letterFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #ffffff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #909090;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container.animate-in {
+                top: 30px;
+            }
+
+            .nav-links {
+                gap: clamp(12px, 3vw, 20px);
+            }
+
+            .navbar-content {
+                padding: 0 16px;
+            }
+
+            .hero-section {
+                padding: 180px 20px 80px;
+            }
+
+            .hero-tagline {
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .cta-button {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero-tagline {
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar-container" id="navbarContainer">
+        <nav class="navbar" id="navbar">
+            <div class="progress-bg" id="progressBg"></div>
+            <a href="#" class="logo initial-icon">
+                    <img src="logo.svg" alt="">
+                </a>
+            <div class="navbar-content">
+                <a href="#" class="logo">
+                    <img src="logo.svg" alt="">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about" data-section="about" data-text="About">About</a></li>
+                    <li><a href="#work" data-section="work" data-text="Work">Work</a></li>
+                    <li><a href="#contact" data-section="contact" data-text="Contact">Contact</a></li>
+                </ul>
+                <a href="#" class="cta-button" data-text="Get Started">Get Started</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-tagline">FOR THE NEW DIGITAL WORLD</div>
+        <h1 class="hero-title" id="heroTitle">
+            <span class="hero-title-text active">Unique</span>
+            <span class="hero-title-text">Awesome</span>
+            <span class="hero-title-text">Amazing</span>
+            <span class="hero-title-text">Creative</span>
+        </h1>
+        <div class="hero-underline"></div>
+        <p class="hero-subtitle" id="heroSubtitle">Next Level Video Production & Digital Marketing.</p>
+    </div>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>We are passionate creators dedicated to building exceptional digital experiences. Our team combines
+            creativity with technical expertise to deliver outstanding results that exceed expectations and drive
+            meaningful engagement.</p>
+    </section>
+
+    <section id="work" class="section">
+        <h2>Our Work</h2>
+        <p>From innovative web applications to stunning visual designs, our portfolio showcases a diverse range of
+            projects. Each piece reflects our commitment to quality, attention to detail, and deep understanding of user
+            experience principles.</p>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Ready to start your next project? We'd love to hear from you. Let's collaborate to bring your vision to life
+            and create something truly remarkable together. Get in touch and let's make it happen.</p>
+    </section>
+
+    <script>
+        // Title rotation variables
+        let currentTitleIndex = 0;
+        const titleTexts = document.querySelectorAll('.hero-title-text');
+        let titleInterval;
+
+        // Subtitle animation variables
+        const subtitleText = "Next Level Video Production & Digital Marketing.";
+        let subtitleAnimationStarted = false;
+
+        // Trigger animation on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const container = document.getElementById('navbarContainer');
+                const navbar = document.getElementById('navbar');
+
+                // Animate container down
+                container.classList.add('animate-in');
+
+                // Expand navbar after delay
+                setTimeout(() => {
+                    navbar.classList.add('expanded');
+                    initScrollProgress();
+                    initTextAnimations();
+
+                    // Start title rotation after a delay
+                    setTimeout(() => {
+                        startTitleRotation();
+                    }, 500);
+
+                    // Start subtitle animation after initial animations
+                    setTimeout(() => {
+                        animateSubtitle();
+                    }, 10);
+                }, 1100);
+            }, 300);
+        });
+
+        // Title rotation function
+        function startTitleRotation() {
+            titleInterval = setInterval(() => {
+                // Hide current title
+                titleTexts[currentTitleIndex].classList.remove('active');
+
+                // Move to next title
+                currentTitleIndex = (currentTitleIndex + 1) % titleTexts.length;
+
+                // Show new title
+                titleTexts[currentTitleIndex].classList.add('active');
+            }, 600); // Change every 2 seconds (0.2 seconds was too fast for readability)
+        }
+
+        // Subtitle letter-by-letter animation
+        function animateSubtitle() {
+            if (subtitleAnimationStarted) return;
+            subtitleAnimationStarted = true;
+
+            const subtitle = document.getElementById('heroSubtitle');
+            subtitle.innerHTML = ''; // Clear existing content
+
+            // Split text into letters and spaces
+            const letters = subtitleText.split('');
+
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.className = 'subtitle-letter';
+                span.textContent = letter === ' ' ? '\u00A0' : letter; // Use non-breaking space
+                span.style.animationDelay = `${index * 0.02}s`; // 50ms delay between letters
+                subtitle.appendChild(span);
+            });
+        }
+
+        // Initialize text animations
+        function initTextAnimations() {
+            // Animate nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                createTextAnimation(link);
+            });
+
+            // Animate button
+            const button = document.querySelector('.cta-button');
+            createTextAnimation(button);
+        }
+
+        function createTextAnimation(element) {
+            const text = element.getAttribute('data-text');
+            if (!text) return;
+
+            // Clear existing content
+            element.innerHTML = '';
+
+            // Create original text with spans
+            const originalSpan = document.createElement('span');
+            originalSpan.style.position = 'relative';
+            originalSpan.style.display = 'inline-block';
+
+            // Create clone text with spans
+            const cloneSpan = document.createElement('span');
+            cloneSpan.style.position = 'absolute';
+            cloneSpan.style.top = '100%';
+            cloneSpan.style.left = '0';
+            cloneSpan.style.whiteSpace = 'nowrap';
+            cloneSpan.style.width = '100%';
+
+            // Split text into characters
+            text.split('').forEach((char, index) => {
+                // Original character
+                const originalChar = document.createElement('span');
+                originalChar.className = 'char';
+                originalChar.style.setProperty('--i', index);
+                originalChar.textContent = char === ' ' ? '\u00A0' : char;
+                originalSpan.appendChild(originalChar);
+
+                // Clone character
+                const cloneChar = document.createElement('span');
+                cloneChar.className = 'char-clone';
+                cloneChar.style.setProperty('--i', index);
+                cloneChar.style.display = 'inline-block';
+                cloneChar.textContent = char === ' ' ? '\u00A0' : char;
+                cloneSpan.appendChild(cloneChar);
+            });
+
+            element.appendChild(originalSpan);
+            element.appendChild(cloneSpan);
+        }
+
+        // Initialize scroll progress functionality
+        function initScrollProgress() {
+            const progressBg = document.getElementById('progressBg');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section');
+
+            // Update active link and progress on scroll
+            function updateProgress() {
+                const scrollTop = window.pageYOffset;
+                const windowHeight = window.innerHeight;
+
+                let currentSection = '';
+                let progress = 0;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
+
+                    if (scrollTop >= sectionTop - windowHeight * 0.3 &&
+                        scrollTop < sectionBottom - windowHeight * 0.3) {
+                        currentSection = section.id;
+
+                        // Calculate progress within the section
+                        const sectionProgress = (scrollTop - sectionTop + windowHeight * 0.3) / sectionHeight;
+                        progress = Math.max(0, Math.min(100, sectionProgress * 100));
+                    }
+                });
+
+                // Update active link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === currentSection) {
+                        link.classList.add('active');
+                        progressBg.style.width = progress + '%';
+                    }
+                });
+
+                // Reset progress if no section is active
+                if (!currentSection) {
+                    progressBg.style.width = '0%';
+                }
+            }
+
+            // Throttle scroll events for performance
+            let ticking = false;
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateProgress);
+                    ticking = true;
+                    setTimeout(() => ticking = false, 16);
+                }
+            }
+
+            window.addEventListener('scroll', requestTick);
+            updateProgress(); // Initial call
+        }
+
+        // Add smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Clean up intervals when page is unloaded
+        window.addEventListener('beforeunload', () => {
+            if (titleInterval) {
+                clearInterval(titleInterval);
+            }
+        });
+    </script>
+</body>
+
+</html>
