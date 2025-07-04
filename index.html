@@ -837,7 +837,6 @@
         /* services */
         .services-section {
             margin: 0 auto;
-            border-radius: 16px;
             padding: 60px 40px;
         }
 
@@ -1014,36 +1013,6 @@
             text-align: left;
         }
 
-        .decorative-frame {
-            position: relative;
-            display: inline-block;
-        }
-
-        .frame-orange {
-            background: linear-gradient(135deg, #FF6A00, #D62D00);
-            padding: 8px;
-            border-radius: 20px;
-            transform: rotate(-5deg);
-        }
-
-        .frame-teal {
-            background: linear-gradient(135deg, #20B2AA, #00CED1);
-            padding: 8px;
-            border-radius: 20px;
-            transform: rotate(5deg);
-        }
-
-        .frame-inner {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
-            min-width: 280px;
-        }
-
         .person-placeholder {
             width: 200px;
             height: 200px;
@@ -1093,8 +1062,8 @@
 
         /* Case Studies */
         .case-studies-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            margin: 8em auto;
+            min-width: 80vw;
         }
 
         .case-studies-header {
@@ -1127,7 +1096,6 @@
 
         .case-studies-see-more-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 106, 0, 0.4);
         }
 
         .case-studies-cards-grid {
@@ -1139,8 +1107,6 @@
 
         .case-studies-card {
             background: #161616;
-            border: 1px solid rgba(144, 144, 144, 0.2);
-            border-radius: 14px;
             overflow: hidden;
             transition: all 0.4s ease;
             cursor: pointer;
@@ -1149,35 +1115,72 @@
 
         .case-studies-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .case-studies-card.case-studies-hovered {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(255, 255, 255, 0.3);
         }
 
         .case-studies-card-image {
             height: 320px;
+            border-radius: 14px;
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
-
-        .case-studies-card-1 .case-studies-card-image {
-            background: linear-gradient(135deg, #9C6AFF 0%, #FF6A6A 50%, #FFA726 100%);
+        
+        /* Background image variations */
+        .case-studies-card-image-1 {
+            background-image: url('case1.jpg');
         }
-
-        .case-studies-card-2 .case-studies-card-image {
-            background: #f0f0f0;
+        .case-studies-card-image-2 {
+            background-image: url('case2.jpg');
         }
-
-        .case-studies-card-3 .case-studies-card-image {
-            background: linear-gradient(135deg, #9C6AFF 0%, #B794F6 100%);
+        .case-studies-card-image-3 {
+            background-image: url('case3.jpg');
+        }
+        
+        .case-studies-card-image-1,
+        .case-studies-card-image-2,
+        .case-studies-card-image-3 {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Overlay on hover */
+        .case-studies-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(156,106,255,0.6) 0%, rgba(255,106,106,0.6) 50%, rgba(255,167,38,0.6) 100%);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            border-radius: inherit;
+        }
+        
+        /* Arrow in center */
+        .case-studies-card-image::after {
+            content: '➔'; /* Or use an icon */
+            font-size: 40px;
+            color: white;
+            position: absolute;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+        }
+        
+        /* Show overlay and arrow on hover */
+        .case-studies-card-image:hover::before,
+        .case-studies-card-image:hover::after {
+            opacity: 1;
+        }
+        
+        .case-studies-card-image:hover::after {
+            transform: translateY(0);
         }
 
         .case-studies-card-icon {
@@ -1187,7 +1190,7 @@
         }
 
         .case-studies-card-content {
-            padding: 24px;
+            padding-top: 24px;
         }
 
         .case-studies-card-category {
@@ -1198,157 +1201,14 @@
         }
 
         .case-studies-card-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.02em;
+            font-size: 32px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            letter-spacing: -0.02em !important;
+            text-align: left !important;
         }
 
-        .case-studies-mockup-text {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.2;
-        }
-
-        .case-studies-packaging-container {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            height: 100%;
-            padding: 40px;
-        }
-
-        .case-studies-package-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .case-studies-package {
-            width: 140px;
-            height: 90px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .case-studies-package::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-        }
-
-        .case-studies-package-logo {
-            background: linear-gradient(90deg, #FF6A00, #D62D00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .case-studies-package-text {
-            font-size: 12px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .case-studies-fern {
-            width: 100px;
-            height: 120px;
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            position: relative;
-        }
-
-        .case-studies-fern::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 100px;
-            background: linear-gradient(45deg, #66BB6A, #A5D6A7);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        .case-studies-phone-mockup {
-            width: 180px;
-            height: 360px;
-            background: #1a1a1a;
-            border-radius: 30px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .case-studies-phone-screen {
-            flex: 1;
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .case-studies-screen-header {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .case-studies-progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .case-studies-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #8BC34A);
-            border-radius: 4px;
-            width: 65%;
-        }
-
-        .case-studies-receipt-roll {
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80px;
-            height: 120px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            padding: 10px;
-            font-size: 8px;
-            color: #666;
-            transform: translateY(-50%) rotateY(-15deg);
-        }
+        
 
 
         /* Responsive */
@@ -1805,19 +1665,14 @@
 
         <div class="case-studies-container">
             <div class="case-studies-header">
-                <h1 class="case-studies-title">Digital Case Studies</h1>
+                <h3 class="case-studies-title">Digital Case Studies</h3>
                 <a href="#" class="case-studies-see-more-btn">See More Works</a>
             </div>
 
             <div class="case-studies-cards-grid">
-                <div class="case-studies-card case-studies-card-1 case-studies-hovered">
-                    <div class="case-studies-card-image">
-                        <div class="case-studies-card-icon">→</div>
-                        <div class="case-studies-mockup-text">
-                            Free 3D<br>
-                            Curved Paper<br>
-                            Mockup
-                        </div>
+                <div class="case-studies-card case-studies-card-1">
+                    <div class="case-studies-card-image case-studies-card-image-1">
+                        <!-- <div class="case-studies-card-icon">→</div> -->
                     </div>
                     <div class="case-studies-card-content">
                         <div class="case-studies-card-category">Branding Identity</div>
@@ -1826,22 +1681,7 @@
                 </div>
 
                 <div class="case-studies-card case-studies-card-2">
-                    <div class="case-studies-card-image">
-                        <div class="case-studies-packaging-container">
-                            <div class="case-studies-package-stack">
-                                <div class="case-studies-package">
-                                    <div>
-                                        <div class="case-studies-package-text">Nuga Mocktail Pack</div>
-                                        <div class="case-studies-package-text">for Photoshop</div>
-                                    </div>
-                                </div>
-                                <div class="case-studies-package">
-                                    <div class="case-studies-package-logo">p—</div>
-                                </div>
-                            </div>
-                            <div class="case-studies-fern"></div>
-                        </div>
-                    </div>
+                    <div class="case-studies-card-image case-studies-card-image-2"></div>
                     <div class="case-studies-card-content">
                         <div class="case-studies-card-category">Custom Print</div>
                         <h2 class="case-studies-card-title">Artboard Studio</h2>
@@ -1849,29 +1689,7 @@
                 </div>
 
                 <div class="case-studies-card case-studies-card-3">
-                    <div class="case-studies-card-image">
-                        <div class="case-studies-phone-mockup">
-                            <div class="case-studies-phone-screen">
-                                <div class="case-studies-screen-header">Information</div>
-                                <div class="case-studies-progress-bar">
-                                    <div class="case-studies-progress-fill"></div>
-                                </div>
-                                <div class="case-studies-progress-bar">
-                                    <div class="case-studies-progress-fill" style="width: 40%;"></div>
-                                </div>
-                                <div class="case-studies-progress-bar">
-                                    <div class="case-studies-progress-fill" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case-studies-receipt-roll">
-                            <div>Receipt</div>
-                            <div>Item 1</div>
-                            <div>Item 2</div>
-                            <div>Item 3</div>
-                            <div>Total</div>
-                        </div>
-                    </div>
+                    <div class="case-studies-card-image case-studies-card-image-3"></div>
                     <div class="case-studies-card-content">
                         <div class="case-studies-card-category">Branding</div>
                         <h2 class="case-studies-card-title">Nice Shopping</h2>
