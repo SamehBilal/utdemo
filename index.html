@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Twist</title>
     <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-bg: #161616;
+            --text-primary: #ffffff;
+            --text-secondary: #909090;
+            --accent-orange: #FF6A00;
+            --accent-red: #D62D00;
+            --border-color: rgba(144, 144, 144, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 14px;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -14,11 +28,12 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #161616;
+            background: var(--primary-bg);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
+        /* ===== NAVIGATION ===== */
         .navbar-container {
             position: fixed;
             top: -120px;
@@ -36,14 +51,15 @@
             width: 83px;
             height: 83px;
             background: rgba(22, 22, 22, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(144, 144, 144, 0.2);
+            box-shadow: 0 20px 40px var(--shadow-dark);
+            transition: all 0.7s var(--transition-smooth);
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
         }
@@ -51,7 +67,7 @@
         .navbar.expanded {
             width: min(640px, 90vw);
             height: 83px;
-            border-radius: 14px;
+            border-radius: var(--border-radius);
         }
 
         .navbar-content {
@@ -73,7 +89,7 @@
         .logo {
             font-size: clamp(18px, 3vw, 24px);
             font-weight: 700;
-            color: #909090;
+            color: var(--text-secondary);
             text-decoration: none;
             cursor: pointer !important;
         }
@@ -90,7 +106,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #909090;
+            color: var(--text-secondary);
             font-weight: 500;
             font-size: clamp(13px, 2.5vw, 15px);
             transition: all 0.3s ease;
@@ -101,27 +117,23 @@
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: var(--text-primary);
         }
 
-        .nav-links a .char {
+        .nav-links a .char,
+        .nav-links a .char-clone {
             display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s var(--transition-smooth);
             transition-delay: calc(var(--i) * 0.05s);
-        }
-
-        .nav-links a:hover .char {
-            transform: translateY(-100%);
         }
 
         .nav-links a .char-clone {
             top: 100%;
             left: 0;
             transform: translateY(0);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: calc(var(--i) * 0.05s);
         }
 
+        .nav-links a:hover .char,
         .nav-links a:hover .char-clone {
             transform: translateY(-100%);
         }
@@ -133,7 +145,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #ffffff;
+            background: var(--text-primary);
             transition: width 0.3s ease;
         }
 
@@ -142,7 +154,7 @@
         }
 
         .nav-links a.active {
-            color: #ffffff;
+            color: var(--text-primary);
         }
 
         .nav-links a.active::after {
@@ -150,11 +162,11 @@
         }
 
         .cta-button {
-            background: #ffffff;
-            color: #161616;
+            background: var(--text-primary);
+            color: var(--primary-bg);
             padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px);
             border: none;
-            border-radius: 14px;
+            border-radius: var(--border-radius);
             font-weight: 600;
             font-size: clamp(12px, 2.5vw, 14px);
             cursor: pointer;
@@ -169,24 +181,20 @@
             transform: translateY(-2px);
         }
 
-        .cta-button .char {
+        .cta-button .char,
+        .cta-button .char-clone {
             display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s var(--transition-smooth);
             transition-delay: calc(var(--i) * 0.05s);
-        }
-
-        .cta-button:hover .char {
-            transform: translateY(-100%);
         }
 
         .cta-button .char-clone {
             top: 100%;
             left: 0;
             transform: translateY(0);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: calc(var(--i) * 0.05s);
         }
 
+        .cta-button:hover .char,
         .cta-button:hover .char-clone {
             transform: translateY(-100%);
         }
@@ -195,7 +203,7 @@
             position: absolute;
             left: 25%;
             font-size: clamp(24px, 5vw, 32px);
-            color: #909090;
+            color: var(--text-secondary);
             transition: opacity 0.3s ease;
         }
 
@@ -216,6 +224,7 @@
             z-index: 1;
         }
 
+        /* ===== HERO SECTION ===== */
         .hero-section {
             padding: 200px 40px 100px;
             max-width: 1200px;
@@ -232,7 +241,7 @@
         .hero-tagline {
             font-size: clamp(12px, 2vw, 16px);
             font-weight: 500;
-            color: #909090;
+            color: var(--text-secondary);
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 2rem;
@@ -243,7 +252,7 @@
         .hero-title {
             font-size: clamp(4rem, 12vw, 8rem);
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
             line-height: 0.9;
             position: relative;
@@ -270,8 +279,7 @@
         .hero-underline {
             width: clamp(200px, 40vw, 400px);
             height: 6px;
-            background: linear-gradient(90deg, #FF6A00, #D62D00);
-            /* Updated colors */
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-red));
             border-radius: 3px;
             margin: 1rem auto 2rem;
             position: relative;
@@ -287,16 +295,14 @@
             transform: translateY(-50%);
             width: 12px;
             height: 12px;
-            background: #FF6A00;
-            /* Use the lighter end of the gradient */
+            background: var(--accent-orange);
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(255, 106, 0, 0.5);
-            /* Soft glow to match the color */
         }
 
         .hero-subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: #909090;
+            color: var(--text-secondary);
             font-weight: 400;
             line-height: 1.4;
             opacity: 0;
@@ -347,7 +353,7 @@
             }
         }
 
-        /* Sections */
+        /* ===== SECTIONS ===== */
         .section {
             min-height: 80vh;
             padding: 100px 40px;
@@ -360,14 +366,14 @@
 
         .section h2 {
             font-size: clamp(2.5rem, 5vw, 4rem);
-            color: #ffffff;
+            color: var(--text-primary);
             margin-bottom: 2rem;
             text-align: center;
         }
 
         .section p {
             font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #909090;
+            color: var(--text-secondary);
             line-height: 1.6;
             text-align: center;
             max-width: 800px;
@@ -393,6 +399,12 @@
             .hero-tagline {
                 letter-spacing: 2px;
             }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                max-width: 95vw;
+            }
         }
 
         @media (max-width: 480px) {
@@ -412,8 +424,16 @@
             .hero-tagline {
                 letter-spacing: 1px;
             }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 100vw;
+                padding: 0 20px;
+            }
         }
 
+        /* ===== HERO CAROUSEL ===== */
         .carousel-container {
             margin-top: 10em;
             position: relative;
@@ -491,6 +511,7 @@
             background: rgba(0, 0, 0, 0.3);
             padding: 8px 12px;
             border-radius: 8px;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -537,6 +558,7 @@
             left: 20px;
             color: #fff;
             font-size: 12px;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
 
         }
@@ -607,6 +629,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0.8;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(144, 144, 144, 0.2);
@@ -651,7 +674,7 @@
 
 
 
-        /* Partners */
+        /* ===== PARTNERS SLIDER ===== */
 
         @-webkit-keyframes scroll {
             0% {
@@ -727,6 +750,7 @@
 
 
 
+        /* ===== TESTIMONIALS ===== */
         .testimonial-section {
             margin: 0 auto;
             padding: 60px 40px;
@@ -834,7 +858,7 @@
             opacity: 0.7;
         }
 
-        /* services */
+        /* ===== SERVICES ===== */
         .services-section {
             margin: 0 auto;
             padding: 60px 40px;
@@ -847,6 +871,7 @@
             align-items: start;
             max-width: 90vw;
             margin: 6em auto;
+            overflow: hidden;
         }
 
         .service-card:nth-child(1) {
@@ -865,6 +890,24 @@
             grid-row: 1;
         }
 
+        .service-card:nth-child(4) {
+            grid-column: 1;
+            grid-row: 2;
+            margin-top: 4em;
+        }
+
+        .service-card:nth-child(5) {
+            grid-column: 2;
+            grid-row: 2;
+            margin-top: 12em;
+        }
+
+        .service-card:nth-child(6) {
+            grid-column: 3;
+            grid-row: 2;
+            margin-top: 4em;
+        }
+
         .service-card {
             opacity: 0;
             transform: translateX(100px);
@@ -873,7 +916,8 @@
             border: 1px solid rgba(144, 144, 144, 0.2);
             border-radius: 16px;
             padding: 30px;
-            width: 312px;
+            width: 100%;
+            max-width: 312px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
@@ -1060,7 +1104,7 @@
 
 
 
-        /* Case Studies */
+        /* ===== CASE STUDIES ===== */
         .case-studies-container {
             margin: 8em auto;
             min-width: 80vw;
@@ -1154,6 +1198,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, rgba(156,106,255,0.6) 0%, rgba(255,106,106,0.6) 50%, rgba(255,167,38,0.6) 100%);
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -1208,10 +1253,182 @@
             text-align: left !important;
         }
 
+        /* ===== THEMED CAROUSEL ===== */
+        .themed-carousel-container {
+            width: 90vw;
+            min-height: 662px;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid rgba(144, 144, 144, 0.2);
+            background: #161616;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 6em;
+            transition-duration: 300ms;
+            transition-property: transform, box-shadow;
+            transition-timing-function: ease-out;
+            transform: rotate3d(0);
+        }
+
+        .themed-carousel-container:hover {
+            transition-duration: 150ms;
+            box-shadow: 0 5px 20px 5px #00000044;
+        }
+
+        .themed-carousel-slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .themed-carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .themed-carousel-slide-2 {
+            background: linear-gradient(135deg, #9C6AFF 0%, #FF6A6A 50%, #FFA726 100%);
+        }
+
+        .themed-carousel-slide-4 {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 50%, #9C6AFF 100%);
+        }
+
+        .themed-carousel-slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .themed-carousel-slide-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .themed-carousel-slide-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .themed-carousel-navigation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            pointer-events: none;
+        }
+
+        .themed-carousel-nav-area {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            pointer-events: all;
+            cursor: none;
+        }
+
+        .themed-carousel-nav-left {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97" viewBox="0 0 96 97"><defs><linearGradient id="orangeRedGradient1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23FF6A00;stop-opacity:1" /><stop offset="100%" style="stop-color:%23D62D00;stop-opacity:1" /></linearGradient></defs><path d="M0 0 C3.12398293 1.83539258 5.79224175 3.54562038 8.33203125 6.13671875 C9.18764648 7.00200195 9.18764648 7.00200195 10.06054688 7.88476562 C10.63869141 8.47966797 11.21683594 9.07457031 11.8125 9.6875 C12.40998047 10.29400391 13.00746094 10.90050781 13.62304688 11.52539062 C15.08664185 13.01240312 16.54396102 14.50558811 18 16 C16 21 16 21 5 32 C26.78 32.495 26.78 32.495 49 33 C49 43.23 49 53.46 49 64 C34.48 64.33 19.96 64.66 5 65 C9.29 69.62 13.58 74.24 18 79 C16.38440893 82.23118215 15.47739081 83.77767459 13.06640625 86.19921875 C12.2165918 87.05290039 12.2165918 87.05290039 11.34960938 87.92382812 C10.75986328 88.50583984 10.17011719 89.08785156 9.5625 89.6875 C8.97662109 90.28111328 8.39074219 90.87472656 7.78710938 91.48632812 C7.21927734 92.05158203 6.65144531 92.61683594 6.06640625 93.19921875 C5.55021729 93.71315186 5.03402832 94.22708496 4.50219727 94.7565918 C3 96 3 96 0 97 C-6.15995217 90.95576636 -12.30640489 84.89822136 -18.4359293 78.82313156 C-21.2823808 76.00280262 -24.13330725 73.18732323 -26.99487305 70.38232422 C-29.75495573 67.67646572 -32.5027354 64.95866509 -35.24232292 62.23206329 C-36.29100262 61.19264069 -37.34408189 60.15763797 -38.40152168 59.1271286 C-39.87917616 57.68563668 -41.34056744 56.22938325 -42.79907227 54.76855469 C-43.63624283 53.94248718 -44.47341339 53.11641968 -45.33595276 52.26531982 C-47 50 -47 50 -47.03356934 47.9942627 C-45.62846256 45.28312187 -43.83370618 43.47539251 -41.66381836 41.32324219 C-40.28249977 39.94226349 -40.28249977 39.94226349 -38.87327576 38.53338623 C-37.86229096 37.53772081 -36.8511431 36.54222093 -35.83984375 35.546875 C-34.80928859 34.52191674 -33.77939506 33.49629286 -32.75013733 32.47003174 C-30.04249408 29.77382983 -27.32596228 27.08675928 -24.60748291 24.40148926 C-21.83381027 21.65853271 -19.06863571 18.90703876 -16.30273438 16.15625 C-10.87677256 10.7624398 -5.44139257 5.37824766 0 0 Z M-1.75906372 9.51855469 C-2.81829544 10.58444824 -2.81829544 10.58444824 -3.89892578 11.671875 C-4.6996048 12.47270508 -5.50028381 13.27353516 -6.32522583 14.09863281 C-7.18985443 14.97358398 -8.05448303 15.84853516 -8.9453125 16.75 C-9.8303244 17.6378418 -10.7153363 18.52568359 -11.62716675 19.44042969 C-13.98166258 21.80424682 -16.33173408 24.17229654 -18.67980957 26.54248047 C-21.07589152 28.9590037 -23.47762961 31.36989058 -25.87890625 33.78125 C-30.59118948 38.51563465 -35.29772387 43.25567712 -40 48 C-36.50146084 52.16366887 -32.943215 56.17523974 -29.06640625 59.99609375 C-27.7215918 61.32930664 -27.7215918 61.32930664 -26.34960938 62.68945312 C-24.49547008 64.51760589 -22.64130353 66.345731 -20.78710938 68.17382812 C-16.18593552 72.73536516 -11.70923745 77.31330594 -7.54443359 82.27954102 C-4.95183375 85.16763003 -2.00279265 87.54874069 1 90 C4.3 86.7 7.6 83.4 11 80 C6.67216163 74.76103777 2.03549004 69.98008422 -2.828125 65.234375 C-5 63 -5 63 -7 60 C9.5 59.67 26 59.34 43 59 C43 52.07 43 45.14 43 38 C18.25 37.505 18.25 37.505 -7 37 C-2.76589008 32.16101723 1.37131059 27.48408642 5.9375 23 C6.67709961 22.26716797 6.67709961 22.26716797 7.43164062 21.51953125 C8.61873229 20.34396475 9.80900498 19.17161174 11 18 C10.06409496 16.8944811 9.12620142 15.79064547 8.1875 14.6875 C7.40439453 13.76517578 7.40439453 13.76517578 6.60546875 12.82421875 C4.39992095 10.31595433 4.39992095 10.31595433 2 8 C-0.13499007 7.78217903 -0.13499007 7.78217903 -1.75906372 9.51855469 Z " fill="url(%23orangeRedGradient1)" transform="translate(47,0)"/></svg>') 12 12, auto;
+        }
         
+        .themed-carousel-nav-right {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97" viewBox="0 0 96 97"><defs><linearGradient id="orangeRedGradient2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23FF6A00;stop-opacity:1" /><stop offset="100%" style="stop-color:%23D62D00;stop-opacity:1" /></linearGradient></defs><path d="M0 0 C3.54879679 1.51612901 5.86439389 3.59468695 8.60083008 6.29443359 C9.50468948 7.1823056 10.40854889 8.07017761 11.33979797 8.98495483 C12.31685292 9.95563563 13.29341928 10.92680845 14.26953125 11.8984375 C15.27504587 12.8949835 16.28063679 13.89145252 17.28630066 14.8878479 C19.38884745 16.97393157 21.48698431 19.06434544 23.58276367 21.15722656 C26.27243433 23.84149464 28.97791552 26.50920721 31.6875658 29.17328453 C33.76771822 31.22374977 35.83658121 33.28532248 37.90244102 35.35017776 C38.89555685 36.3390801 39.89280556 37.32384954 40.89417458 38.30439377 C42.28988007 39.67334453 43.66847183 41.05967846 45.04614258 42.44677734 C45.83571854 43.23128265 46.62529449 44.01578796 47.438797 44.82406616 C49 47 49 47 49.01812744 48.99227905 C47.6327038 51.72429859 45.84031336 53.51805432 43.66381836 55.67675781 C42.7429393 56.59741028 41.82206024 57.51806274 40.87327576 58.46661377 C39.86229096 59.46227919 38.8511431 60.45777907 37.83984375 61.453125 C36.80928859 62.47808326 35.77939506 63.50370714 34.75013733 64.52996826 C32.04249408 67.22617017 29.32596228 69.91324072 26.60748291 72.59851074 C23.83381027 75.34146729 21.06863571 78.09296124 18.30273438 80.84375 C12.87677256 86.2375602 7.44139257 91.62175234 2 97 C-1.01409306 95.55695686 -3.10472016 94.13408132 -5.453125 91.7421875 C-6.071875 91.11699219 -6.690625 90.49179688 -7.328125 89.84765625 C-7.96234375 89.19667969 -8.5965625 88.54570313 -9.25 87.875 C-9.8996875 87.21628906 -10.549375 86.55757813 -11.21875 85.87890625 C-12.81711727 84.25703357 -14.41061897 82.6306719 -16 81 C-14 76 -14 76 -3 65 C-24.78 64.505 -24.78 64.505 -47 64 C-47 53.77 -47 43.54 -47 33 C-32.48 32.67 -17.96 32.34 -3 32 C-7.29 27.71 -11.58 23.42 -16 19 C-14.97989534 14.91958138 -14.4733273 14.1084535 -11.62109375 11.328125 C-10.94755859 10.66425781 -10.27402344 10.00039062 -9.58007812 9.31640625 C-8.87302734 8.63449219 -8.16597656 7.95257812 -7.4375 7.25 C-6.72658203 6.55261719 -6.01566406 5.85523438 -5.28320312 5.13671875 C-3.52869286 3.4175342 -1.76756648 1.70574128 0 0 Z M-4.1875 11.75 C-5.29158203 12.79414063 -5.29158203 12.79414063 -6.41796875 13.859375 C-8.23014369 15.81344533 -8.23014369 15.81344533 -7.8215332 17.89501953 C-6.79859538 20.5160507 -5.45836011 21.86717691 -3.4375 23.8203125 C-2.72335938 24.52027344 -2.00921875 25.22023438 -1.2734375 25.94140625 C-0.52320313 26.66199219 0.22703125 27.38257812 1 28.125 C2.48123899 29.56297256 3.96050745 31.00297862 5.4375 32.4453125 C6.09621094 33.07969238 6.75492188 33.71407227 7.43359375 34.36767578 C9 36 9 36 10 38 C-6.83 38 -23.66 38 -41 38 C-41 44.6 -41 51.2 -41 58 C-24.17 58 -7.34 58 10 58 C7.73549141 61.77418099 6.20932712 64.03402211 3.20703125 66.98828125 C2.49482422 67.69404297 1.78261719 68.39980469 1.04882812 69.12695312 C0.31083984 69.84818359 -0.42714844 70.56941406 -1.1875 71.3125 C-2.31188477 72.42334961 -2.31188477 72.42334961 -3.45898438 73.55664062 C-5.30153282 75.37571712 -7.14859662 77.18994389 -9 79 C-8.06409496 80.1055189 -7.12620142 81.20935453 -6.1875 82.3125 C-5.40439453 83.23482422 -5.40439453 83.23482422 -4.60546875 84.17578125 C-3.12827531 85.85424679 -1.59960869 87.43882034 0 89 C3.27196452 87.56741228 5.43203956 85.81174684 7.94238281 83.28466797 C8.70286926 82.52403046 9.46335571 81.76339294 10.24688721 80.97970581 C11.46272491 79.74838425 11.46272491 79.74838425 12.703125 78.4921875 C13.54091492 77.65156769 14.37870483 76.81094788 15.24188232 75.94485474 C17.91598431 73.25955999 20.58304724 70.56739345 23.25 67.875 C25.06204062 66.05292845 26.87453518 64.23130823 28.6875 62.41015625 C33.13028036 57.94532748 37.56730165 53.47483717 42 49 C37.57493979 43.70952371 32.91876057 38.758466 28.046875 33.87890625 C27.3054425 33.13414536 26.56401001 32.38938446 25.80010986 31.62205505 C24.24500222 30.06191619 22.68856545 28.50310113 21.13085938 26.94555664 C18.73799886 24.55048778 16.35327308 22.14750692 13.96875 19.74414062 C12.45361396 18.22607432 10.93800587 16.70847899 9.421875 15.19140625 C8.7073114 14.46965714 7.9927478 13.74790802 7.25653076 13.00428772 C6.59534241 12.34617599 5.93415405 11.68806427 5.25292969 11.01000977 C4.67146179 10.42711685 4.0899939 9.84422394 3.49090576 9.2436676 C0.16094815 6.46591967 -1.60466718 9.24488073 -4.1875 11.75 Z " fill="url(%23orangeRedGradient2)" transform="translate(47,0)"/></svg>') 12 12, auto;
+        }
 
+        .themed-carousel-indicators {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
 
-        /* Responsive */
+        .themed-carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .themed-carousel-indicator.active {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+
+        .themed-carousel-slide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .themed-carousel-slide-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .themed-carousel-slide-cta {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .themed-carousel-slide-cta:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .themed-carousel-slide-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1400px) {
+            .themed-carousel-container {
+                width: 100%;
+                max-width: 1338px;
+                height: 500px;
+            }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
             .carousel-item {
                 width: 280px;
@@ -1267,7 +1484,7 @@
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
-                max-width: 100%;
+                max-width: 90vw;
             }
 
             .service-card:nth-child(1) {
@@ -1284,6 +1501,24 @@
             .service-card:nth-child(3) {
                 grid-column: 1;
                 grid-row: 3;
+            }
+
+            .service-card:nth-child(4) {
+                grid-column: 1;
+                grid-row: 4;
+                margin-top: 0;
+            }
+
+            .service-card:nth-child(5) {
+                grid-column: 1;
+                grid-row: 5;
+                margin-top: 0;
+            }
+
+            .service-card:nth-child(6) {
+                grid-column: 1;
+                grid-row: 6;
+                margin-top: 0;
             }
 
             .service-title {
@@ -1374,6 +1609,26 @@
             .image-content img {
                 height: 350px;
             }
+
+            .themed-carousel-container {
+                height: 400px;
+            }
+            
+            .themed-carousel-slide {
+                padding: 40px 20px;
+            }
+            
+            .themed-carousel-slide-title {
+                font-size: 32px;
+            }
+            
+            .themed-carousel-slide-subtitle {
+                font-size: 16px;
+            }
+            
+            .themed-carousel-slide-icon {
+                font-size: 60px;
+            }
         }
     </style>
 </head>
@@ -1410,7 +1665,6 @@
         </h1>
         <div class="hero-underline"></div>
         <p class="hero-subtitle" id="heroSubtitle">Next Level Video Production & Digital Marketing.</p>
-
 
 
         <div class="carousel-container">
@@ -1549,6 +1803,54 @@
                     that of the individual languages. The new common.
                 </p>
             </div>
+
+            <div class="service-card">
+                <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                    viewBox="0 0 100 100" fill="none">
+                    <path d="M20 20H80V80H20V20Z" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M35 35H65V65H35V35Z" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M50 20V80" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M20 50H80" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <circle cx="50" cy="50" r="8" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                </svg>
+                <h3 class="service-title">Development</h3>
+                <p class="service-description">
+                    We build robust and scalable web applications using cutting-edge technologies. From frontend to backend,
+                    we create seamless digital experiences that drive business growth and user engagement.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                    viewBox="0 0 100 100" fill="none">
+                    <path d="M25 25L75 75" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M75 25L25 75" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <circle cx="50" cy="50" r="20" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M40 40L60 60" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M60 40L40 60" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                </svg>
+                <h3 class="service-title">Marketing</h3>
+                <p class="service-description">
+                    Strategic digital marketing solutions that connect your brand with the right audience. We create
+                    compelling campaigns that drive traffic, increase conversions, and build lasting customer relationships.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                    viewBox="0 0 100 100" fill="none">
+                    <path d="M30 30H70V70H30V30Z" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M40 40H60V60H40V40Z" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <circle cx="50" cy="50" r="5" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M20 20L80 80" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                    <path d="M80 20L20 80" stroke="#FF6A00" stroke-width="1.33333" stroke-miterlimit="10"/>
+                </svg>
+                <h3 class="service-title">Consulting</h3>
+                <p class="service-description">
+                    Expert guidance to optimize your digital strategy and maximize ROI. We analyze your business needs
+                    and provide actionable insights to help you achieve your goals and stay ahead of the competition.
+                </p>
+            </div>
         </div>
 
 
@@ -1566,13 +1868,6 @@
                 </div>
                 <div class="image-content left">
                     <img src="services2.png" height="480" alt="">
-                    <!-- <div class="decorative-frame frame-teal">
-                        <div class="frame-inner">
-                            <div class="business-icon">
-                                💼
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
@@ -1588,16 +1883,6 @@
                 </div>
                 <div class="image-content right">
                     <img src="services1.png" height="500" alt="">
-                    <!-- <div class="decorative-frame frame-orange">
-                        <div class="frame-inner">
-                            <div class="person-placeholder">
-                                👤
-                                <div class="logo-overlay">
-                                    <div class="logo-text">Pindo</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -1605,10 +1890,83 @@
     </section>
 
     <section id="work" class="section">
+        <div class="section-label">Work</div>
         <h2>Our Work</h2>
         <p>From innovative web applications to stunning visual designs, our portfolio showcases a diverse range of
             projects. Each piece reflects our commitment to quality, attention to detail, and deep understanding of user
             experience principles.</p>
+
+        <div class="themed-carousel-container">
+            <div class="themed-carousel-slides" id="carouselSlides">
+                <div class="themed-carousel-slide themed-carousel-slide-1">
+                    <div class="themed-carousel-slide-number">01 / 05</div>
+                    <div class="themed-carousel-slide-content">
+                        <div class="themed-carousel-slide-icon">🎨</div>
+                        <h2 class="themed-carousel-slide-title">Creative Design</h2>
+                        <p class="themed-carousel-slide-subtitle">Transforming ideas into stunning visual experiences</p>
+                        <p class="themed-carousel-slide-description">We craft beautiful designs that capture your brand's essence and engage your audience with compelling visual storytelling.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Explore Our Work</a>
+                    </div>
+                </div>
+    
+                <div class="themed-carousel-slide themed-carousel-slide-2">
+                    <div class="themed-carousel-slide-number">02 / 05</div>
+                    <div class="themed-carousel-slide-content">
+                        <div class="themed-carousel-slide-icon">🚀</div>
+                        <h2 class="themed-carousel-slide-title">Innovation First</h2>
+                        <p class="themed-carousel-slide-subtitle">Pushing boundaries with cutting-edge solutions</p>
+                        <p class="themed-carousel-slide-description">Our innovative approach combines the latest technologies with creative thinking to deliver exceptional results.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Learn More</a>
+                    </div>
+                </div>
+    
+                <div class="themed-carousel-slide themed-carousel-slide-3">
+                    <div class="themed-carousel-slide-number">03 / 05</div>
+                    <div class="themed-carousel-slide-content">
+                        <div class="themed-carousel-slide-icon">💡</div>
+                        <h2 class="themed-carousel-slide-title">Strategic Thinking</h2>
+                        <p class="themed-carousel-slide-subtitle">Smart solutions for complex challenges</p>
+                        <p class="themed-carousel-slide-description">We analyze, strategize, and execute with precision to ensure your projects achieve their maximum potential.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Get Started</a>
+                    </div>
+                </div>
+    
+                <div class="themed-carousel-slide themed-carousel-slide-4">
+                    <div class="themed-carousel-slide-number">04 / 05</div>
+                    <div class="themed-carousel-slide-content">
+                        <div class="themed-carousel-slide-icon">⚡</div>
+                        <h2 class="themed-carousel-slide-title">Performance Focus</h2>
+                        <p class="themed-carousel-slide-subtitle">Optimized for speed and efficiency</p>
+                        <p class="themed-carousel-slide-description">Every element is carefully crafted to deliver outstanding performance and seamless user experiences.</p>
+                        <a href="#" class="themed-carousel-slide-cta">View Performance</a>
+                    </div>
+                </div>
+    
+                <div class="themed-carousel-slide themed-carousel-slide-5">
+                    <div class="themed-carousel-slide-number">05 / 05</div>
+                    <div class="themed-carousel-slide-content">
+                        <div class="themed-carousel-slide-icon">🌟</div>
+                        <h2 class="themed-carousel-slide-title">Exceptional Results</h2>
+                        <p class="themed-carousel-slide-subtitle">Delivering excellence in every project</p>
+                        <p class="themed-carousel-slide-description">Our commitment to quality ensures that every project exceeds expectations and creates lasting impact.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="themed-carousel-navigation">
+                <div class="themed-carousel-nav-area themed-carousel-nav-left" id="navLeft"></div>
+                <div class="themed-carousel-nav-area themed-carousel-nav-right" id="navRight"></div>
+            </div>
+    
+            <div class="themed-carousel-indicators" id="indicators">
+                <button class="themed-carousel-indicator active" data-slide="0" title="Go to slide 1" aria-label="Go to slide 1"></button>
+                <button class="themed-carousel-indicator" data-slide="1" title="Go to slide 2" aria-label="Go to slide 2"></button>
+                <button class="themed-carousel-indicator" data-slide="2" title="Go to slide 3" aria-label="Go to slide 3"></button>
+                <button class="themed-carousel-indicator" data-slide="3" title="Go to slide 4" aria-label="Go to slide 4"></button>
+                <button class="themed-carousel-indicator" data-slide="4" title="Go to slide 5" aria-label="Go to slide 5"></button>
+            </div>
+        </div>
 
         <div class="case-studies-container">
             <div class="case-studies-header">
@@ -1645,6 +2003,26 @@
             </div>
         </div>
     </section>
+
+   <!--  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97">
+        <defs>
+            <linearGradient id="orangeRedGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#FF6A00;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#D62D00;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path d="M0 0 C3.12398293 1.83539258 5.79224175 3.54562038 8.33203125 6.13671875 C9.18764648 7.00200195 9.18764648 7.00200195 10.06054688 7.88476562 C10.63869141 8.47966797 11.21683594 9.07457031 11.8125 9.6875 C12.40998047 10.29400391 13.00746094 10.90050781 13.62304688 11.52539062 C15.08664185 13.01240312 16.54396102 14.50558811 18 16 C16 21 16 21 5 32 C26.78 32.495 26.78 32.495 49 33 C49 43.23 49 53.46 49 64 C34.48 64.33 19.96 64.66 5 65 C9.29 69.62 13.58 74.24 18 79 C16.38440893 82.23118215 15.47739081 83.77767459 13.06640625 86.19921875 C12.2165918 87.05290039 12.2165918 87.05290039 11.34960938 87.92382812 C10.75986328 88.50583984 10.17011719 89.08785156 9.5625 89.6875 C8.97662109 90.28111328 8.39074219 90.87472656 7.78710938 91.48632812 C7.21927734 92.05158203 6.65144531 92.61683594 6.06640625 93.19921875 C5.55021729 93.71315186 5.03402832 94.22708496 4.50219727 94.7565918 C3 96 3 96 0 97 C-6.15995217 90.95576636 -12.30640489 84.89822136 -18.4359293 78.82313156 C-21.2823808 76.00280262 -24.13330725 73.18732323 -26.99487305 70.38232422 C-29.75495573 67.67646572 -32.5027354 64.95866509 -35.24232292 62.23206329 C-36.29100262 61.19264069 -37.34408189 60.15763797 -38.40152168 59.1271286 C-39.87917616 57.68563668 -41.34056744 56.22938325 -42.79907227 54.76855469 C-43.63624283 53.94248718 -44.47341339 53.11641968 -45.33595276 52.26531982 C-47 50 -47 50 -47.03356934 47.9942627 C-45.62846256 45.28312187 -43.83370618 43.47539251 -41.66381836 41.32324219 C-40.28249977 39.94226349 -40.28249977 39.94226349 -38.87327576 38.53338623 C-37.86229096 37.53772081 -36.8511431 36.54222093 -35.83984375 35.546875 C-34.80928859 34.52191674 -33.77939506 33.49629286 -32.75013733 32.47003174 C-30.04249408 29.77382983 -27.32596228 27.08675928 -24.60748291 24.40148926 C-21.83381027 21.65853271 -19.06863571 18.90703876 -16.30273438 16.15625 C-10.87677256 10.7624398 -5.44139257 5.37824766 0 0 Z M-1.75906372 9.51855469 C-2.81829544 10.58444824 -2.81829544 10.58444824 -3.89892578 11.671875 C-4.6996048 12.47270508 -5.50028381 13.27353516 -6.32522583 14.09863281 C-7.18985443 14.97358398 -8.05448303 15.84853516 -8.9453125 16.75 C-9.8303244 17.6378418 -10.7153363 18.52568359 -11.62716675 19.44042969 C-13.98166258 21.80424682 -16.33173408 24.17229654 -18.67980957 26.54248047 C-21.07589152 28.9590037 -23.47762961 31.36989058 -25.87890625 33.78125 C-30.59118948 38.51563465 -35.29772387 43.25567712 -40 48 C-36.50146084 52.16366887 -32.943215 56.17523974 -29.06640625 59.99609375 C-27.7215918 61.32930664 -27.7215918 61.32930664 -26.34960938 62.68945312 C-24.49547008 64.51760589 -22.64130353 66.345731 -20.78710938 68.17382812 C-16.18593552 72.73536516 -11.70923745 77.31330594 -7.54443359 82.27954102 C-4.95183375 85.16763003 -2.00279265 87.54874069 1 90 C4.3 86.7 7.6 83.4 11 80 C6.67216163 74.76103777 2.03549004 69.98008422 -2.828125 65.234375 C-5 63 -5 63 -7 60 C9.5 59.67 26 59.34 43 59 C43 52.07 43 45.14 43 38 C18.25 37.505 18.25 37.505 -7 37 C-2.76589008 32.16101723 1.37131059 27.48408642 5.9375 23 C6.67709961 22.26716797 6.67709961 22.26716797 7.43164062 21.51953125 C8.61873229 20.34396475 9.80900498 19.17161174 11 18 C10.06409496 16.8944811 9.12620142 15.79064547 8.1875 14.6875 C7.40439453 13.76517578 7.40439453 13.76517578 6.60546875 12.82421875 C4.39992095 10.31595433 4.39992095 10.31595433 2 8 C-0.13499007 7.78217903 -0.13499007 7.78217903 -1.75906372 9.51855469 Z " fill="url(#orangeRedGradient1)" transform="translate(47,0)"/>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97">
+        <defs>
+            <linearGradient id="orangeRedGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#FF6A00;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#D62D00;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path d="M0 0 C3.54879679 1.51612901 5.86439389 3.59468695 8.60083008 6.29443359 C9.50468948 7.1823056 10.40854889 8.07017761 11.33979797 8.98495483 C12.31685292 9.95563563 13.29341928 10.92680845 14.26953125 11.8984375 C15.27504587 12.8949835 16.28063679 13.89145252 17.28630066 14.8878479 C19.38884745 16.97393157 21.48698431 19.06434544 23.58276367 21.15722656 C26.27243433 23.84149464 28.97791552 26.50920721 31.6875658 29.17328453 C33.76771822 31.22374977 35.83658121 33.28532248 37.90244102 35.35017776 C38.89555685 36.3390801 39.89280556 37.32384954 40.89417458 38.30439377 C42.28988007 39.67334453 43.66847183 41.05967846 45.04614258 42.44677734 C45.83571854 43.23128265 46.62529449 44.01578796 47.438797 44.82406616 C49 47 49 47 49.01812744 48.99227905 C47.6327038 51.72429859 45.84031336 53.51805432 43.66381836 55.67675781 C42.7429393 56.59741028 41.82206024 57.51806274 40.87327576 58.46661377 C39.86229096 59.46227919 38.8511431 60.45777907 37.83984375 61.453125 C36.80928859 62.47808326 35.77939506 63.50370714 34.75013733 64.52996826 C32.04249408 67.22617017 29.32596228 69.91324072 26.60748291 72.59851074 C23.83381027 75.34146729 21.06863571 78.09296124 18.30273438 80.84375 C12.87677256 86.2375602 7.44139257 91.62175234 2 97 C-1.01409306 95.55695686 -3.10472016 94.13408132 -5.453125 91.7421875 C-6.071875 91.11699219 -6.690625 90.49179688 -7.328125 89.84765625 C-7.96234375 89.19667969 -8.5965625 88.54570313 -9.25 87.875 C-9.8996875 87.21628906 -10.549375 86.55757813 -11.21875 85.87890625 C-12.81711727 84.25703357 -14.41061897 82.6306719 -16 81 C-14 76 -14 76 -3 65 C-24.78 64.505 -24.78 64.505 -47 64 C-47 53.77 -47 43.54 -47 33 C-32.48 32.67 -17.96 32.34 -3 32 C-7.29 27.71 -11.58 23.42 -16 19 C-14.97989534 14.91958138 -14.4733273 14.1084535 -11.62109375 11.328125 C-10.94755859 10.66425781 -10.27402344 10.00039062 -9.58007812 9.31640625 C-8.87302734 8.63449219 -8.16597656 7.95257812 -7.4375 7.25 C-6.72658203 6.55261719 -6.01566406 5.85523438 -5.28320312 5.13671875 C-3.52869286 3.4175342 -1.76756648 1.70574128 0 0 Z M-4.1875 11.75 C-5.29158203 12.79414063 -5.29158203 12.79414063 -6.41796875 13.859375 C-8.23014369 15.81344533 -8.23014369 15.81344533 -7.8215332 17.89501953 C-6.79859538 20.5160507 -5.45836011 21.86717691 -3.4375 23.8203125 C-2.72335938 24.52027344 -2.00921875 25.22023438 -1.2734375 25.94140625 C-0.52320313 26.66199219 0.22703125 27.38257812 1 28.125 C2.48123899 29.56297256 3.96050745 31.00297862 5.4375 32.4453125 C6.09621094 33.07969238 6.75492188 33.71407227 7.43359375 34.36767578 C9 36 9 36 10 38 C-6.83 38 -23.66 38 -41 38 C-41 44.6 -41 51.2 -41 58 C-24.17 58 -7.34 58 10 58 C7.73549141 61.77418099 6.20932712 64.03402211 3.20703125 66.98828125 C2.49482422 67.69404297 1.78261719 68.39980469 1.04882812 69.12695312 C0.31083984 69.84818359 -0.42714844 70.56941406 -1.1875 71.3125 C-2.31188477 72.42334961 -2.31188477 72.42334961 -3.45898438 73.55664062 C-5.30153282 75.37571712 -7.14859662 77.18994389 -9 79 C-8.06409496 80.1055189 -7.12620142 81.20935453 -6.1875 82.3125 C-5.40439453 83.23482422 -5.40439453 83.23482422 -4.60546875 84.17578125 C-3.12827531 85.85424679 -1.59960869 87.43882034 0 89 C3.27196452 87.56741228 5.43203956 85.81174684 7.94238281 83.28466797 C8.70286926 82.52403046 9.46335571 81.76339294 10.24688721 80.97970581 C11.46272491 79.74838425 11.46272491 79.74838425 12.703125 78.4921875 C13.54091492 77.65156769 14.37870483 76.81094788 15.24188232 75.94485474 C17.91598431 73.25955999 20.58304724 70.56739345 23.25 67.875 C25.06204062 66.05292845 26.87453518 64.23130823 28.6875 62.41015625 C33.13028036 57.94532748 37.56730165 53.47483717 42 49 C37.57493979 43.70952371 32.91876057 38.758466 28.046875 33.87890625 C27.3054425 33.13414536 26.56401001 32.38938446 25.80010986 31.62205505 C24.24500222 30.06191619 22.68856545 28.50310113 21.13085938 26.94555664 C18.73799886 24.55048778 16.35327308 22.14750692 13.96875 19.74414062 C12.45361396 18.22607432 10.93800587 16.70847899 9.421875 15.19140625 C8.7073114 14.46965714 7.9927478 13.74790802 7.25653076 13.00428772 C6.59534241 12.34617599 5.93415405 11.68806427 5.25292969 11.01000977 C4.67146179 10.42711685 4.0899939 9.84422394 3.49090576 9.2436676 C0.16094815 6.46591967 -1.60466718 9.24488073 -4.1875 11.75 Z " fill="url(#orangeRedGradient2)" transform="translate(47,0)"/>
+    </svg> -->
 
     <section id="testimonial" class="testimonial-section section">
         <div class="section-label">Testimonial</div>
@@ -1712,180 +2090,196 @@
     </section>
 
     <script>
-        // Title rotation variables
-        let currentTitleIndex = 0;
-        const titleTexts = document.querySelectorAll('.hero-title-text');
-        let titleInterval;
+        // ===== MAIN APPLICATION =====
+        (function() {
+            'use strict';
 
-        // Subtitle animation variables
-        const subtitleText = "Next Level Video Production & Digital Marketing.";
-        let subtitleAnimationStarted = false;
+            // ===== CONFIGURATION =====
+            const CONFIG = {
+                ANIMATION_DELAYS: {
+                    INITIAL: 300,
+                    NAVBAR_EXPAND: 1100,
+                    TITLE_ROTATION: 2000,
+                    SUBTITLE_ANIMATION: 1500
+                },
+                TITLE_ROTATION_INTERVAL: 600,
+                LETTER_ANIMATION_DELAY: 0.02,
+                SCROLL_THROTTLE: 16,
+                SWIPE_THRESHOLD: 50
+            };
 
-        // Trigger animation on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const container = document.getElementById('navbarContainer');
-                const navbar = document.getElementById('navbar');
+            // ===== STATE MANAGEMENT =====
+            const state = {
+                currentTitleIndex: 0,
+                subtitleAnimationStarted: false,
+                titleInterval: null,
+                autoplayInterval: null,
+                isAnimating: false,
+                currentIndex: 2,
+                startX: 0,
+                endX: 0
+            };
 
-                // Animate container down
-                container.classList.add('animate-in');
+            // ===== DOM ELEMENTS =====
+            const elements = {
+                titleTexts: document.querySelectorAll('.hero-title-text'),
+                subtitle: document.getElementById('heroSubtitle'),
+                navbarContainer: document.getElementById('navbarContainer'),
+                navbar: document.getElementById('navbar'),
+                progressBg: document.getElementById('progressBg'),
+                navLinks: document.querySelectorAll('.nav-links a'),
+                sections: document.querySelectorAll('.section')
+            };
 
-                // Expand navbar after delay
+            // ===== CONSTANTS =====
+            const SUBTITLE_TEXT = "Next Level Video Production & Digital Marketing.";
+
+            // ===== INITIALIZATION =====
+            function init() {
+                window.addEventListener('load', handlePageLoad);
+                window.addEventListener('beforeunload', cleanup);
+                initSmoothScrolling();
+            }
+
+            function handlePageLoad() {
                 setTimeout(() => {
-                    navbar.classList.add('expanded');
-                    initScrollProgress();
-                    initTextAnimations();
-
-                    // Start title rotation after a delay
+                    elements.navbarContainer.classList.add('animate-in');
+                    
                     setTimeout(() => {
-                        startTitleRotation();
-                    }, 2000);
+                        elements.navbar.classList.add('expanded');
+                        initScrollProgress();
+                        initTextAnimations();
+                        
+                        setTimeout(() => startTitleRotation(), CONFIG.ANIMATION_DELAYS.TITLE_ROTATION);
+                        setTimeout(() => animateSubtitle(), CONFIG.ANIMATION_DELAYS.SUBTITLE_ANIMATION);
+                    }, CONFIG.ANIMATION_DELAYS.NAVBAR_EXPAND);
+                }, CONFIG.ANIMATION_DELAYS.INITIAL);
+            }
 
-                    // Start subtitle animation after initial animations
-                    setTimeout(() => {
-                        animateSubtitle();
-                    }, 1500);
-                }, 1100);
-            }, 300);
-        });
+            // ===== ANIMATION FUNCTIONS =====
+            function startTitleRotation() {
+                state.titleInterval = setInterval(() => {
+                    elements.titleTexts[state.currentTitleIndex].classList.remove('active');
+                    state.currentTitleIndex = (state.currentTitleIndex + 1) % elements.titleTexts.length;
+                    elements.titleTexts[state.currentTitleIndex].classList.add('active');
+                }, CONFIG.TITLE_ROTATION_INTERVAL);
+            }
 
-        // Title rotation function
-        function startTitleRotation() {
-            titleInterval = setInterval(() => {
-                // Hide current title
-                titleTexts[currentTitleIndex].classList.remove('active');
+            function animateSubtitle() {
+                if (state.subtitleAnimationStarted) return;
+                state.subtitleAnimationStarted = true;
 
-                // Move to next title
-                currentTitleIndex = (currentTitleIndex + 1) % titleTexts.length;
+                elements.subtitle.innerHTML = '';
+                const letters = SUBTITLE_TEXT.split('');
 
-                // Show new title
-                titleTexts[currentTitleIndex].classList.add('active');
-            }, 600); // Change every 2 seconds (0.2 seconds was too fast for readability)
-        }
+                letters.forEach((letter, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'subtitle-letter';
+                    span.textContent = letter === ' ' ? '\u00A0' : letter;
+                    span.style.animationDelay = `${index * CONFIG.LETTER_ANIMATION_DELAY}s`;
+                    elements.subtitle.appendChild(span);
+                });
+            }
 
-        // Subtitle letter-by-letter animation
-        function animateSubtitle() {
-            if (subtitleAnimationStarted) return;
-            subtitleAnimationStarted = true;
+            // ===== TEXT ANIMATION FUNCTIONS =====
+            function initTextAnimations() {
+                elements.navLinks.forEach(createTextAnimation);
+                const button = document.querySelector('.cta-button');
+                if (button) createTextAnimation(button);
+            }
 
-            const subtitle = document.getElementById('heroSubtitle');
-            subtitle.innerHTML = ''; // Clear existing content
+            function createTextAnimation(element) {
+                const text = element.getAttribute('data-text');
+                if (!text) return;
 
-            // Split text into letters and spaces
-            const letters = subtitleText.split('');
+                element.innerHTML = '';
+                
+                const originalSpan = createSpan('relative', 'inline-block');
+                const cloneSpan = createSpan('absolute', 'inline-block');
+                
+                cloneSpan.style.top = '100%';
+                cloneSpan.style.left = '0';
+                cloneSpan.style.whiteSpace = 'nowrap';
+                cloneSpan.style.width = '100%';
 
-            letters.forEach((letter, index) => {
+                text.split('').forEach((char, index) => {
+                    const originalChar = createCharSpan('char', char, index);
+                    const cloneChar = createCharSpan('char-clone', char, index);
+                    
+                    originalSpan.appendChild(originalChar);
+                    cloneSpan.appendChild(cloneChar);
+                });
+
+                element.appendChild(originalSpan);
+                element.appendChild(cloneSpan);
+            }
+
+            function createSpan(position, display) {
                 const span = document.createElement('span');
-                span.className = 'subtitle-letter';
-                span.textContent = letter === ' ' ? '\u00A0' : letter; // Use non-breaking space
-                span.style.animationDelay = `${index * 0.02}s`; // 50ms delay between letters
-                subtitle.appendChild(span);
-            });
-        }
+                span.style.position = position;
+                span.style.display = display;
+                return span;
+            }
 
-        // Initialize text animations
-        function initTextAnimations() {
-            // Animate nav links
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                createTextAnimation(link);
-            });
+            function createCharSpan(className, char, index) {
+                const span = document.createElement('span');
+                span.className = className;
+                span.style.setProperty('--i', index);
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                return span;
+            }
 
-            // Animate button
-            const button = document.querySelector('.cta-button');
-            createTextAnimation(button);
-        }
+            // ===== SCROLL PROGRESS FUNCTIONS =====
+            function initScrollProgress() {
+                let ticking = false;
+                
+                function updateProgress() {
+                    const scrollTop = window.pageYOffset;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                    const currentSection = getCurrentSection(scrollTop);
 
-        function createTextAnimation(element) {
-            const text = element.getAttribute('data-text');
-            if (!text) return;
+                    elements.progressBg.style.width = `${progress}%`;
+                    updateActiveNavLink(currentSection);
+                }
 
-            // Clear existing content
-            element.innerHTML = '';
+                function requestTick() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateProgress);
+                        ticking = true;
+                        setTimeout(() => ticking = false, CONFIG.SCROLL_THROTTLE);
+                    }
+                }
 
-            // Create original text with spans
-            const originalSpan = document.createElement('span');
-            originalSpan.style.position = 'relative';
-            originalSpan.style.display = 'inline-block';
+                window.addEventListener('scroll', requestTick);
+                updateProgress();
+            }
 
-            // Create clone text with spans
-            const cloneSpan = document.createElement('span');
-            cloneSpan.style.position = 'absolute';
-            cloneSpan.style.top = '100%';
-            cloneSpan.style.left = '0';
-            cloneSpan.style.whiteSpace = 'nowrap';
-            cloneSpan.style.width = '100%';
-
-            // Split text into characters
-            text.split('').forEach((char, index) => {
-                // Original character
-                const originalChar = document.createElement('span');
-                originalChar.className = 'char';
-                originalChar.style.setProperty('--i', index);
-                originalChar.textContent = char === ' ' ? '\u00A0' : char;
-                originalSpan.appendChild(originalChar);
-
-                // Clone character
-                const cloneChar = document.createElement('span');
-                cloneChar.className = 'char-clone';
-                cloneChar.style.setProperty('--i', index);
-                cloneChar.style.display = 'inline-block';
-                cloneChar.textContent = char === ' ' ? '\u00A0' : char;
-                cloneSpan.appendChild(cloneChar);
-            });
-
-            element.appendChild(originalSpan);
-            element.appendChild(cloneSpan);
-        }
-
-        // Initialize scroll progress functionality
-        function initScrollProgress() {
-            const progressBg = document.getElementById('progressBg');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const sections = document.querySelectorAll('.section');
-
-            function updateProgress() {
-                const scrollTop = window.pageYOffset;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                // Calculate progress for the whole page
-                let progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-
-                // Find current section in view
+            function getCurrentSection(scrollTop) {
                 let currentSection = '';
-                sections.forEach(section => {
+                elements.sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
                     if (scrollTop >= sectionTop - window.innerHeight * 0.3) {
                         currentSection = section.id;
                     }
                 });
+                return currentSection;
+            }
 
-                // Update progress bar width
-                progressBg.style.width = progress + '%';
-
-                // Update active link
-                navLinks.forEach(link => {
+            function updateActiveNavLink(currentSection) {
+                elements.navLinks.forEach(link => {
                     link.classList.toggle('active', link.getAttribute('data-section') === currentSection);
                 });
             }
 
-            // Throttle scroll events for performance
-            let ticking = false;
-            function requestTick() {
-                if (!ticking) {
-                    requestAnimationFrame(updateProgress);
-                    ticking = true;
-                    setTimeout(() => ticking = false, 16);
-                }
+            // ===== UTILITY FUNCTIONS =====
+            function initSmoothScrolling() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', handleSmoothScroll);
+                });
             }
 
-            window.addEventListener('scroll', requestTick);
-            updateProgress(); // Initial call
-        }
-
-        // Add smooth scrolling for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            function handleSmoothScroll(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1894,169 +2288,197 @@
                         block: 'start'
                     });
                 }
-            });
-        });
-
-        // Clean up intervals when page is unloaded
-        window.addEventListener('beforeunload', () => {
-            if (titleInterval) {
-                clearInterval(titleInterval);
             }
-        });
+
+            function cleanup() {
+                if (state.titleInterval) {
+                    clearInterval(state.titleInterval);
+                }
+                if (state.autoplayInterval) {
+                    clearInterval(state.autoplayInterval);
+                }
+            }
+
+            // ===== START APPLICATION =====
+            init();
+        })();
     </script>
 
     <script>
-        const carouselData = [
-            {
-                id: 1,
-                title: "Brooklyn",
-                subtitle: "Next Generation",
-                image: "https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww",
-                category: "Featured",
-                link: "#brooklyn"
-            },
-            {
-                id: 2,
-                title: "Fashion Style 2020",
-                subtitle: "New in Brooklyn",
-                image: "https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww",
-                category: "Featured",
-                link: "#fashion"
-            },
-            {
-                id: 3,
-                title: "Cyberpunk 2077",
-                subtitle: "Behind the Scenes",
-                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop",
-                video: "video.mp4",
-                category: "Featured",
-                link: "#cyberpunk"
-            },
-            {
-                id: 4,
-                title: "Eduardo Francesco",
-                subtitle: "Movie Maker",
-                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop",
-                category: "Featured",
-                link: "#eduardo"
-            },
-            {
-                id: 5,
-                title: "Harley-Davidson",
-                subtitle: "2020 LiveWire",
-                image: "https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww",
-                category: "Featured",
-                link: "#harley"
-            }
-        ];
+        // ===== HERO CAROUSEL =====
+        (function() {
+            'use strict';
 
-        let isDragging = false;
-        let dragStartX = 0;
-        let dragCurrentX = 0;
-        let dragDelta = 0;
-        let wasDragged = false;
+            // ===== CAROUSEL DATA =====
+            const carouselData = [
+                {
+                    id: 1,
+                    title: "Brooklyn",
+                    subtitle: "Next Generation",
+                    image: "https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww",
+                    category: "Featured",
+                    link: "#brooklyn"
+                },
+                {
+                    id: 2,
+                    title: "Fashion Style 2020",
+                    subtitle: "New in Brooklyn",
+                    image: "https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww",
+                    category: "Featured",
+                    link: "#fashion"
+                },
+                {
+                    id: 3,
+                    title: "Cyberpunk 2077",
+                    subtitle: "Behind the Scenes",
+                    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop",
+                    video: "video.mp4",
+                    category: "Featured",
+                    link: "#cyberpunk"
+                },
+                {
+                    id: 4,
+                    title: "Eduardo Francesco",
+                    subtitle: "Movie Maker",
+                    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop",
+                    category: "Featured",
+                    link: "#eduardo"
+                },
+                {
+                    id: 5,
+                    title: "Harley-Davidson",
+                    subtitle: "2020 LiveWire",
+                    image: "https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww",
+                    category: "Featured",
+                    link: "#harley"
+                }
+            ];
 
-        const track = document.getElementById('carouselTrack');
+            // ===== CAROUSEL STATE =====
+            const carouselState = {
+                isDragging: false,
+                dragStartX: 0,
+                dragCurrentX: 0,
+                dragDelta: 0,
+                wasDragged: false,
+                currentIndex: 2,
+                isAnimating: false
+            };
 
-        track.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            dragStartX = e.clientX;
-            dragCurrentX = dragStartX;
-            dragDelta = 0;
-            wasDragged = false;
-            track.style.transition = 'none';
-            document.body.style.cursor = 'grabbing';
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            dragCurrentX = e.clientX;
-            dragDelta = dragCurrentX - dragStartX;
-            if (Math.abs(dragDelta) > 5) wasDragged = true;
-            track.style.transform = `translateX(${getCenterOffset() + dragDelta}px) translateY(-50%) rotateZ(-8deg)`;
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            track.style.transition = '';
-            document.body.style.cursor = '';
-            if (Math.abs(dragDelta) > 50) {
-                if (dragDelta < 0) nextSlide();
-                else prevSlide();
-            } else {
-                // Snap back to center
-                track.style.transform = `translateX(${getCenterOffset()}px) translateY(-50%) rotateZ(-8deg)`;
-            }
-            dragDelta = 0;
-        });
-
-        // Touch support
-        track.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            dragStartX = e.touches[0].clientX;
-            dragCurrentX = dragStartX;
-            dragDelta = 0;
-            wasDragged = false;
-            track.style.transition = 'none';
-        }, { passive: true });
-
-        // Touch support
-        track.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            dragCurrentX = e.touches[0].clientX;
-            dragDelta = dragCurrentX - dragStartX;
-            if (Math.abs(dragDelta) > 5) wasDragged = true;
-            track.style.transform = `translateX(${getCenterOffset() + dragDelta}px) translateY(-50%) rotateZ(-8deg)`;
-        }, { passive: true });
-
-        track.addEventListener('touchend', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            track.style.transition = '';
-            if (Math.abs(dragDelta) > 50) {
-                if (dragDelta < 0) nextSlide();
-                else prevSlide();
-            } else {
-                // Snap back to center
-                track.style.transform = `translateX(${getCenterOffset()}px) translateY(-50%) rotateZ(-8deg)`;
-            }
-            dragDelta = 0;
-        });
-
-        // Helper to get the center offset for the active item
-        function getCenterOffset() {
-            const items = document.querySelectorAll('.carousel-item');
-            if (!items.length) return 0;
-            const itemWidth = items[0].offsetWidth;
-            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-            const containerWidth = track.parentElement.offsetWidth;
-            return (containerWidth / 2) - (itemWidth / 2) - (currentIndex * (itemWidth + gap));
-        }
-
-        let currentIndex = 2; // Start with middle item active
-        let isAnimating = false;
-
-        function createCarouselItems() {
+            // ===== DOM ELEMENTS =====
             const track = document.getElementById('carouselTrack');
-            const titles = document.getElementById('carouselTitles');
-            const nav = document.getElementById('carouselNav');
 
-            track.innerHTML = '';
-            titles.innerHTML = '';
-            //nav.innerHTML = '';
+            // ===== DRAG FUNCTIONALITY =====
+            function initDragHandlers() {
+                track.addEventListener('mousedown', handleMouseDown);
+                window.addEventListener('mousemove', handleMouseMove);
+                window.addEventListener('mouseup', handleMouseUp);
+                
+                // Touch support
+                track.addEventListener('touchstart', handleTouchStart, { passive: true });
+                track.addEventListener('touchmove', handleTouchMove, { passive: true });
+                track.addEventListener('touchend', handleTouchEnd);
+            }
 
-            carouselData.forEach((item, index) => {
-                // Create carousel item
+            function handleMouseDown(e) {
+                carouselState.isDragging = true;
+                carouselState.dragStartX = e.clientX;
+                carouselState.dragCurrentX = carouselState.dragStartX;
+                carouselState.dragDelta = 0;
+                carouselState.wasDragged = false;
+                track.style.transition = 'none';
+                document.body.style.cursor = 'grabbing';
+            }
+
+            function handleMouseMove(e) {
+                if (!carouselState.isDragging) return;
+                carouselState.dragCurrentX = e.clientX;
+                carouselState.dragDelta = carouselState.dragCurrentX - carouselState.dragStartX;
+                if (Math.abs(carouselState.dragDelta) > 5) carouselState.wasDragged = true;
+                updateTrackTransform();
+            }
+
+            function handleMouseUp() {
+                if (!carouselState.isDragging) return;
+                carouselState.isDragging = false;
+                track.style.transition = '';
+                document.body.style.cursor = '';
+                handleDragEnd();
+            }
+
+            function handleTouchStart(e) {
+                carouselState.isDragging = true;
+                carouselState.dragStartX = e.touches[0].clientX;
+                carouselState.dragCurrentX = carouselState.dragStartX;
+                carouselState.dragDelta = 0;
+                carouselState.wasDragged = false;
+                track.style.transition = 'none';
+            }
+
+            function handleTouchMove(e) {
+                if (!carouselState.isDragging) return;
+                carouselState.dragCurrentX = e.touches[0].clientX;
+                carouselState.dragDelta = carouselState.dragCurrentX - carouselState.dragStartX;
+                if (Math.abs(carouselState.dragDelta) > 5) carouselState.wasDragged = true;
+                updateTrackTransform();
+            }
+
+            function handleTouchEnd() {
+                if (!carouselState.isDragging) return;
+                carouselState.isDragging = false;
+                track.style.transition = '';
+                handleDragEnd();
+            }
+
+            function handleDragEnd() {
+                if (Math.abs(carouselState.dragDelta) > 50) {
+                    if (carouselState.dragDelta < 0) nextSlide();
+                    else prevSlide();
+                } else {
+                    updateTrackTransform();
+                }
+                carouselState.dragDelta = 0;
+            }
+
+            function updateTrackTransform() {
+                const centerOffset = getCenterOffset();
+                track.style.transform = `translateX(${centerOffset + carouselState.dragDelta}px) translateY(-50%) rotateZ(-8deg)`;
+            }
+
+            // ===== HELPER FUNCTIONS =====
+            function getCenterOffset() {
+                const items = document.querySelectorAll('.carousel-item');
+                if (!items.length) return 0;
+                const itemWidth = items[0].offsetWidth;
+                const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+                const containerWidth = track.parentElement.offsetWidth;
+                return (containerWidth / 2) - (itemWidth / 2) - (carouselState.currentIndex * (itemWidth + gap));
+            }
+
+            // ===== CAROUSEL CREATION =====
+            function createCarouselItems() {
+                const titles = document.getElementById('carouselTitles');
+                
+                track.innerHTML = '';
+                titles.innerHTML = '';
+
+                carouselData.forEach((item, index) => {
+                    const carouselItem = createCarouselItem(item, index);
+                    const titleItem = createTitleItem(item.title);
+                    
+                    track.appendChild(carouselItem);
+                    titles.appendChild(titleItem);
+                });
+
+                updateCarousel();
+            }
+
+            function createCarouselItem(item, index) {
                 const carouselItem = document.createElement('div');
                 carouselItem.className = 'carousel-item';
                 carouselItem.innerHTML = `
                     <div class="item-number">${String(item.id).padStart(2, '0')}</div>
-                    ${item.video ?
-                        `<video class="item-video" muted loop preload="metadata">
-                            <source src="${item.video}" type="video/mp4">
-                        </video>` : ''
-                    }
+                    ${item.video ? `<video class="item-video" muted loop preload="metadata"><source src="${item.video}" type="video/mp4"></video>` : ''}
                     <img class="item-image" src="${item.image}" alt="${item.title}">
                     <div class="item-overlay">
                         <div class="item-title">${item.title}</div>
@@ -2064,235 +2486,333 @@
                     </div>
                     <div class="item-category">${item.category}</div>
                 `;
-
+                
                 carouselItem.addEventListener('click', () => handleItemClick(index));
-                track.appendChild(carouselItem);
+                return carouselItem;
+            }
 
-                // Create background title
+            function createTitleItem(title) {
                 const titleItem = document.createElement('div');
                 titleItem.className = 'title-item';
-                titleItem.textContent = item.title;
-                titles.appendChild(titleItem);
-
-                // Create navigation dot
-                /*const navDot = document.createElement('div');
-                navDot.className = 'nav-dot';
-                navDot.addEventListener('click', () => goToSlide(index));
-                nav.appendChild(navDot);*/
-            });
-
-            updateCarousel();
-        }
-
-
-
-        function handleItemClick(index) {
-            if (isAnimating) return;
-
-            if (index === currentIndex) {
-                // Center item clicked - open link
-                window.open(carouselData[index].link, '_blank');
-            } else {
-                // Side item clicked - navigate to it
-                goToSlide(index);
+                titleItem.textContent = title;
+                return titleItem;
             }
-        }
 
-        function goToSlide(index) {
-            if (isAnimating || index === currentIndex) return;
 
-            isAnimating = true;
-            currentIndex = index;
-            updateCarousel();
 
-            setTimeout(() => {
-                isAnimating = false;
-            }, 800);
-        }
+            // ===== CAROUSEL NAVIGATION =====
+            function handleItemClick(index) {
+                if (carouselState.isAnimating) return;
 
-        function updateCarousel() {
-            const items = document.querySelectorAll('.carousel-item');
-            const titles = document.querySelectorAll('.title-item');
-            //const dots = document.querySelectorAll('.nav-dot');
-            const videos = document.querySelectorAll('.item-video');
-            const track = document.getElementById('carouselTrack');
+                if (index === carouselState.currentIndex) {
+                    window.open(carouselData[index].link, '_blank');
+                } else {
+                    goToSlide(index);
+                }
+            }
 
-            // Stop all videos first
-            videos.forEach(video => {
-                video.pause();
-                video.currentTime = 0;
-            });
+            function goToSlide(index) {
+                if (carouselState.isAnimating || index === carouselState.currentIndex) return;
 
-            items.forEach((item, index) => {
-                item.classList.remove('left', 'center', 'right', 'hidden');
+                carouselState.isAnimating = true;
+                carouselState.currentIndex = index;
+                updateCarousel();
 
-                if (index === currentIndex) {
-                    item.classList.add('center');
-                    // Play video if exists and is center
-                    const video = item.querySelector('.item-video');
-                    if (video) {
-                        video.play().catch(e => console.log('Video play failed:', e));
+                setTimeout(() => {
+                    carouselState.isAnimating = false;
+                }, 800);
+            }
+
+            function updateCarousel() {
+                const items = document.querySelectorAll('.carousel-item');
+                const titles = document.querySelectorAll('.title-item');
+                const videos = document.querySelectorAll('.item-video');
+
+                // Stop all videos first
+                videos.forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+
+                items.forEach((item, index) => {
+                    item.classList.remove('left', 'center', 'right', 'hidden');
+                    
+                    if (index === carouselState.currentIndex) {
+                        item.classList.add('center');
+                        const video = item.querySelector('.item-video');
+                        if (video) {
+                            video.play().catch(e => console.log('Video play failed:', e));
+                        }
+                    } else if (index === carouselState.currentIndex - 1 || (carouselState.currentIndex === 0 && index === items.length - 1)) {
+                        item.classList.add('left');
+                    } else if (index === carouselState.currentIndex + 1 || (carouselState.currentIndex === items.length - 1 && index === 0)) {
+                        item.classList.add('right');
+                    } else {
+                        item.classList.add('left');
                     }
-                } else if (index === currentIndex - 1 || (currentIndex === 0 && index === items.length - 1)) {
-                    item.classList.add('left');
-                } else if (index === currentIndex + 1 || (currentIndex === items.length - 1 && index === 0)) {
-                    item.classList.add('right');
-                } else {
-                    item.classList.add('left');
-                }
-            });
+                });
 
-            titles.forEach((title, index) => {
-                title.classList.toggle('active', index === currentIndex);
-            });
+                titles.forEach((title, index) => {
+                    title.classList.toggle('active', index === carouselState.currentIndex);
+                });
 
-            /*dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });*/
+                centerActiveCarouselItem();
+            }
 
-            // Center the active item in the viewport
-            centerActiveCarouselItem(track, items, currentIndex);
-        }
+            // ===== CAROUSEL POSITIONING =====
+            function centerActiveCarouselItem() {
+                const items = document.querySelectorAll('.carousel-item');
+                if (!items.length) return;
+                
+                const itemWidth = items[0].offsetWidth;
+                const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+                const containerWidth = track.parentElement.offsetWidth;
+                const centerOffset = (containerWidth / 2) - (itemWidth / 2) - (carouselState.currentIndex * (itemWidth + gap));
+                
+                track.style.transform = `translateX(${centerOffset}px) translateY(-50%) rotateZ(-8deg)`;
+                track.style.top = '50%';
+                track.style.left = '0';
+            }
 
-        // Helper to center the active item
-        function centerActiveCarouselItem(track, items, currentIndex) {
-            if (!items.length) return;
-            const itemWidth = items[0].offsetWidth;
-            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-            //const totalWidth = items.length * itemWidth + (items.length - 1) * gap;
-            const containerWidth = track.parentElement.offsetWidth;
+            // ===== NAVIGATION CONTROLS =====
+            function nextSlide() {
+                const nextIndex = (carouselState.currentIndex + 1) % carouselData.length;
+                goToSlide(nextIndex);
+            }
 
-            // Calculate the offset to center the current item
-            //const centerOffset = (containerWidth / 2) - (itemWidth / 2) - (currentIndex * (itemWidth + gap));
-            //track.style.transform = `translateX(${centerOffset}px)`;
-            //track.style.transform = `translateX(${getCenterOffset()}px)`;
-            const centerOffset = (containerWidth / 2) - (itemWidth / 2) - (currentIndex * (itemWidth + gap));
-            // Apply both translate and rotate
-            track.style.transform = `translateX(${centerOffset}px) translateY(-50%) rotateZ(-8deg)`;
-            track.style.top = '50%'; // Ensure vertical centering
-            track.style.left = '0';  // Align left edge for translateX math
-        }
+            function prevSlide() {
+                const prevIndex = (carouselState.currentIndex - 1 + carouselData.length) % carouselData.length;
+                goToSlide(prevIndex);
+            }
 
-        function nextSlide() {
-            const nextIndex = (currentIndex + 1) % carouselData.length;
-            goToSlide(nextIndex);
-        }
+            function initNavigation() {
+                document.getElementById('carouselArrowLeft').addEventListener('click', prevSlide);
+                document.getElementById('carouselArrowRight').addEventListener('click', nextSlide);
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') prevSlide();
+                    if (e.key === 'ArrowRight') nextSlide();
+                });
 
-        function prevSlide() {
-            const prevIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
-            goToSlide(prevIndex);
-        }
+                // Touch/swipe support for mobile
+                document.addEventListener('touchstart', (e) => {
+                    carouselState.startX = e.changedTouches[0].screenX;
+                });
 
-        document.getElementById('carouselArrowLeft').addEventListener('click', prevSlide);
-        document.getElementById('carouselArrowRight').addEventListener('click', nextSlide);
+                document.addEventListener('touchend', (e) => {
+                    carouselState.endX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
-
-        // Auto-play (optional)
-        let autoplayInterval;
-        function startAutoplay() {
-            autoplayInterval = setInterval(nextSlide, 1000);
-        }
-
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        // Mouse enter/leave for autoplay
-        document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
-        document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
-
-        // Initialize
-        createCarouselItems();
-        // startAutoplay(); // Uncomment to enable autoplay
-
-        // Touch/swipe support for mobile
-        let startX = 0;
-        let endX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            startX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeDistance = Math.abs(endX - startX);
-            if (swipeDistance > 50) {
-                if (endX < startX) {
-                    nextSlide();
-                } else {
-                    prevSlide();
+            function handleSwipe() {
+                const swipeDistance = Math.abs(carouselState.endX - carouselState.startX);
+                if (swipeDistance > 50) {
+                    if (carouselState.endX < carouselState.startX) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
                 }
             }
-        }
+
+            // ===== AUTO-PLAY FUNCTIONALITY =====
+            function startAutoplay() {
+                carouselState.autoplayInterval = setInterval(nextSlide, 1000);
+            }
+
+            function stopAutoplay() {
+                if (carouselState.autoplayInterval) {
+                    clearInterval(carouselState.autoplayInterval);
+                }
+            }
+
+            function initAutoplay() {
+                const carouselContainer = document.querySelector('.carousel-container');
+                carouselContainer.addEventListener('mouseenter', stopAutoplay);
+                carouselContainer.addEventListener('mouseleave', startAutoplay);
+                // startAutoplay(); // Uncomment to enable autoplay
+            }
+
+            // ===== INITIALIZATION =====
+            function init() {
+                createCarouselItems();
+                initDragHandlers();
+                initNavigation();
+                initAutoplay();
+            }
+
+            // Start carousel
+            init();
+        })();
     </script>
 
     <script>
-        // Intersection Observer for animation trigger
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // ===== INTERSECTION OBSERVERS =====
+        (function() {
+            'use strict';
 
-                    // Trigger individual card animations
-                    const cards = entry.target.querySelectorAll('.service-card');
-                    cards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.classList.add('animate');
-                        }, index * 200);
+            const ANIMATION_DELAY = 1800;
+
+            // ===== SERVICES ANIMATION OBSERVER =====
+            const servicesObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        const cards = entry.target.querySelectorAll('.service-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => card.classList.add('animate'), index * 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // ===== CONTENT BLOCK ANIMATION OBSERVER =====
+            const contentObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const textContent = entry.target.querySelector('.text-content');
+                        const imageContent = entry.target.querySelector('.image-content');
+
+                        if (textContent) {
+                            setTimeout(() => textContent.classList.add('animate'), 200);
+                        }
+                        if (imageContent) {
+                            setTimeout(() => imageContent.classList.add('animate'), 400);
+                        }
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            // ===== INITIALIZATION =====
+            function init() {
+                setTimeout(() => {
+                    const servicesSection = document.getElementById('services');
+                    if (servicesSection) servicesObserver.observe(servicesSection);
+                    
+                    document.querySelectorAll('.content-block').forEach(block => {
+                        contentObserver.observe(block);
+                    });
+                }, ANIMATION_DELAY);
+            }
+
+            init();
+        })();
+    </script>
+
+    <script>
+        // ===== THEMED CAROUSEL =====
+        (function() {
+            'use strict';
+
+            class ThemedCarousel {
+                constructor() {
+                    this.slides = document.getElementById('carouselSlides');
+                    this.indicators = document.querySelectorAll('.themed-carousel-indicator');
+                    this.navLeft = document.getElementById('navLeft');
+                    this.navRight = document.getElementById('navRight');
+                    this.currentSlide = 0;
+                    this.totalSlides = 5;
+                    
+                    this.init();
+                }
+
+                init() {
+                    this.navLeft.addEventListener('click', () => this.previousSlide());
+                    this.navRight.addEventListener('click', () => this.nextSlide());
+                    
+                    this.indicators.forEach((indicator, index) => {
+                        indicator.addEventListener('click', () => this.goToSlide(index));
                     });
                 }
-            });
-        }, {
-            threshold: 0.1
-        });
 
-        // Observe the services section
-        setTimeout(() => {
-            const servicesSection = document.getElementById('services');
-            observer.observe(servicesSection);
-        }, 1800);
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                    this.updateSlides();
+                }
+
+                previousSlide() {
+                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                    this.updateSlides();
+                }
+
+                goToSlide(index) {
+                    this.currentSlide = index;
+                    this.updateSlides();
+                }
+
+                updateSlides() {
+                    const translateX = -this.currentSlide * 100;
+                    this.slides.style.transform = `translateX(${translateX}%)`;
+                    
+                    this.indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === this.currentSlide);
+                    });
+                    
+                    this.updateSlideNumbers();
+                }
+
+                updateSlideNumbers() {
+                    document.querySelectorAll('.themed-carousel-slide-number').forEach((number, index) => {
+                        number.textContent = `${String(index + 1).padStart(2, '0')} / ${String(this.totalSlides).padStart(2, '0')}`;
+                    });
+                }
+            }
+
+            // Initialize carousel when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                new ThemedCarousel();
+            });
+        })();
     </script>
 
     <script>
-        // Intersection Observer for animations
-        const observer2 = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const textContent = entry.target.querySelector('.text-content');
-                    const imageContent = entry.target.querySelector('.image-content');
+        // ===== 3D ROTATION EFFECT =====
+        (function() {
+            'use strict';
 
-                    if (textContent) {
-                        setTimeout(() => {
-                            textContent.classList.add('animate');
-                        }, 200);
-                    }
+            const card = document.querySelector('.themed-carousel-container');
+            let bounds;
 
-                    if (imageContent) {
-                        setTimeout(() => {
-                            imageContent.classList.add('animate');
-                        }, 400);
-                    }
-                }
-            });
-        }, {
-            threshold: 0.2
-        });
+            function rotateToMouse(e) {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                const leftX = mouseX - bounds.x;
+                const topY = mouseY - bounds.y;
+                const center = {
+                    x: leftX - bounds.width / 2,
+                    y: topY - bounds.height / 2
+                };
+                const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+                
+                card.style.transform = `
+                    scale3d(1.07, 1.07, 1.07)
+                    rotate3d(
+                        ${center.y / 100},
+                        ${-center.x / 100},
+                        0,
+                        ${Math.log(distance) * 2}deg
+                    )
+                `;
+            }
 
-        // Observe each content block
-        setTimeout(() => {
-            document.querySelectorAll('.content-block').forEach(block => {
-                observer2.observe(block);
-            });
-        }, 1800);
+            function handleMouseEnter() {
+                bounds = card.getBoundingClientRect();
+                document.addEventListener('mousemove', rotateToMouse);
+            }
+
+            function handleMouseLeave() {
+                document.removeEventListener('mousemove', rotateToMouse);
+                card.style.transform = '';
+                card.style.background = '';
+            }
+
+            // Initialize 3D rotation
+            card.addEventListener('mouseenter', handleMouseEnter);
+            card.addEventListener('mouseleave', handleMouseLeave);
+        })();
     </script>
 </body>
 
