@@ -1330,6 +1330,14 @@
             font-weight: 500;
         }
 
+        .themed-carousel-nav-area {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            pointer-events: all;
+            cursor: none;
+        }
+        
         .themed-carousel-navigation {
             position: absolute;
             top: 0;
@@ -1338,14 +1346,6 @@
             bottom: 0;
             display: flex;
             pointer-events: none;
-        }
-
-        .themed-carousel-nav-area {
-            flex: 1;
-            height: 100%;
-            position: relative;
-            pointer-events: all;
-            cursor: none;
         }
 
         .themed-carousel-nav-left {
@@ -1357,18 +1357,15 @@
         }
 
         .themed-carousel-indicators {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             gap: 12px;
+            margin-top: 4em;
         }
 
         .themed-carousel-indicator {
             width: 12px;
             height: 12px;
-            border-radius: 50%;
+            border-radius: 25%;
             background: rgba(255, 255, 255, 0.3);
             border: none;
             cursor: pointer;
@@ -1376,7 +1373,7 @@
         }
 
         .themed-carousel-indicator.active {
-            background: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-red));
             transform: scale(1.2);
         }
 
@@ -1958,14 +1955,14 @@
                 <div class="themed-carousel-nav-area themed-carousel-nav-left" id="navLeft"></div>
                 <div class="themed-carousel-nav-area themed-carousel-nav-right" id="navRight"></div>
             </div>
-    
-            <div class="themed-carousel-indicators" id="indicators">
-                <button class="themed-carousel-indicator active" data-slide="0" title="Go to slide 1" aria-label="Go to slide 1"></button>
-                <button class="themed-carousel-indicator" data-slide="1" title="Go to slide 2" aria-label="Go to slide 2"></button>
-                <button class="themed-carousel-indicator" data-slide="2" title="Go to slide 3" aria-label="Go to slide 3"></button>
-                <button class="themed-carousel-indicator" data-slide="3" title="Go to slide 4" aria-label="Go to slide 4"></button>
-                <button class="themed-carousel-indicator" data-slide="4" title="Go to slide 5" aria-label="Go to slide 5"></button>
-            </div>
+        </div>
+
+        <div class="themed-carousel-indicators" id="indicators">
+            <button class="themed-carousel-indicator active" data-slide="0" title="Go to slide 1" aria-label="Go to slide 1"></button>
+            <button class="themed-carousel-indicator" data-slide="1" title="Go to slide 2" aria-label="Go to slide 2"></button>
+            <button class="themed-carousel-indicator" data-slide="2" title="Go to slide 3" aria-label="Go to slide 3"></button>
+            <button class="themed-carousel-indicator" data-slide="3" title="Go to slide 4" aria-label="Go to slide 4"></button>
+            <button class="themed-carousel-indicator" data-slide="4" title="Go to slide 5" aria-label="Go to slide 5"></button>
         </div>
 
         <div class="case-studies-container">
