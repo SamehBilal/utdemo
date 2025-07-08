@@ -342,6 +342,17 @@
             animation: letterFadeIn 0.5s ease forwards;
         }
 
+        @keyframes fadeInUpSlider {
+            from {
+                opacity: 0;
+                transform: rotate(-8deg) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(-8deg) translateY(0);
+            }
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1784,6 +1795,407 @@
             .themed-carousel-slide-icon {
                 font-size: 60px;
             }
+
+            .themed-carousel-slide-6 .themed-carousel-slide-content {
+                text-align: center !important;
+            }
+    
+            .themed-carousel-slide-6 .themed-carousel-slide-title,
+            .themed-carousel-slide-6 .themed-carousel-slide-subtitle,
+            .themed-carousel-slide-6 .themed-carousel-slide-description {
+                text-align: center !important;
+            }
+
+            .themed-carousel-slide-7 .themed-carousel-slide-content {
+                text-align: center !important;
+            }
+    
+            .themed-carousel-slide-7 .themed-carousel-slide-title,
+            .themed-carousel-slide-7 .themed-carousel-slide-subtitle,
+            .themed-carousel-slide-7 .themed-carousel-slide-description {
+                text-align: center !important;
+            }
+
+            .themed-carousel-slide-8 .themed-carousel-slide-content {
+                text-align: center !important;
+            }
+    
+            .themed-carousel-slide-8 .themed-carousel-slide-title,
+            .themed-carousel-slide-8 .themed-carousel-slide-subtitle,
+            .themed-carousel-slide-8 .themed-carousel-slide-description {
+                text-align: center !important;
+            }
+
+
+            .carousel-arrows {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                margin-top: 4em;
+            }
+        }
+    </style>
+
+    <style>
+        
+
+        .slider-container {
+            width: 100vw;
+            max-width: 100vw;
+            height: auto;
+            transform: rotate(-8deg);
+            transform-origin: center;
+            margin-top: 10em;
+            opacity: 0;
+            animation: fadeInUpSlider 3s ease 2.7s forwards;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(100vw * 2); /* 2 sets of cards */
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-number-badge {
+            position: absolute;
+            top: -72px;
+            left: 0;
+            background: none;
+            color: transparent;
+            font-size: 56px;
+            font-weight: bold;
+            -webkit-text-stroke: 3px #909090;
+            text-stroke: 3px #909090;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .portfolio-card {
+            width: calc((100vw - 2 * 30px) / 3.5);
+            height: 850px;
+            flex-shrink: 0;
+            margin-right: 160px;
+            position: relative;
+            border-radius: var(--border-radius);
+            background: #232323;
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+            z-index: 2;
+        }
+
+        .portfolio-card:nth-child(7),
+        .portfolio-card:nth-child(8),
+        .portfolio-card:nth-child(9) {
+            /* Active zone cards */
+        }
+
+        .portfolio-card:nth-child(7) .card-headline,
+        .portfolio-card:nth-child(8) .card-headline,
+        .portfolio-card:nth-child(9) .card-headline {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+        }
+
+        .portfolio-card:hover {
+            transform: scale(1.08) translateY(-10px);
+            z-index: 10;
+            box-shadow: 0 30px 60px var(--shadow-dark);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            background: #232323;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .card-headline {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) scale(0.8);
+            color: var(--text-primary);
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 8px var(--shadow-dark);
+            opacity: 0;
+            transition: all 0.8s ease;
+            z-index: 10;
+            max-width: 90%;
+            line-height: 1.2;
+        }
+
+        .card-image.design1 { background: linear-gradient(45deg, #232323, #33334d); }
+        .card-image.design2 { background: linear-gradient(45deg, #232323, #3a2c3a); }
+        .card-image.design3 { background: linear-gradient(45deg, #232323, #1a2a2a); }
+        .card-image.design4 { background: linear-gradient(45deg, #232323, #223a2a); }
+        .card-image.design5 { background: linear-gradient(45deg, #232323, #3a232a); }
+        .card-image.design6 { background: linear-gradient(45deg, #232323, #2a232a); }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 120px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-content {
+            padding: 30px;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--text-primary);
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #232323;
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-button {
+            background: linear-gradient(45deg, #232323, #33334d);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-dark);
+            background: linear-gradient(45deg, #33334d, #232323);
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(100vw * 2); /* 2 sets of cards */
+            height: 100%;
+            /* animation: slide 30s linear infinite; */ /* Remove this */
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Floating elements for extra visual appeal */
+        .floating-element {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+
+        /* Arrow buttons */
+        .slider-arrows {
+            position: absolute;
+            right: 32px;
+            bottom: 32px;
+            z-index: 20;
+            display: flex;
+            gap: 16px;
+        }
+        .slider-arrow {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #232323;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .slider-arrow:hover {
+            background: #33334d;
+            transform: translateY(-2px) scale(1.08);
+        }
+        .slider-nav-zone {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            z-index: 30;
+            background: transparent;
+            pointer-events: auto;
+        }
+        .slider-nav-left {
+            left: 0;
+            cursor: var(--cursor-left);
+        }
+        .slider-nav-right {
+            right: 0;
+            cursor: var(--cursor-right);
+        }
+        .slider-nav-zone:hover {
+             /* subtle feedback */
+        }
+        @media (max-width: 600px) {
+            .slider-container {
+                width: 100vw;
+                height: auto;
+                transform: none !important;
+                overflow-x: hidden;
+            }
+            .portfolio-card {
+                width: 80vw;
+                margin-right: 20px;
+            }
+            .slider-arrows {
+                right: 12px;
+                bottom: 12px;
+            }
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+        }
+        .portfolio-card.stretch-effect {
+            transform-origin: left center;
+            transform: scaleX(1.1) !important;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform-origin 0s;
+        }
+        .slide-featured-badge {
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            color: transparent;
+            font-size: 18px;
+            color: #909090;
+            z-index: 1;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+        .card-title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 5.2rem;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            z-index: 5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+            white-space: pre;
+            transform: rotate(12deg);
+        }
+        .portfolio-card.active-card .card-title-overlay {
+            opacity: 1;
+        }
+        .slider-arrows-custom {
+            position: static;
+            right: unset;
+            bottom: unset;
+            z-index: 40;
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin: 32px 24px 0 24px;
+        }
+        .slider-arrow-custom {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #232323;
+            color: #fff;
+            border: 2px solid #909090;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .slider-arrow-custom:hover {
+            background: #33334d;
+            transform: translateY(-2px) scale(1.08);
+        }
+        @media (max-width: 600px) {
+            .slider-arrows-custom {
+                right: 12px;
+                bottom: 12px;
+            }
+            .slider-arrow-custom {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -1824,7 +2236,85 @@
         <p class="hero-subtitle" id="heroSubtitle">Next Level Video Production & Digital Marketing.</p>
 
 
-        <div class="carousel-container">
+        <div class="slider-container" id="slider-container">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            
+            <div class="slider-track">
+                <!-- First set of cards -->
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">01</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">02</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">03</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">04</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">05</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">06</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">01</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">02</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">03</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">04</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">05</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+                </div>
+                <div style="position: relative; display: inline-block;">
+                    <div class="slide-number-badge">06</div>
+                    <div class="slide-featured-badge">featured</div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+                </div>
+            </div>
+            <div class="slider-nav-zone slider-nav-left"></div>
+            <div class="slider-nav-zone slider-nav-right"></div>
+        </div>
+        <div class="carousel-arrows">
+            <div class="carousel-arrow left" aria-label="Previous Slide" id="slider-arrow-left">&#8592;</div>
+            <div class="carousel-arrow right"  aria-label="Next Slide" id="slider-arrow-right">&#8594;</div>
+        </div>
+
+
+        <!-- <div class="carousel-container">
             <div class="carousel-wrapper">
                 <div class="carousel-track" id="carouselTrack"></div>
                 <div class="carousel-titles" id="carouselTitles"></div>
@@ -1833,7 +2323,7 @@
                 <button class="carousel-arrow left" id="carouselArrowLeft" aria-label="Previous Slide">&#8592;</button>
                 <button class="carousel-arrow right" id="carouselArrowRight" aria-label="Next Slide">&#8594;</button>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <section class="section">
@@ -3163,6 +3653,179 @@
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
             });
         })();
+    </script>
+
+    <script>
+        const track = document.querySelector('.slider-track');
+        function getCardWidth() {
+            const card = document.querySelector('.portfolio-card');
+            const style = window.getComputedStyle(card);
+            const width = card.offsetWidth;
+            const marginRight = parseInt(style.marginRight, 10);
+            return width + marginRight;
+        }
+        function getVisibleCards() {
+            return window.innerWidth <= 600 ? 1 : 3;
+        }
+        let cardWidth = getCardWidth();
+        let visibleCards = getVisibleCards();
+        window.addEventListener('resize', () => {
+            cardWidth = getCardWidth();
+            visibleCards = getVisibleCards();
+            updateActiveCardZones();
+        });
+        const numCards = 6;
+        let position = 0;
+        let prevTranslate = 0;
+
+        function setTrackPosition(translate, withTransition = true) {
+            if (withTransition) {
+                track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            } else {
+                track.style.transition = 'none';
+            }
+            track.style.transform = `translateX(${translate}px)`;
+
+            // Stretch effect on new active card
+            /*setTimeout(() => {
+                const visibleCards = getVisibleCards();
+                const activeIdx = position + Math.floor(visibleCards / 2);
+                const cards = document.querySelectorAll('.portfolio-card');
+                if (cards[activeIdx]) {
+                    cards[activeIdx].classList.add('stretch-effect');
+                    setTimeout(() => {
+                        cards[activeIdx].classList.remove('stretch-effect');
+                    }, 500);
+                }
+            }, 10);*/
+        }
+
+        function moveNextCard() {
+            position++;
+            if (position > numCards) {
+                position = 1;
+                setTrackPosition(0, false);
+                prevTranslate = 0;
+                void track.offsetWidth;
+            }
+            setTimeout(() => {
+                setTrackPosition(-cardWidth * position, true);
+                prevTranslate = -cardWidth * position;
+                updateActiveCardZones();
+            }, 20);
+        }
+
+        function movePrevCard() {
+            position--;
+            if (position < 0) {
+                position = numCards;
+                setTrackPosition(-cardWidth * numCards, false);
+                prevTranslate = -cardWidth * numCards;
+                void track.offsetWidth;
+            }
+            setTimeout(() => {
+                setTrackPosition(-cardWidth * position, true);
+                prevTranslate = -cardWidth * position;
+                updateActiveCardZones();
+            }, 20);
+        }
+
+        // Auto slide every 3s
+        let autoSlide = setInterval(moveNextCard, 3000);
+
+        function pauseAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = null;
+        }
+        function resumeAutoSlide() {
+            if (!autoSlide) {
+                autoSlide = setInterval(moveNextCard, 3000);
+            }
+        }
+
+        function updateActiveCardZones() {
+            // Remove active-card from all, reset title overlays
+            document.querySelectorAll('.portfolio-card').forEach((card) => {
+                card.classList.remove('active-card');
+            });
+            const visibleCards = getVisibleCards();
+            const activeIdx = position + Math.floor(visibleCards / 2);
+            const cards = document.querySelectorAll('.portfolio-card');
+            if (cards[activeIdx]) {
+                cards[activeIdx].classList.add('active-card');
+            }
+            // Pause all videos
+            document.querySelectorAll('.portfolio-card video').forEach(video => {
+                video.pause();
+                video.currentTime = 0; // Optional: reset to start
+                video.onended = null; // Remove previous handlers
+            });
+            // Play video in the active card, if any
+            let videoInActive = null;
+            if (cards[activeIdx]) {
+                const video = cards[activeIdx].querySelector('video');
+                if (video) {
+                    videoInActive = video;
+                    video.play();
+                    pauseAutoSlide();
+                    video.onended = () => {
+                        resumeAutoSlide();
+                    };
+                } else {
+                    resumeAutoSlide();
+                }
+            } else {
+                resumeAutoSlide();
+            }
+            // Dynamically size/position nav overlays
+            const slider = document.getElementById('slider-container');
+            const leftZone = document.querySelector('.slider-nav-left');
+            const rightZone = document.querySelector('.slider-nav-right');
+            const sliderRect = slider.getBoundingClientRect();
+            if (cards[activeIdx]) {
+                const cardRect = cards[activeIdx].getBoundingClientRect();
+                // Left zone: from left edge of slider to left edge of card
+                leftZone.style.left = '0px';
+                leftZone.style.width = (cardRect.left - sliderRect.left) + 'px';
+                // Right zone: from right edge of card to right edge of slider
+                rightZone.style.left = (cardRect.right - sliderRect.left) + 'px';
+                rightZone.style.width = (sliderRect.right - cardRect.right) + 'px';
+            } else {
+                // Fallback: cover half each
+                leftZone.style.left = '0px';
+                leftZone.style.width = '50vw';
+                rightZone.style.left = '50vw';
+                rightZone.style.width = '50vw';
+            }
+        }
+
+        // Initial call
+        updateActiveCardZones();
+        window.addEventListener('resize', updateActiveCardZones);
+        // Update overlays after slider transition ends
+        track.addEventListener('transitionend', updateActiveCardZones);
+        // Navigation overlays
+        document.querySelector('.slider-nav-left').onclick = function() {
+            movePrevCard();
+            resumeAutoSlide();
+        };
+        document.querySelector('.slider-nav-right').onclick = function() {
+            moveNextCard();
+            resumeAutoSlide();
+        };
+        // Pause/resume auto-slide on slider hover
+        const sliderContainer = document.getElementById('slider-container');
+        sliderContainer.addEventListener('mouseenter', pauseAutoSlide);
+        sliderContainer.addEventListener('mouseleave', resumeAutoSlide);
+        // Custom arrow button event listeners
+        document.getElementById('slider-arrow-left').onclick = function() {
+            movePrevCard();
+            resumeAutoSlide();
+        };
+        document.getElementById('slider-arrow-right').onclick = function() {
+            moveNextCard();
+            resumeAutoSlide();
+        };
     </script>
 </body>
 

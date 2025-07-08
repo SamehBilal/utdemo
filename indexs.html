@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Portfolio Slider</title>
+    <style>
+        :root {
+            --primary-bg: #161616;
+            --border-color: rgba(144, 144, 144, 0.2);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --border-radius: 14px;
+            --text-primary: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --cursor-left: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97"><defs><linearGradient id="orangeRedGradient1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23FF6A00;stop-opacity:1" /><stop offset="100%" style="stop-color:%23D62D00;stop-opacity:1" /></linearGradient></defs><path d="M0 0 C3.12398293 1.83539258 5.79224175 3.54562038 8.33203125 6.13671875 C9.18764648 7.00200195 9.18764648 7.00200195 10.06054688 7.88476562 C10.63869141 8.47966797 11.21683594 9.07457031 11.8125 9.6875 C12.40998047 10.29400391 13.00746094 10.90050781 13.62304688 11.52539062 C15.08664185 13.01240312 16.54396102 14.50558811 18 16 C16 21 16 21 5 32 C26.78 32.495 26.78 32.495 49 33 C49 43.23 49 53.46 49 64 C34.48 64.33 19.96 64.66 5 65 C9.29 69.62 13.58 74.24 18 79 C16.38440893 82.23118215 15.47739081 83.77767459 13.06640625 86.19921875 C12.2165918 87.05290039 12.2165918 87.05290039 11.34960938 87.92382812 C10.75986328 88.50583984 10.17011719 89.08785156 9.5625 89.6875 C8.97662109 90.28111328 8.39074219 90.87472656 7.78710938 91.48632812 C7.21927734 92.05158203 6.65144531 92.61683594 6.06640625 93.19921875 C5.55021729 93.71315186 5.03402832 94.22708496 4.50219727 94.7565918 C3 96 3 96 0 97 C-6.15995217 90.95576636 -12.30640489 84.89822136 -18.4359293 78.82313156 C-21.2823808 76.00280262 -24.13330725 73.18732323 -26.99487305 70.38232422 C-29.75495573 67.67646572 -32.5027354 64.95866509 -35.24232292 62.23206329 C-36.29100262 61.19264069 -37.34408189 60.15763797 -38.40152168 59.1271286 C-39.87917616 57.68563668 -41.34056744 56.22938325 -42.79907227 54.76855469 C-43.63624283 53.94248718 -44.47341339 53.11641968 -45.33595276 52.26531982 C-47 50 -47 50 -47.03356934 47.9942627 C-45.62846256 45.28312187 -43.83370618 43.47539251 -41.66381836 41.32324219 C-40.28249977 39.94226349 -40.28249977 39.94226349 -38.87327576 38.53338623 C-37.86229096 37.53772081 -36.8511431 36.54222093 -35.83984375 35.546875 C-34.80928859 34.52191674 -33.77939506 33.49629286 -32.75013733 32.47003174 C-30.04249408 29.77382983 -27.32596228 27.08675928 -24.60748291 24.40148926 C-21.83381027 21.65853271 -19.06863571 18.90703876 -16.30273438 16.15625 C-10.87677256 10.7624398 -5.44139257 5.37824766 0 0 Z M-1.75906372 9.51855469 C-2.81829544 10.58444824 -2.81829544 10.58444824 -3.89892578 11.671875 C-4.6996048 12.47270508 -5.50028381 13.27353516 -6.32522583 14.09863281 C-7.18985443 14.97358398 -8.05448303 15.84853516 -8.9453125 16.75 C-9.8303244 17.6378418 -10.7153363 18.52568359 -11.62716675 19.44042969 C-13.98166258 21.80424682 -16.33173408 24.17229654 -18.67980957 26.54248047 C-21.07589152 28.9590037 -23.47762961 31.36989058 -25.87890625 33.78125 C-30.59118948 38.51563465 -35.29772387 43.25567712 -40 48 C-36.50146084 52.16366887 -32.943215 56.17523974 -29.06640625 59.99609375 C-27.7215918 61.32930664 -27.7215918 61.32930664 -26.34960938 62.68945312 C-24.49547008 64.51760589 -22.64130353 66.345731 -20.78710938 68.17382812 C-16.18593552 72.73536516 -11.70923745 77.31330594 -7.54443359 82.27954102 C-4.95183375 85.16763003 -2.00279265 87.54874069 1 90 C4.3 86.7 7.6 83.4 11 80 C6.67216163 74.76103777 2.03549004 69.98008422 -2.828125 65.234375 C-5 63 -5 63 -7 60 C9.5 59.67 26 59.34 43 59 C43 52.07 43 45.14 43 38 C18.25 37.505 18.25 37.505 -7 37 C-2.76589008 32.16101723 1.37131059 27.48408642 5.9375 23 C6.67709961 22.26716797 6.67709961 22.26716797 7.43164062 21.51953125 C8.61873229 20.34396475 9.80900498 19.17161174 11 18 C10.06409496 16.8944811 9.12620142 15.79064547 8.1875 14.6875 C7.40439453 13.76517578 7.40439453 13.76517578 6.60546875 12.82421875 C4.39992095 10.31595433 4.39992095 10.31595433 2 8 C-0.13499007 7.78217903 -0.13499007 7.78217903 -1.75906372 9.51855469 Z " fill="url(%23orangeRedGradient1)" transform="translate(47,0)"/></svg>') 12 12, auto;
+            --cursor-right: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="96" height="97"><defs><linearGradient id="orangeRedGradient2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23FF6A00;stop-opacity:1" /><stop offset="100%" style="stop-color:%23D62D00;stop-opacity:1" /></linearGradient></defs><path d="M0 0 C3.54879679 1.51612901 5.86439389 3.59468695 8.60083008 6.29443359 C9.50468948 7.1823056 10.40854889 8.07017761 11.33979797 8.98495483 C12.31685292 9.95563563 13.29341928 10.92680845 14.26953125 11.8984375 C15.27504587 12.8949835 16.28063679 13.89145252 17.28630066 14.8878479 C19.38884745 16.97393157 21.48698431 19.06434544 23.58276367 21.15722656 C26.27243433 23.84149464 28.97791552 26.50920721 31.6875658 29.17328453 C33.76771822 31.22374977 35.83658121 33.28532248 37.90244102 35.35017776 C38.89555685 36.3390801 39.89280556 37.32384954 40.89417458 38.30439377 C42.28988007 39.67334453 43.66847183 41.05967846 45.04614258 42.44677734 C45.83571854 43.23128265 46.62529449 44.01578796 47.438797 44.82406616 C49 47 49 47 49.01812744 48.99227905 C47.6327038 51.72429859 45.84031336 53.51805432 43.66381836 55.67675781 C42.7429393 56.59741028 41.82206024 57.51806274 40.87327576 58.46661377 C39.86229096 59.46227919 38.8511431 60.45777907 37.83984375 61.453125 C36.80928859 62.47808326 35.77939506 63.50370714 34.75013733 64.52996826 C32.04249408 67.22617017 29.32596228 69.91324072 26.60748291 72.59851074 C23.83381027 75.34146729 21.06863571 78.09296124 18.30273438 80.84375 C12.87677256 86.2375602 7.44139257 91.62175234 2 97 C-1.01409306 95.55695686 -3.10472016 94.13408132 -5.453125 91.7421875 C-6.071875 91.11699219 -6.690625 90.49179688 -7.328125 89.84765625 C-7.96234375 89.19667969 -8.5965625 88.54570313 -9.25 87.875 C-9.8996875 87.21628906 -10.549375 86.55757813 -11.21875 85.87890625 C-12.81711727 84.25703357 -14.41061897 82.6306719 -16 81 C-14 76 -14 76 -3 65 C-24.78 64.505 -24.78 64.505 -47 64 C-47 53.77 -47 43.54 -47 33 C-32.48 32.67 -17.96 32.34 -3 32 C-7.29 27.71 -11.58 23.42 -16 19 C-14.97989534 14.91958138 -14.4733273 14.1084535 -11.62109375 11.328125 C-10.94755859 10.66425781 -10.27402344 10.00039062 -9.58007812 9.31640625 C-8.87302734 8.63449219 -8.16597656 7.95257812 -7.4375 7.25 C-6.72658203 6.55261719 -6.01566406 5.85523438 -5.28320312 5.13671875 C-3.52869286 3.4175342 -1.76756648 1.70574128 0 0 Z M-4.1875 11.75 C-5.29158203 12.79414063 -5.29158203 12.79414063 -6.41796875 13.859375 C-8.23014369 15.81344533 -8.23014369 15.81344533 -7.8215332 17.89501953 C-6.79859538 20.5160507 -5.45836011 21.86717691 -3.4375 23.8203125 C-2.72335938 24.52027344 -2.00921875 25.22023438 -1.2734375 25.94140625 C-0.52320313 26.66199219 0.22703125 27.38257812 1 28.125 C2.48123899 29.56297256 3.96050745 31.00297862 5.4375 32.4453125 C6.09621094 33.07969238 6.75492188 33.71407227 7.43359375 34.36767578 C9 36 9 36 10 38 C-6.83 38 -23.66 38 -41 38 C-41 44.6 -41 51.2 -41 58 C-24.17 58 -7.34 58 10 58 C7.73549141 61.77418099 6.20932712 64.03402211 3.20703125 66.98828125 C2.49482422 67.69404297 1.78261719 68.39980469 1.04882812 69.12695312 C0.31083984 69.84818359 -0.42714844 70.56941406 -1.1875 71.3125 C-2.31188477 72.42334961 -2.31188477 72.42334961 -3.45898438 73.55664062 C-5.30153282 75.37571712 -7.14859662 77.18994389 -9 79 C-8.06409496 80.1055189 -7.12620142 81.20935453 -6.1875 82.3125 C-5.40439453 83.23482422 -5.40439453 83.23482422 -4.60546875 84.17578125 C-3.12827531 85.85424679 -1.59960869 87.43882034 0 89 C3.27196452 87.56741228 5.43203956 85.81174684 7.94238281 83.28466797 C8.70286926 82.52403046 9.46335571 81.76339294 10.24688721 80.97970581 C11.46272491 79.74838425 11.46272491 79.74838425 12.703125 78.4921875 C13.54091492 77.65156769 14.37870483 76.81094788 15.24188232 75.94485474 C17.91598431 73.25955999 20.58304724 70.56739345 23.25 67.875 C25.06204062 66.05292845 26.87453518 64.23130823 28.6875 62.41015625 C33.13028036 57.94532748 37.56730165 53.47483717 42 49 C37.57493979 43.70952371 32.91876057 38.758466 28.046875 33.87890625 C27.3054425 33.13414536 26.56401001 32.38938446 25.80010986 31.62205505 C24.24500222 30.06191619 22.68856545 28.50310113 21.13085938 26.94555664 C18.73799886 24.55048778 16.35327308 22.14750692 13.96875 19.74414062 C12.45361396 18.22607432 10.93800587 16.70847899 9.421875 15.19140625 C8.7073114 14.46965714 7.9927478 13.74790802 7.25653076 13.00428772 C6.59534241 12.34617599 5.93415405 11.68806427 5.25292969 11.01000977 C4.67146179 10.42711685 4.0899939 9.84422394 3.49090576 9.2436676 C0.16094815 6.46591967 -1.60466718 9.24488073 -4.1875 11.75 Z " fill="url(%23orangeRedGradient2)" transform="translate(47,0)"/></svg>') 12 12, auto;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--primary-bg);
+            min-height: 200vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            color: var(--text-primary);
+        }
+
+        .slider-container {
+            width: 100vw;
+            max-width: 100vw;
+            height: 909px;
+            
+            position: relative;
+            transform: rotate(-8deg);
+            transform-origin: center;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(100vw * 2); /* 2 sets of cards */
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-number-badge {
+            position: absolute;
+            top: -72px;
+            left: 0;
+            background: none;
+            color: transparent;
+            font-size: 56px;
+            font-weight: bold;
+            -webkit-text-stroke: 3px #909090;
+            text-stroke: 3px #909090;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .portfolio-card {
+            width: calc((100vw - 2 * 30px) / 3.5);
+            height: 850px;
+            flex-shrink: 0;
+            margin-right: 160px;
+            position: relative;
+            border-radius: var(--border-radius);
+            background: #232323;
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+            z-index: 2;
+        }
+
+        .portfolio-card:nth-child(7),
+        .portfolio-card:nth-child(8),
+        .portfolio-card:nth-child(9) {
+            /* Active zone cards */
+        }
+
+        .portfolio-card:nth-child(7) .card-headline,
+        .portfolio-card:nth-child(8) .card-headline,
+        .portfolio-card:nth-child(9) .card-headline {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+        }
+
+        .portfolio-card:hover {
+            transform: scale(1.08) translateY(-10px);
+            z-index: 10;
+            box-shadow: 0 30px 60px var(--shadow-dark);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            background: #232323;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .card-headline {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) scale(0.8);
+            color: var(--text-primary);
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 8px var(--shadow-dark);
+            opacity: 0;
+            transition: all 0.8s ease;
+            z-index: 10;
+            max-width: 90%;
+            line-height: 1.2;
+        }
+
+        .card-image.design1 { background: linear-gradient(45deg, #232323, #33334d); }
+        .card-image.design2 { background: linear-gradient(45deg, #232323, #3a2c3a); }
+        .card-image.design3 { background: linear-gradient(45deg, #232323, #1a2a2a); }
+        .card-image.design4 { background: linear-gradient(45deg, #232323, #223a2a); }
+        .card-image.design5 { background: linear-gradient(45deg, #232323, #3a232a); }
+        .card-image.design6 { background: linear-gradient(45deg, #232323, #2a232a); }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 120px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-content {
+            padding: 30px;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--text-primary);
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #232323;
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-button {
+            background: linear-gradient(45deg, #232323, #33334d);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-dark);
+            background: linear-gradient(45deg, #33334d, #232323);
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(100vw * 2); /* 2 sets of cards */
+            height: 100%;
+            /* animation: slide 30s linear infinite; */ /* Remove this */
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Floating elements for extra visual appeal */
+        .floating-element {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+
+        /* Arrow buttons */
+        .slider-arrows {
+            position: absolute;
+            right: 32px;
+            bottom: 32px;
+            z-index: 20;
+            display: flex;
+            gap: 16px;
+        }
+        .slider-arrow {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #232323;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .slider-arrow:hover {
+            background: #33334d;
+            transform: translateY(-2px) scale(1.08);
+        }
+        .slider-nav-zone {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            z-index: 30;
+            background: transparent;
+            pointer-events: auto;
+        }
+        .slider-nav-left {
+            left: 0;
+            cursor: var(--cursor-left);
+        }
+        .slider-nav-right {
+            right: 0;
+            cursor: var(--cursor-right);
+        }
+        .slider-nav-zone:hover {
+             /* subtle feedback */
+        }
+        @media (max-width: 600px) {
+            .slider-container {
+                width: 100vw;
+                height: 500px;
+                transform: none !important;
+            }
+            .portfolio-card {
+                width: 80vw;
+                margin-right: 20px;
+            }
+            .slider-arrows {
+                right: 12px;
+                bottom: 12px;
+            }
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+            }
+        }
+        .portfolio-card.stretch-effect {
+            transform-origin: left center;
+            transform: scaleX(1.1) !important;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform-origin 0s;
+        }
+        .slide-featured-badge {
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            color: transparent;
+            font-size: 18px;
+            color: #909090;
+            z-index: 1;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+        .card-title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 5.2rem;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            z-index: 5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+            white-space: pre;
+            transform: rotate(12deg);
+        }
+        .portfolio-card.active-card .card-title-overlay {
+            opacity: 1;
+        }
+        .slider-arrows-custom {
+            position: static;
+            right: unset;
+            bottom: unset;
+            z-index: 40;
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin: 32px 24px 0 24px;
+        }
+        .slider-arrow-custom {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #232323;
+            color: #fff;
+            border: 2px solid #909090;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .slider-arrow-custom:hover {
+            background: #33334d;
+            transform: translateY(-2px) scale(1.08);
+        }
+        @media (max-width: 600px) {
+            .slider-arrows-custom {
+                right: 12px;
+                bottom: 12px;
+            }
+            .slider-arrow-custom {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container" id="slider-container">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="slider-track">
+            <!-- First set of cards -->
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">01</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">02</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">03</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">04</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">05</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">06</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+            </div>
+            <!-- Duplicate set for seamless loop -->
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">01</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">02</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">03</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">04</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">05</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <div class="slide-number-badge">06</div>
+                <div class="slide-featured-badge">featured</div>
+                <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+            </div>
+        </div>
+        <div class="slider-nav-zone slider-nav-left"></div>
+        <div class="slider-nav-zone slider-nav-right"></div>
+    </div>
+    <div class="slider-arrows-custom">
+        <div class="slider-arrow-custom" id="slider-arrow-left">&#8592;</div>
+        <div class="slider-arrow-custom" id="slider-arrow-right">&#8594;</div>
+    </div>
+    <script>
+        const track = document.querySelector('.slider-track');
+        function getCardWidth() {
+            const card = document.querySelector('.portfolio-card');
+            const style = window.getComputedStyle(card);
+            const width = card.offsetWidth;
+            const marginRight = parseInt(style.marginRight, 10);
+            return width + marginRight;
+        }
+        function getVisibleCards() {
+            return window.innerWidth <= 600 ? 1 : 3;
+        }
+        let cardWidth = getCardWidth();
+        let visibleCards = getVisibleCards();
+        window.addEventListener('resize', () => {
+            cardWidth = getCardWidth();
+            visibleCards = getVisibleCards();
+            updateActiveCardZones();
+        });
+        const numCards = 6;
+        let position = 0;
+        let prevTranslate = 0;
+
+        function setTrackPosition(translate, withTransition = true) {
+            if (withTransition) {
+                track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            } else {
+                track.style.transition = 'none';
+            }
+            track.style.transform = `translateX(${translate}px)`;
+
+            // Stretch effect on new active card
+            /*setTimeout(() => {
+                const visibleCards = getVisibleCards();
+                const activeIdx = position + Math.floor(visibleCards / 2);
+                const cards = document.querySelectorAll('.portfolio-card');
+                if (cards[activeIdx]) {
+                    cards[activeIdx].classList.add('stretch-effect');
+                    setTimeout(() => {
+                        cards[activeIdx].classList.remove('stretch-effect');
+                    }, 500);
+                }
+            }, 10);*/
+        }
+
+        function moveNextCard() {
+            position++;
+            if (position > numCards) {
+                position = 1;
+                setTrackPosition(0, false);
+                prevTranslate = 0;
+                void track.offsetWidth;
+            }
+            setTimeout(() => {
+                setTrackPosition(-cardWidth * position, true);
+                prevTranslate = -cardWidth * position;
+                updateActiveCardZones();
+            }, 20);
+        }
+
+        function movePrevCard() {
+            position--;
+            if (position < 0) {
+                position = numCards;
+                setTrackPosition(-cardWidth * numCards, false);
+                prevTranslate = -cardWidth * numCards;
+                void track.offsetWidth;
+            }
+            setTimeout(() => {
+                setTrackPosition(-cardWidth * position, true);
+                prevTranslate = -cardWidth * position;
+                updateActiveCardZones();
+            }, 20);
+        }
+
+        // Auto slide every 3s
+        let autoSlide = setInterval(moveNextCard, 3000);
+
+        function pauseAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = null;
+        }
+        function resumeAutoSlide() {
+            if (!autoSlide) {
+                autoSlide = setInterval(moveNextCard, 3000);
+            }
+        }
+
+        function updateActiveCardZones() {
+            // Remove active-card from all, reset title overlays
+            document.querySelectorAll('.portfolio-card').forEach((card) => {
+                card.classList.remove('active-card');
+            });
+            const visibleCards = getVisibleCards();
+            const activeIdx = position + Math.floor(visibleCards / 2);
+            const cards = document.querySelectorAll('.portfolio-card');
+            if (cards[activeIdx]) {
+                cards[activeIdx].classList.add('active-card');
+            }
+            // Pause all videos
+            document.querySelectorAll('.portfolio-card video').forEach(video => {
+                video.pause();
+                video.currentTime = 0; // Optional: reset to start
+                video.onended = null; // Remove previous handlers
+            });
+            // Play video in the active card, if any
+            let videoInActive = null;
+            if (cards[activeIdx]) {
+                const video = cards[activeIdx].querySelector('video');
+                if (video) {
+                    videoInActive = video;
+                    video.play();
+                    pauseAutoSlide();
+                    video.onended = () => {
+                        resumeAutoSlide();
+                    };
+                } else {
+                    resumeAutoSlide();
+                }
+            } else {
+                resumeAutoSlide();
+            }
+            // Dynamically size/position nav overlays
+            const slider = document.getElementById('slider-container');
+            const leftZone = document.querySelector('.slider-nav-left');
+            const rightZone = document.querySelector('.slider-nav-right');
+            const sliderRect = slider.getBoundingClientRect();
+            if (cards[activeIdx]) {
+                const cardRect = cards[activeIdx].getBoundingClientRect();
+                // Left zone: from left edge of slider to left edge of card
+                leftZone.style.left = '0px';
+                leftZone.style.width = (cardRect.left - sliderRect.left) + 'px';
+                // Right zone: from right edge of card to right edge of slider
+                rightZone.style.left = (cardRect.right - sliderRect.left) + 'px';
+                rightZone.style.width = (sliderRect.right - cardRect.right) + 'px';
+            } else {
+                // Fallback: cover half each
+                leftZone.style.left = '0px';
+                leftZone.style.width = '50vw';
+                rightZone.style.left = '50vw';
+                rightZone.style.width = '50vw';
+            }
+        }
+
+        // Initial call
+        updateActiveCardZones();
+        window.addEventListener('resize', updateActiveCardZones);
+        // Update overlays after slider transition ends
+        track.addEventListener('transitionend', updateActiveCardZones);
+        // Navigation overlays
+        document.querySelector('.slider-nav-left').onclick = function() {
+            movePrevCard();
+            resumeAutoSlide();
+        };
+        document.querySelector('.slider-nav-right').onclick = function() {
+            moveNextCard();
+            resumeAutoSlide();
+        };
+        // Pause/resume auto-slide on slider hover
+        const sliderContainer = document.getElementById('slider-container');
+        sliderContainer.addEventListener('mouseenter', pauseAutoSlide);
+        sliderContainer.addEventListener('mouseleave', resumeAutoSlide);
+        // Custom arrow button event listeners
+        document.getElementById('slider-arrow-left').onclick = function() {
+            movePrevCard();
+            resumeAutoSlide();
+        };
+        document.getElementById('slider-arrow-right').onclick = function() {
+            moveNextCard();
+            resumeAutoSlide();
+        };
+    </script>
+</body>
+</html>
