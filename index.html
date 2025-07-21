@@ -1374,6 +1374,12 @@
             background-position: center;
         }
 
+        .themed-carousel-slide-5555 {
+            background: url('banner4.png');
+            background-size: cover;
+            background-position: center;
+        }
+
         .themed-carousel-slide-6 {
             background: #161616;
             display: grid;
@@ -1882,12 +1888,13 @@
             position: absolute;
             top: -72px;
             left: 0;
-            background: none;
-            color: transparent;
             font-size: 56px;
             font-weight: bold;
-            -webkit-text-stroke: 3px #909090;
-            text-stroke: 3px #909090;
+            background: var(--text-secondary); /*linear-gradient(90deg, var(--accent-orange), var(--accent-red))*/;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
             z-index: 1;
             pointer-events: none;
         }
@@ -1903,6 +1910,11 @@
             box-shadow: 0 15px 35px var(--shadow-dark);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
             z-index: 2;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(144, 144, 144, 0.2);
+            will-change: transform;
         }
 
         .portfolio-card video {
@@ -2181,6 +2193,12 @@
             white-space: pre;
             transform: rotate(12deg);
         }
+        .portfolio-card.active-card {
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border: 1.5px solid rgba(255, 106, 0, 0.5);
+            filter: drop-shadow(0 0 24px var(--accent-orange)) drop-shadow(0 0 48px var(--accent-red));
+            transition: box-shadow 0.3s, border-color 0.3s, filter 0.3s;
+        }
         .portfolio-card.active-card .card-title-overlay {
             opacity: 1;
         }
@@ -2247,8 +2265,8 @@
                     <li><a href="#testimonial" data-section="testimonial" data-text="Clients">Clients</a></li>
                 </ul>
                 <a href="#contact" data-section="contact" class="cta-button" data-text="Contact">Contact</a>
-                <!-- <button id="themeToggle" aria-label="Toggle light/dark mode"
-                    style="margin-left:16px; background:none; border:none; cursor:pointer; font-size:1.5em; color:var(--text-primary);">🌙</button> -->
+                <button id="themeToggle" aria-label="Toggle light/dark mode"
+                    style="margin-left:16px; background:none; border:none; cursor:pointer; font-size:1.5em; color:var(--text-primary);">🌙</button>
             </div>
         </nav>
     </div>
@@ -2359,7 +2377,7 @@
         <div class="themed-carousel-container">
             <div class="themed-carousel-slides" id="carouselSlides">
                 <div class="themed-carousel-slide themed-carousel-slide-6">
-                    <div class="themed-carousel-slide-number">01 / 10</div>
+                    <div class="themed-carousel-slide-number">01 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <h2 class="themed-carousel-slide-title">Digital Transformation</h2>
                         <p class="themed-carousel-slide-subtitle">Revolutionizing businesses through technology</p>
@@ -2370,7 +2388,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-7">
-                    <div class="themed-carousel-slide-number">02 / 10</div>
+                    <div class="themed-carousel-slide-number">02 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <h2 class="themed-carousel-slide-title">Creative Excellence</h2>
                         <p class="themed-carousel-slide-subtitle">Crafting memorable brand experiences</p>
@@ -2381,7 +2399,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-8">
-                    <div class="themed-carousel-slide-number">03 / 10</div>
+                    <div class="themed-carousel-slide-number">03 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <h2 class="themed-carousel-slide-title">Future Innovation</h2>
                         <p class="themed-carousel-slide-subtitle">Building tomorrow's solutions today</p>
@@ -2392,7 +2410,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-1">
-                    <div class="themed-carousel-slide-number">04 / 10</div>
+                    <div class="themed-carousel-slide-number">04 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <div class="themed-carousel-slide-icon">🎨</div>
                         <h2 class="themed-carousel-slide-title">Creative Design</h2>
@@ -2405,7 +2423,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-2">
-                    <div class="themed-carousel-slide-number">05 / 10</div>
+                    <div class="themed-carousel-slide-number">05 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <div class="themed-carousel-slide-icon">🚀</div>
                         <h2 class="themed-carousel-slide-title">Innovation First</h2>
@@ -2417,7 +2435,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-3">
-                    <div class="themed-carousel-slide-number">06 / 10</div>
+                    <div class="themed-carousel-slide-number">06 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <div class="themed-carousel-slide-icon">💡</div>
                         <h2 class="themed-carousel-slide-title">Strategic Thinking</h2>
@@ -2429,7 +2447,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-4">
-                    <div class="themed-carousel-slide-number">07 / 10</div>
+                    <div class="themed-carousel-slide-number">07 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <div class="themed-carousel-slide-icon">⚡</div>
                         <h2 class="themed-carousel-slide-title">Performance Focus</h2>
@@ -2441,7 +2459,7 @@
                 </div>
 
                 <div class="themed-carousel-slide themed-carousel-slide-5">
-                    <div class="themed-carousel-slide-number">08 / 10</div>
+                    <div class="themed-carousel-slide-number">08 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <!-- <div class="themed-carousel-slide-icon">🌟</div>
                         <h2 class="themed-carousel-slide-title">Exceptional Results</h2>
@@ -2452,7 +2470,7 @@
                     </div>
                 </div>
                 <div class="themed-carousel-slide themed-carousel-slide-55">
-                    <div class="themed-carousel-slide-number">08 / 10</div>
+                    <div class="themed-carousel-slide-number">09 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <!-- <div class="themed-carousel-slide-icon">🌟</div>
                         <h2 class="themed-carousel-slide-title">Exceptional Results</h2>
@@ -2463,7 +2481,18 @@
                     </div>
                 </div>
                 <div class="themed-carousel-slide themed-carousel-slide-555">
-                    <div class="themed-carousel-slide-number">08 / 10</div>
+                    <div class="themed-carousel-slide-number">10 / 11</div>
+                    <div class="themed-carousel-slide-content">
+                        <!-- <div class="themed-carousel-slide-icon">🌟</div>
+                        <h2 class="themed-carousel-slide-title">Exceptional Results</h2>
+                        <p class="themed-carousel-slide-subtitle">Delivering excellence in every project</p>
+                        <p class="themed-carousel-slide-description">Our commitment to quality ensures that every
+                            project exceeds expectations and creates lasting impact.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Contact Us</a> -->
+                    </div>
+                </div>
+                <div class="themed-carousel-slide themed-carousel-slide-5555">
+                    <div class="themed-carousel-slide-number">11 / 11</div>
                     <div class="themed-carousel-slide-content">
                         <!-- <div class="themed-carousel-slide-icon">🌟</div>
                         <h2 class="themed-carousel-slide-title">Exceptional Results</h2>
@@ -3485,7 +3514,7 @@
                     this.navLeft = document.getElementById('navLeft');
                     this.navRight = document.getElementById('navRight');
                     this.currentSlide = 0;
-                    this.totalSlides = 10;
+                    this.totalSlides = 11;
 
                     this.init();
                 }
@@ -3877,6 +3906,70 @@
             moveNextCard();
             resumeAutoSlide();
         };
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+    <script>
+    function rgbToGlow(rgbArr) {
+        return `0 0 32px 8px rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
+    }
+
+    function getDominantColorFromVideo(video) {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let r=0, g=0, b=0, count=0;
+        for (let i=0; i<data.length; i+=4) {
+            r += data[i];
+            g += data[i+1];
+            b += data[i+2];
+            count++;
+        }
+        return [Math.round(r/count), Math.round(g/count), Math.round(b/count)];
+    }
+
+    function setActiveCardGlow() {
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.style.boxShadow = '';
+            card.style.filter = '';
+        });
+        const activeCard = document.querySelector('.portfolio-card.active-card');
+        if (!activeCard) return;
+        const img = activeCard.querySelector('img');
+        if (img && img.complete) {
+            const colorThief = new ColorThief();
+            try {
+                const color = colorThief.getColor(img);
+                activeCard.style.boxShadow = `0 25px 50px rgba(0,0,0,0.4), ${rgbToGlow(color)}`;
+            } catch (e) {
+                // fallback
+            }
+        } else {
+            const video = activeCard.querySelector('video');
+            if (video && video.readyState >= 2) {
+                const color = getDominantColorFromVideo(video);
+                activeCard.style.boxShadow = `0 25px 50px rgba(0,0,0,0.4), ${rgbToGlow(color)}`;
+            }
+        }
+    }
+
+    // Observe class changes to update glow
+    const observer = new MutationObserver(() => setActiveCardGlow());
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+        observer.observe(card, { attributes: true, attributeFilter: ['class'] });
+    });
+
+    // Also update on image/video load
+    window.addEventListener('load', setActiveCardGlow);
+    document.querySelectorAll('.portfolio-card img').forEach(img => {
+        img.addEventListener('load', setActiveCardGlow);
+    });
+    document.querySelectorAll('.portfolio-card video').forEach(video => {
+        video.addEventListener('loadeddata', setActiveCardGlow);
+    });
     </script>
 </body>
 
