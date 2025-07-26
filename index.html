@@ -4333,14 +4333,10 @@
             if(cards[activeIdx]){
                 let img = cards[activeIdx].querySelector('.media-item');
                 if (img.complete) {
-                    colorThief.getColor(img)
-                    .then(color => { console.log(color) })
-                    .catch(err => { console.log(err) })
+                    console.log(colorThief.getColor(img))
                 } else {
                     img.addEventListener('load', function() {
-                        colorThief.getColor(img)
-                        .then(color => { console.log(color) })
-                        .catch(err => { console.log(err) })
+                        console.log(colorThief.getColor(img))
                     });
                 }
             }
