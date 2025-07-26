@@ -3097,9 +3097,7 @@
 
         // Extract colors and apply glow
         function extractAndApplyColors(element) {
-            console.log(element)
-            console.log(element.tagName) 
-            
+
             if (element.tagName === 'VIDEO') {
                 extractVideoColors(element);
             } else if (element.tagName === 'IMG') {
@@ -4296,7 +4294,7 @@
             }
             // Pause all videos
             document.querySelectorAll('.portfolio-card video').forEach(video => {
-                video.pause();
+                //video.pause();
                 video.currentTime = 0; // Optional: reset to start
                 video.onended = null; // Remove previous handlers
             });
@@ -4317,6 +4315,7 @@
             if (cards[activeIdx]) {
                 const video = cards[activeIdx].querySelector('video');
                 if (video) {
+                    extractVideoColors(video);
                     videoInActive = video;
                     video.play();
                     pauseAutoSlide();
