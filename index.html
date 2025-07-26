@@ -4293,8 +4293,8 @@
                 cards[activeIdx].classList.add('active-card');
             }
             // Pause all videos
-            document.querySelectorAll('.portfolio-card video').forEach(video => {
-                //video.pause();
+            document.querySelectorAll('.portfolio-card:not(.active-card) video').forEach(video => {
+                video.pause();
                 video.currentTime = 0; // Optional: reset to start
                 video.onended = null; // Remove previous handlers
             });
