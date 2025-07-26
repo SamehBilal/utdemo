@@ -3245,8 +3245,7 @@
                 rgba(${Math.floor(r*0.1)}, ${Math.floor(g*0.1)}, ${Math.floor(b*0.1)}, 0.9) 100%)
             `;*/
 
-            console.log(paletteGradients, shadowColors)
-            return 0;
+            
 
             // Update color palette display
             updateColorPalette(palette, dominantColor);
@@ -3287,6 +3286,9 @@
                 swatch.title = `Color ${index + 1}: rgb(${color.join(', ')})`;
                 colorPalette.appendChild(swatch);
             });
+
+            console.log(palette, dominantColor)
+            return 0;
         }
 
        
