@@ -2320,9 +2320,9 @@
         }
         .portfolio-card.active-card {
             box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 106, 0, 0.5);
+            /*border: 1px solid rgba(255, 106, 0, 0.5);*/
             filter: drop-shadow(0 0 4px var(--accent-orange)) drop-shadow(0 0 8px var(--accent-red));
-            transition: box-shadow 0.3s, border-color 0.3s, filter 0.3s;
+            transition: box-shadow 0.3s, /*border-color 0.3s,*/ filter 0.3s;
         }
         .portfolio-card.active-card .card-title-overlay {
             opacity: 1;
@@ -3287,6 +3287,21 @@
                 swatch.title = `Color ${index + 1}: rgb(${color.join(', ')})`;
                 colorPalette.appendChild(swatch);
             });
+
+            const portfolioActive = document.querySelector('.active-card'); // Use querySelector, not getElementsByClassName
+    
+            if (portfolioActive) {
+                // Create rgba versions for better shadow effects
+                const dominantRgba = `rgba(${dominantColor.join(', ')}, 0.4)`;
+                const firstColorRgba = `rgba(${palette[0].join(', ')}, 0.8)`;
+                const secondColorRgba = `rgba(${palette[1].join(', ')}, 0.6)`;
+                
+                // Apply the styles
+                portfolioActive.style.boxShadow = `0 12px 25px ${dominantRgba}`;
+                portfolioActive.style.border = `1px solid rgba(${dominantColor.join(', ')}, 0.5)`;
+                portfolioActive.style.filter = `drop-shadow(0 0 4px ${firstColorRgba}) drop-shadow(0 0 8px ${secondColorRgba})`;
+                portfolioActive.style.transition = 'box-shadow 0.3s, border-color 0.3s, filter 0.3s';
+            }
         }
 
        
