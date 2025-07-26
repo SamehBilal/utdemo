@@ -3192,7 +3192,7 @@
                 const palette = colorThief.getPalette(image, 5);
                 
                 console.log('Image colors extracted successfully:', dominantColor, palette);
-                //applyColorEffects(dominantColor, palette);
+                applyColorEffects(dominantColor, palette);
                 
             } catch (error) {
                 console.warn('Image color extraction failed:', error);
@@ -3235,8 +3235,8 @@
                 return `0 ${yOffset}px ${blur}px ${spread}px rgba(${sr}, ${sg}, ${sb}, ${opacity})`;
             }).join(', ');
 
-            const mediaWrapper = document.querySelector('.media-wrapper');
-            mediaWrapper.style.filter = `drop-shadow(${shadowColors})`;
+            /*const mediaWrapper = document.querySelector('.media-wrapper');
+            mediaWrapper.style.filter = `drop-shadow(${shadowColors})`;*/
             
             // Keep background minimal - just subtle influence
             /*sliderContainer.style.background = `
@@ -3244,6 +3244,9 @@
                 rgba(${r}, ${g}, ${b}, 0.05) 0%, 
                 rgba(${Math.floor(r*0.1)}, ${Math.floor(g*0.1)}, ${Math.floor(b*0.1)}, 0.9) 100%)
             `;*/
+
+            console.log(paletteGradients, shadowColors)
+            return 0;
 
             // Update color palette display
             updateColorPalette(palette, dominantColor);
