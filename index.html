@@ -2566,7 +2566,7 @@
             <div class="slider-nav-zone slider-nav-left"></div>
             <div class="slider-nav-zone slider-nav-right"></div>
 
-            <div class="color-info">
+            <!-- <div class="color-info">
                 <div class="dominant-color">
                     <h3>Dominant Color</h3>
                     <div class="dominant-swatch" id="dominantSwatch"></div>
@@ -2575,7 +2575,7 @@
                 <div class="palette-title">Color Palette</div>
                 <div class="color-palette" id="colorPalette"></div>
                 <div id="rgbInfo" style="margin-top: 10px; font-size: 0.9rem;"></div>
-            </div>
+            </div> -->
         </div>
         <div class="carousel-arrows">
             <div class="carousel-arrow left" aria-label="Previous Slide" id="slider-arrow-left">&#8592;</div>
@@ -3091,9 +3091,9 @@
     
     <script>
         const colorThief = new ColorThief();
-        const colorPalette = document.getElementById('colorPalette');
-        const rgbInfo = document.getElementById('rgbInfo');
-        const glowOverlay = document.querySelector('.glow-overlay');
+        //const colorPalette = document.getElementById('colorPalette');
+        //const rgbInfo = document.getElementById('rgbInfo');
+        //const glowOverlay = document.querySelector('.glow-overlay');
 
         // Extract colors and apply glow
         function extractAndApplyColors(element) {
@@ -3266,25 +3266,25 @@
         // Update color palette display
         function updateColorPalette(palette, dominantColor) {
             // Update dominant color swatch
-            const dominantSwatch = document.getElementById('dominantSwatch');
+            /*const dominantSwatch = document.getElementById('dominantSwatch');
             dominantSwatch.style.backgroundColor = `rgb(${dominantColor.join(', ')})`;
-            dominantSwatch.title = `Dominant: rgb(${dominantColor.join(', ')})`;  
+            dominantSwatch.title = `Dominant: rgb(${dominantColor.join(', ')})`;  */
 
             // Create gradient bar using all palette colors
-            const gradientBar = document.getElementById('gradientBar');
+            /*const gradientBar = document.getElementById('gradientBar');
             const gradientColors = palette.map(color => `rgb(${color.join(', ')})`);
-            gradientBar.style.background = `linear-gradient(90deg, ${gradientColors.join(', ')})`;
+            gradientBar.style.background = `linear-gradient(90deg, ${gradientColors.join(', ')})`;*/
 
             // Update individual color swatches
-            colorPalette.innerHTML = '';
-            rgbInfo.innerHTML = `rgb(${dominantColor.join(', ')})`;
+            //colorPalette.innerHTML = '';
+            //rgbInfo.innerHTML = `rgb(${dominantColor.join(', ')})`;
             
             palette.forEach((color, index) => {
                 const swatch = document.createElement('div');
                 swatch.className = 'color-swatch';
                 swatch.style.backgroundColor = `rgb(${color.join(', ')})`;
                 swatch.title = `Color ${index + 1}: rgb(${color.join(', ')})`;
-                colorPalette.appendChild(swatch);
+                //colorPalette.appendChild(swatch);
             });
 
             const portfolioActive = document.querySelector('.active-card'); // Use querySelector, not getElementsByClassName
