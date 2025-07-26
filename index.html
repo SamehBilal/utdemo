@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Twist</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <style>
         /* ===== CSS VARIABLES ===== */
         :root {
@@ -2369,6 +2370,90 @@
             }
         }
     </style>
+    
+    <style>
+        .color-info {
+            position: relative;
+            top: 40px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            max-width: 400px;
+            color: white;
+        }
+
+        .dominant-color {
+            margin-bottom: 15px;
+        }
+
+        .dominant-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .dominant-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .gradient-bar {
+            width: 100%;
+            height: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 25px;
+            height: 25px;
+            border-radius: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        .palette-title {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 
 <body>
@@ -2417,67 +2502,78 @@
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">01</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img class="media-item" src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">02</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img class="media-item" src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">03</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img class="media-item" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">04</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img class="media-item" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">05</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img class="media-item" src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">06</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video class="media-item" src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
                 </div>
                 <!-- Duplicate set for seamless loop -->
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">01</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Yellow</div><img class="media-item" src="https://plus.unsplash.com/premium_photo-1673276864867-d0e27d34e5f7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fHww" alt="Yellow" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">02</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange</div><img class="media-item" src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">03</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 3</div><img class="media-item" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop" alt="Photo 3" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">04</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Photo 4</div><img class="media-item" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=600&fit=crop" alt="Photo 4" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">05</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Orange 2</div><img class="media-item" src="https://plus.unsplash.com/premium_photo-1675667408018-3b64dbc55db1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8b3JhbmdlfGVufDB8fDB8fHww" alt="Orange 2" style="width:100%;height:100%;object-fit:cover;"></div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">06</div>
                     <div class="slide-featured-badge">featured</div>
-                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
+                    <div class="portfolio-card"><div class="card-title-overlay">Video</div><video class="media-item" src="video.mp4" style="width:100%;height:100%;object-fit:cover;" muted loop></video></div>
                 </div>
             </div>
             <div class="slider-nav-zone slider-nav-left"></div>
             <div class="slider-nav-zone slider-nav-right"></div>
+
+            <div class="color-info">
+                <div class="dominant-color">
+                    <h3>Dominant Color</h3>
+                    <div class="dominant-swatch" id="dominantSwatch"></div>
+                    <div class="gradient-bar" id="gradientBar"></div>
+                </div>
+                <div class="palette-title">Color Palette</div>
+                <div class="color-palette" id="colorPalette"></div>
+                <div id="rgbInfo" style="margin-top: 10px; font-size: 0.9rem;"></div>
+            </div>
         </div>
         <div class="carousel-arrows">
             <div class="carousel-arrow left" aria-label="Previous Slide" id="slider-arrow-left">&#8592;</div>
@@ -2989,6 +3085,185 @@
         <p>Ready to start your next project? We'd love to hear from you. Let's collaborate to bring your vision to life
             and create something truly remarkable together. Get in touch and let's make it happen.</p>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script>
+        const colorThief = new ColorThief();
+        const colorPalette = document.getElementById('colorPalette');
+        const rgbInfo = document.getElementById('rgbInfo');
+        const glowOverlay = document.querySelector('.glow-overlay');
+
+        // Extract colors and apply glow
+        function extractAndApplyColors(element) {
+            
+            if (element.tagName === 'VIDEO') {
+                extractVideoColors(element);
+            } else {
+                extractImageColors(element);
+            }
+        }
+
+        // Extract colors from video by taking a screenshot
+        function extractVideoColors(video) {
+            const attemptExtraction = () => {
+                try {
+                    // Ensure video is playing and has frames
+                    if (video.readyState < 2 || video.videoWidth === 0) {
+                        setTimeout(attemptExtraction, 200);
+                        return;
+                    }
+
+                    // Create a temporary canvas to capture video frame
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas size to video dimensions
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    
+                    // Draw the current video frame
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    
+                    // Create a temporary image from the canvas
+                    const tempImg = new Image();
+                    tempImg.crossOrigin = 'anonymous';
+                    
+                    tempImg.onload = function() {
+                        try {
+                            // Extract colors from the screenshot image
+                            const dominantColor = colorThief.getColor(tempImg);
+                            const palette = colorThief.getPalette(tempImg, 5);
+                            
+                            applyColorEffects(dominantColor, palette);
+                            console.log('Video colors extracted successfully:', dominantColor, palette);
+                            
+                        } catch (error) {
+                            console.warn('Failed to extract colors from video screenshot:', error);
+                            applyFallbackColors();
+                        }
+                    };
+                    
+                    tempImg.onerror = function() {
+                        console.warn('Failed to create image from video canvas');
+                        applyFallbackColors();
+                    };
+                    
+                    // Convert canvas to image
+                    tempImg.src = canvas.toDataURL('image/png');
+                    
+                } catch (error) {
+                    console.warn('Video screenshot failed:', error);
+                    setTimeout(attemptExtraction, 300);
+                }
+            };
+            
+            // Start attempting extraction
+            attemptExtraction();
+        }
+
+        // Extract colors from image
+        function extractImageColors(image) {
+            try {
+                const dominantColor = colorThief.getColor(image);
+                const palette = colorThief.getPalette(image, 5);
+                
+                applyColorEffects(dominantColor, palette);
+                console.log('Image colors extracted successfully:', dominantColor, palette);
+                
+            } catch (error) {
+                console.warn('Image color extraction failed:', error);
+                applyFallbackColors();
+            }
+        }
+
+        function applyColorEffects(dominantColor, palette) {
+            // Apply main glow effect with dominant color - more focused around slide
+            const [r, g, b] = dominantColor;
+            const glowColor = `rgba(${r}, ${g}, ${b}, 0.9)`;
+            const shadowColor = `rgba(${r}, ${g}, ${b}, 0.5)`;
+            
+            /*glowOverlay.style.background = `
+                radial-gradient(ellipse 120% 100% at center, ${glowColor} 0%, 
+                ${shadowColor} 30%, rgba(${r}, ${g}, ${b}, 0.2) 60%, transparent 80%)
+            `;*/
+
+            // Create focused palette shadow using all colors around the slide only
+            const paletteGradients = palette.map((color, index) => {
+                const [pr, pg, pb] = color;
+                const opacity = 0.5 - (index * 0.08); // Higher opacity for clearer colors
+                const size = 110 + (index * 15); // Varying sizes for depth
+                const angle = index * 72; // Distribute colors around the slide (360/5 = 72 degrees)
+                const offsetX = Math.cos(angle * Math.PI / 180) * 10 + 50; // Circular positioning
+                const offsetY = Math.sin(angle * Math.PI / 180) * 10 + 50;
+                return `radial-gradient(ellipse ${size}% ${size * 0.8}% at ${offsetX}% ${offsetY}%, rgba(${pr}, ${pg}, ${pb}, ${opacity}) 0%, rgba(${pr}, ${pg}, ${pb}, ${opacity * 0.3}) 40%, transparent 70%)`;
+            }).join(', ');
+
+            /*const paletteOverlay = document.querySelector('.palette-shadow');
+            paletteOverlay.style.background = paletteGradients;*/
+
+            // Update media wrapper shadow - clearer and more defined
+            const shadowColors = palette.slice(0, 3).map((color, index) => {
+                const [sr, sg, sb] = color;
+                const blur = 15 + (index * 8); // Less blur for clearer shadows
+                const spread = index * 2;
+                const yOffset = 15 + (index * 5);
+                const opacity = 0.6 - (index * 0.15); // Higher opacity for clarity
+                return `0 ${yOffset}px ${blur}px ${spread}px rgba(${sr}, ${sg}, ${sb}, ${opacity})`;
+            }).join(', ');
+
+            const mediaWrapper = document.querySelector('.media-wrapper');
+            mediaWrapper.style.filter = `drop-shadow(${shadowColors})`;
+            
+            // Keep background minimal - just subtle influence
+            /*sliderContainer.style.background = `
+                radial-gradient(ellipse at center, 
+                rgba(${r}, ${g}, ${b}, 0.05) 0%, 
+                rgba(${Math.floor(r*0.1)}, ${Math.floor(g*0.1)}, ${Math.floor(b*0.1)}, 0.9) 100%)
+            `;*/
+
+            // Update color palette display
+            updateColorPalette(palette, dominantColor);
+        }
+
+        // Apply fallback colors when extraction fails
+        function applyFallbackColors() {
+            /*glowOverlay.style.background = 'radial-gradient(ellipse 120% 100% at center, rgba(100, 100, 255, 0.4) 0%, transparent 70%)';*/
+            /*const paletteOverlay = document.querySelector('.palette-shadow');
+            paletteOverlay.style.background = 'radial-gradient(ellipse 110% 90% at center, rgba(100, 100, 255, 0.3) 0%, transparent 70%)';*/
+            
+            // Update color palette with fallback
+            const fallbackPalette = [[100, 100, 255], [150, 100, 200], [200, 100, 150], [100, 150, 200], [100, 200, 150]];
+            const fallbackDominant = [100, 100, 255];
+            updateColorPalette(fallbackPalette, fallbackDominant);
+        }
+
+        // Update color palette display
+        function updateColorPalette(palette, dominantColor) {
+            // Update dominant color swatch
+            const dominantSwatch = document.getElementById('dominantSwatch');
+            dominantSwatch.style.backgroundColor = `rgb(${dominantColor.join(', ')})`;
+            dominantSwatch.title = `Dominant: rgb(${dominantColor.join(', ')})`;
+
+            // Create gradient bar using all palette colors
+            const gradientBar = document.getElementById('gradientBar');
+            const gradientColors = palette.map(color => `rgb(${color.join(', ')})`);
+            gradientBar.style.background = `linear-gradient(90deg, ${gradientColors.join(', ')})`;
+
+            // Update individual color swatches
+            colorPalette.innerHTML = '';
+            rgbInfo.innerHTML = `rgb(${dominantColor.join(', ')})`;
+            
+            palette.forEach((color, index) => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = `rgb(${color.join(', ')})`;
+                swatch.title = `Color ${index + 1}: rgb(${color.join(', ')})`;
+                colorPalette.appendChild(swatch);
+            });
+        }
+
+       
+    </script>
 
     <script>
         // ===== MAIN APPLICATION =====
@@ -3988,6 +4263,8 @@
             const cards = document.querySelectorAll('.portfolio-card');
             if (cards[activeIdx]) {
                 cards[activeIdx].classList.add('active-card');
+                console.log(cards[activeIdx].querySelector('.media-item'));
+                extractAndApplyColors(cards[activeIdx].querySelector('.media-item'))
             }
             // Pause all videos
             document.querySelectorAll('.portfolio-card video').forEach(video => {
@@ -4063,69 +4340,7 @@
         };
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
-    <script>
-    function rgbToGlow(rgbArr) {
-        return `0 0 32px 8px rgb(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]})`;
-    }
-
-    function getDominantColorFromVideo(video) {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        let r=0, g=0, b=0, count=0;
-        for (let i=0; i<data.length; i+=4) {
-            r += data[i];
-            g += data[i+1];
-            b += data[i+2];
-            count++;
-        }
-        return [Math.round(r/count), Math.round(g/count), Math.round(b/count)];
-    }
-
-    function setActiveCardGlow() {
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.style.boxShadow = '';
-            card.style.filter = '';
-        });
-        const activeCard = document.querySelector('.portfolio-card.active-card');
-        if (!activeCard) return;
-        const img = activeCard.querySelector('img');
-        if (img && img.complete) {
-            const colorThief = new ColorThief();
-            try {
-                const color = colorThief.getColor(img);
-                activeCard.style.boxShadow = `0 25px 50px rgba(0,0,0,0.4), ${rgbToGlow(color)}`;
-            } catch (e) {
-                // fallback
-            }
-        } else {
-            const video = activeCard.querySelector('video');
-            if (video && video.readyState >= 2) {
-                const color = getDominantColorFromVideo(video);
-                activeCard.style.boxShadow = `0 25px 50px rgba(0,0,0,0.4), ${rgbToGlow(color)}`;
-            }
-        }
-    }
-
-    // Observe class changes to update glow
-    const observer = new MutationObserver(() => setActiveCardGlow());
-    document.querySelectorAll('.portfolio-card').forEach(card => {
-        observer.observe(card, { attributes: true, attributeFilter: ['class'] });
-    });
-
-    // Also update on image/video load
-    window.addEventListener('load', setActiveCardGlow);
-    document.querySelectorAll('.portfolio-card img').forEach(img => {
-        img.addEventListener('load', setActiveCardGlow);
-    });
-    document.querySelectorAll('.portfolio-card video').forEach(video => {
-        video.addEventListener('loadeddata', setActiveCardGlow);
-    });
-    </script>
+    
 
     <!-- Footer -->
     <footer class="site-footer">
