@@ -3191,7 +3191,7 @@
                 const dominantColor = colorThief.getColor(image);
                 const palette = colorThief.getPalette(image, 5);
                 
-                console.log('Image colors extracted successfully:', dominantColor, palette);
+                //console.log('Image colors extracted successfully:', dominantColor, palette);
                 applyColorEffects(dominantColor, palette);
                 
             } catch (error) {
@@ -3286,9 +3286,6 @@
                 swatch.title = `Color ${index + 1}: rgb(${color.join(', ')})`;
                 colorPalette.appendChild(swatch);
             });
-
-            console.log('other log '+palette, dominantColor)
-            return 0;
         }
 
        
