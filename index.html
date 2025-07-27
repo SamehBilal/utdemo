@@ -2044,10 +2044,19 @@
 
         .portfolio-card video {
             border-radius: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
         }
 
         .portfolio-card img {
             border-radius: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card img:hover, .portfolio-card video:hover {
+            transform: scale(1.08) translateY(-10px);
+            z-index: 10;
+            box-shadow: 0 30px 60px var(--shadow-dark);
         }
 
         .portfolio-card:nth-child(7),
@@ -2063,11 +2072,11 @@
             transform: translateY(-50%) scale(1);
         }
 
-        .portfolio-card:hover {
+        /*.portfolio-card:hover {
             transform: scale(1.08) translateY(-10px);
             z-index: 10;
             box-shadow: 0 30px 60px var(--shadow-dark);
-        }
+        }*/
 
         .card-image {
             width: 100%;
