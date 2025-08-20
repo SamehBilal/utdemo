@@ -690,6 +690,19 @@
         }
 
         @media (max-width: 480px) {
+            .hero-section {
+                padding: 80px 20px 80px !important;
+            }
+
+            .slider-container {
+                margin-top: 1em !important;
+            }
+
+            .themed-carousel-container {
+                margin-top: 0 !important;
+            }
+
+
             .logo {
                 font-size: 18px;
             }
@@ -715,8 +728,14 @@
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                margin: auto;
                 max-width: 100vw;
                 padding: 0 20px;
+            }
+
+            .case-studies-container {
+                margin: 4em auto 2em auto !important;
+                min-width: 0vw !important;
             }
         }
 
@@ -976,7 +995,7 @@
             }
 
             100% {
-                transform: translateX(calc(-250px * 6));
+                transform: translateX(calc(-250px * 9));
             }
         }
 
@@ -986,7 +1005,7 @@
             }
 
             100% {
-                transform: translateX(calc(-250px * 6));
+                transform: translateX(calc(-250px * 9));
             }
         }
 
@@ -1033,7 +1052,7 @@
             -webkit-animation: scroll 12s linear infinite;
             animation: scroll 12s linear infinite;
             display: flex;
-            width: calc(250px * 12);
+            width: calc(250px * 18);
         }
 
         .slider .slide {
@@ -1566,7 +1585,7 @@
 
         /* ===== THEMED CAROUSEL ===== */
         .themed-carousel-container {
-            width: 90vw;
+            width: 70vw;
             min-height: auto;
             max-width: 100%;
             position: relative;
@@ -1640,7 +1659,7 @@
         }
 
         .themed-carousel-slide-5 {
-            background: url('banner1.jpg');
+            background: url('https://ultimatetwistagency.com/wp-content/uploads/2025/08/elshehi-banner.png');
             background-size: cover;
             background-position: center;
         }
@@ -1774,9 +1793,19 @@
             text-align: left !important;
         }
 
+        .themed-carousel-slide-5 .themed-carousel-slide-content {
+            position: absolute;
+            bottom: 6em;
+            left: 4em;
+            max-width: 25em;
+            margin: 0;
+            text-align: left !important;
+        }
+
         .themed-carousel-slide-2 .themed-carousel-slide-image,
         .themed-carousel-slide-3 .themed-carousel-slide-image,
-        .themed-carousel-slide-4 .themed-carousel-slide-image {
+        .themed-carousel-slide-4 .themed-carousel-slide-image,
+        .themed-carousel-slide-5 .themed-carousel-slide-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1790,20 +1819,25 @@
         .themed-carousel-slide-3 .themed-carousel-slide-description,
         .themed-carousel-slide-4 .themed-carousel-slide-title,
         .themed-carousel-slide-4 .themed-carousel-slide-subtitle,
-        .themed-carousel-slide-4 .themed-carousel-slide-description {
+        .themed-carousel-slide-4 .themed-carousel-slide-description,
+        .themed-carousel-slide-5 .themed-carousel-slide-title,
+        .themed-carousel-slide-5 .themed-carousel-slide-subtitle,
+        .themed-carousel-slide-5 .themed-carousel-slide-description {
             text-align: left !important;
             margin-bottom: 0 !important;
         }
 
         .themed-carousel-slide-2 .themed-carousel-slide-title,
         .themed-carousel-slide-3 .themed-carousel-slide-title,
-        .themed-carousel-slide-4 .themed-carousel-slide-title {
-            font-size: clamp(2.5rem, 5vw, 3rem) !important;
+        .themed-carousel-slide-4 .themed-carousel-slide-title,
+        .themed-carousel-slide-5 .themed-carousel-slide-title {
+            font-size: clamp(1.5rem, 5vw, 1.6rem) !important;
         }
 
         .themed-carousel-slide-2 .themed-carousel-slide-cta,
         .themed-carousel-slide-3 .themed-carousel-slide-cta,
-        .themed-carousel-slide-4 .themed-carousel-slide-cta {
+        .themed-carousel-slide-4 .themed-carousel-slide-cta,
+        .themed-carousel-slide-5 .themed-carousel-slide-cta {
             margin-top: 1em !important;
         }
 
@@ -2587,12 +2621,41 @@
                 width: 100vw;
                 height: auto;
                 transform: none !important;
-                overflow-x: hidden;
+                overflow: hidden;
+                /* Changed from overflow-x: hidden */
+                margin-top: 5em;
+                /* Reduced margin for mobile */
+            }
+
+            .slider-track {
+                width: calc(100vw * 12);
+                /* Adjust based on total number of cards */
             }
 
             .portfolio-card {
                 width: 80vw;
-                margin-right: 20px;
+                /* Single card takes most of screen width */
+                margin-right: 20vw;
+                /* Space between cards */
+                margin-left: 0;
+                /* Ensure no left margin */
+                height: 600px;
+                /* Reduced height for mobile */
+                box-shadow: none !important;
+                filter: none !important;
+                transition: none !important;
+            }
+
+            /* Hide navigation zones on mobile */
+            .slider-nav-zone {
+                display: none !important;
+            }
+
+            /* Hide left/right navigation zones specifically */
+            .slider-nav-left,
+            .slider-nav-right {
+                display: none !important;
+                pointer-events: none !important;
             }
 
             .slider-arrows {
@@ -2605,6 +2668,56 @@
                 height: 40px;
                 font-size: 22px;
             }
+
+            /* Keep only the custom arrow buttons */
+            .slider-arrows-custom {
+                position: fixed;
+                right: 20px;
+                bottom: 20px;
+                z-index: 50;
+            }
+
+            .slider-arrow-custom {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+
+            /* Adjust badges for mobile */
+            .slide-number-badge {
+                font-size: 36px;
+                top: -50px;
+            }
+
+            .slide-featured-badge {
+                font-size: 16px;
+                bottom: -30px;
+            }
+
+            /* Adjust title overlay for mobile */
+            .card-title-overlay {
+                font-size: 3rem;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(12deg);
+            }
+
+            /*.carousel-arrows {
+        display: none;
+    }*/
+
+
+            /*.portfolio-card {
+                width: 100vw !important;
+                margin-right: 0 !important;
+            }
+
+            .slider-track {
+                width: auto !important;
+            }
+
+            .slider-nav-zone {
+                display: none !important;
+            }*/
         }
 
         .portfolio-card.stretch-effect {
@@ -2616,10 +2729,11 @@
         .slide-featured-badge {
             position: absolute;
             left: 0;
-            bottom: 30px;
+            bottom: -44px;
             color: transparent;
-            font-size: 18px;
-            color: var(--text-secondary);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
             z-index: 1;
             pointer-events: none;
             text-transform: uppercase;
@@ -2645,12 +2759,20 @@
         }
 
         .portfolio-card.active-card {
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            /*box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);*/
             /*border: 1px solid rgba(255, 106, 0, 0.5);*/
-            filter: drop-shadow(0 0 4px var(--accent-orange)) drop-shadow(0 0 8px var(--accent-red));
+            /*filter: drop-shadow(0 0 4px var(--accent-orange)) drop-shadow(0 0 8px var(--accent-red));
             transition: box-shadow 0.3s,
                 /*border-color 0.3s,*/
-                filter 0.3s;
+            /* filter 0.3s;*/
+
+            box-shadow: rgba(40, 40, 39, 0.4) 0px 12px 25px;
+            filter: drop-shadow(rgba(40, 40, 39, 0.8) 0px 0px 4px) drop-shadow(rgba(177, 178, 178, 0.6) 0px 0px 8px);
+            transition: box-shadow 0.3s, border-color 0.3s, filter 0.3s;
+
+            /*box-shadow: rgba(0, 0, 0, 0.15) 0px 12px 25px;
+            filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 0px 4px) drop-shadow(rgba(0, 0, 0, 0.1) 0px 0px 8px);
+            transition: box-shadow 0.3s, border-color 0.3s, filter 0.3s;*/
         }
 
         .portfolio-card.active-card .card-title-overlay {
@@ -2692,7 +2814,7 @@
         }
 
         @media (max-width: 600px) {
-            .slider-arrows-custom {
+            /*.slider-arrows-custom {
                 right: 12px;
                 bottom: 12px;
             }
@@ -2702,6 +2824,13 @@
                 height: 40px;
                 font-size: 1.3rem;
             }
+
+            .portfolio-card {
+                height: 646px;
+                box-shadow: none !important;
+                filter: none !important;
+                transition: none !important;
+            }*/
         }
     </style>
 
@@ -2799,7 +2928,7 @@
     <div class="navbar-container" id="navbarContainer">
         <nav class="navbar" id="navbar">
             <div class="progress-bg" id="progressBg"></div>
-            <a href="#" class="logo initial-icon">
+            <a href="#navbarContainer" class="logo initial-icon">
                 <img src="logo.svg" alt="">
             </a>
             <div class="navbar-content">
@@ -2813,7 +2942,15 @@
                 </ul>
                 <a href="#contact" data-section="contact" class="cta-button" data-text="Contact">Contact</a>
                 <button id="themeToggle" class="themetoggle" aria-label="Toggle light/dark mode"
-                    style="margin:0; padding:0; background:none; border:none; cursor:pointer; font-size:1.5em; color:var(--text-primary);">🌑</button>
+                    style="margin:0; padding:0; background:none; border:none; cursor:pointer; font-size:1.5em; color:var(--text-primary);">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#55555"
+                        version="1.1" id="Capa_1" width="24px" height="24px" viewBox="0 0 324.694 324.694"
+                        xml:space="preserve">
+                        <g>
+                            <path
+                                d="M291.396,287.685c-0.646-3.021-3.045-5.356-6.077-5.925c-58.351-11.019-104.084-55.646-116.517-113.696   c-12.433-58.06,11.013-117.502,59.735-151.451c2.531-1.761,3.759-4.876,3.115-7.894c-0.647-3.018-3.046-5.355-6.078-5.933   c-21.053-3.976-42.939-3.691-64.052,0.824c-42.397,9.078-78.725,34.122-102.286,70.528   c-23.559,36.397-31.535,79.792-22.454,122.189c15.926,74.377,82.62,128.361,158.579,128.367c0.004,0,0.013,0,0.017,0   c11.396,0,22.88-1.221,34.129-3.625c21.267-4.554,41.042-13.129,58.772-25.484C290.816,293.817,292.04,290.701,291.396,287.685z    M226.294,306.07c-10.197,2.18-20.597,3.288-30.916,3.288c-0.004,0-0.007,0-0.013,0c-68.777-0.008-129.161-48.891-143.581-116.244   c-8.224-38.391-1.004-77.68,20.33-110.642c21.333-32.96,54.227-55.646,92.621-63.861c10.181-2.187,20.58-3.288,30.9-3.288   c3.119,0,6.245,0.097,9.365,0.299c-43.655,38.534-63.604,97.721-51.202,155.652c12.41,57.93,54.851,103.759,110.463,121.029   C252.376,298.597,239.663,303.209,226.294,306.07z" />
+                        </g>
+                    </svg></button>
 
                 <!-- Mobile burger menu -->
                 <div class="burger-menu" id="burgerMenu">
@@ -2837,7 +2974,14 @@
             <a href="#testimonial" data-section="testimonial">About</a>
         </div>
         <div class="mobile-nav-item">
-            <a class="themetoggle">🌑</a>
+            <a class="themetoggle"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    fill="#55555" version="1.1" id="Capa_1" width="24px" height="24px" viewBox="0 0 324.694 324.694"
+                    xml:space="preserve">
+                    <g>
+                        <path
+                            d="M291.396,287.685c-0.646-3.021-3.045-5.356-6.077-5.925c-58.351-11.019-104.084-55.646-116.517-113.696   c-12.433-58.06,11.013-117.502,59.735-151.451c2.531-1.761,3.759-4.876,3.115-7.894c-0.647-3.018-3.046-5.355-6.078-5.933   c-21.053-3.976-42.939-3.691-64.052,0.824c-42.397,9.078-78.725,34.122-102.286,70.528   c-23.559,36.397-31.535,79.792-22.454,122.189c15.926,74.377,82.62,128.361,158.579,128.367c0.004,0,0.013,0,0.017,0   c11.396,0,22.88-1.221,34.129-3.625c21.267-4.554,41.042-13.129,58.772-25.484C290.816,293.817,292.04,290.701,291.396,287.685z    M226.294,306.07c-10.197,2.18-20.597,3.288-30.916,3.288c-0.004,0-0.007,0-0.013,0c-68.777-0.008-129.161-48.891-143.581-116.244   c-8.224-38.391-1.004-77.68,20.33-110.642c21.333-32.96,54.227-55.646,92.621-63.861c10.181-2.187,20.58-3.288,30.9-3.288   c3.119,0,6.245,0.097,9.365,0.299c-43.655,38.534-63.604,97.721-51.202,155.652c12.41,57.93,54.851,103.759,110.463,121.029   C252.376,298.597,239.663,303.209,226.294,306.07z" />
+                    </g>
+                </svg></a>
         </div>
         <div class="mobile-nav-item contact-item">
             <a href="#contact" data-section="contact">Contact</a>
@@ -2857,15 +3001,12 @@
 
 
         <div class="slider-container" id="slider-container">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
 
             <div class="slider-track">
                 <!-- First set of cards -->
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">01</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Yellow</div><img class="media-item" src="slider-1.jpg"
                             alt="Yellow" style="width:100%;height:100%;object-fit:cover;">
@@ -2873,7 +3014,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">02</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Orange</div><img class="media-item" src="slider-2.jpg"
                             alt="Orange" style="width:100%;height:100%;object-fit:cover;">
@@ -2881,7 +3022,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">03</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Photo 3</div><img class="media-item" src="slider-3.jpg"
                             alt="Photo 3" style="width:100%;height:100%;object-fit:cover;">
@@ -2889,34 +3030,44 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">04</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
-                        <div class="card-title-overlay">Photo 4</div><img class="media-item" src="slider-4.jpg"
-                            alt="Photo 4" style="width:100%;height:100%;object-fit:cover;">
+                        <div class="card-title-overlay">Video</div><video class="media-item"
+                            src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram_2.mp4"
+                            style="width:100%;height:100%;object-fit:cover;" muted>
+                            <source src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram_2.mp4"
+                                type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">05</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
-                        <div class="card-title-overlay">Orange 2</div><img class="media-item" src="slider-5.jpg"
-                            alt="Orange 2" style="width:100%;height:100%;object-fit:cover;">
+                        <div class="card-title-overlay">Video</div><video class="media-item"
+                            src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram_3.mp4"
+                            style="width:100%;height:100%;object-fit:cover;" muted>
+                            <source src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram_3.mp4"
+                                type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">06</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
-                        <div class="card-title-overlay">Video</div><video class="media-item" src="video.mp4"
+                        <div class="card-title-overlay">Video</div><video class="media-item"
+                            src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram.mp4"
                             style="width:100%;height:100%;object-fit:cover;" muted>
-                            <source src="video.mp4" type="video/mp4">
+                            <source src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram.mp4"
+                                type="video/mp4">
                         </video>
                     </div>
                 </div>
                 <!-- Duplicate set for seamless -->
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">01</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Yellow</div><img class="media-item" src="slider-1.jpg"
                             alt="Yellow" style="width:100%;height:100%;object-fit:cover;">
@@ -2924,7 +3075,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">02</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Orange</div><img class="media-item" src="slider-2.jpg"
                             alt="Orange" style="width:100%;height:100%;object-fit:cover;">
@@ -2932,7 +3083,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">03</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Photo 3</div><img class="media-item" src="slider-3.jpg"
                             alt="Photo 3" style="width:100%;height:100%;object-fit:cover;">
@@ -2940,7 +3091,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">04</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Photo 4</div><img class="media-item" src="slider-4.jpg"
                             alt="Photo 4" style="width:100%;height:100%;object-fit:cover;">
@@ -2948,7 +3099,7 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">05</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
                         <div class="card-title-overlay">Orange 2</div><img class="media-item" src="slider-5.jpg"
                             alt="Orange 2" style="width:100%;height:100%;object-fit:cover;">
@@ -2956,11 +3107,13 @@
                 </div>
                 <div style="position: relative; display: inline-block;">
                     <div class="slide-number-badge">06</div>
-                    <div class="slide-featured-badge">featured</div>
+                    <div class="slide-featured-badge">233K Views</div>
                     <div class="portfolio-card">
-                        <div class="card-title-overlay">Video</div><video class="media-item" src="video.mp4"
+                        <div class="card-title-overlay">Video</div><video class="media-item"
+                            src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram.mp4"
                             style="width:100%;height:100%;object-fit:cover;" muted>
-                            <source src="video.mp4" type="video/mp4">
+                            <source src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/Instagram.mp4"
+                                type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -2984,6 +3137,8 @@
             <div class="carousel-arrow right" aria-label="Next Slide" id="slider-arrow-right">&#8594;</div>
         </div>
     </div>
+
+
 
     <section class="section">
         <div class="themed-carousel-container">
@@ -3025,6 +3180,11 @@
                 <div class="themed-carousel-slide themed-carousel-slide-5">
                     <div class="themed-carousel-slide-number">04 / 07</div>
                     <div class="themed-carousel-slide-content">
+                        <h2 class="themed-carousel-slide-title">Innovation First</h2>
+                        <p class="themed-carousel-slide-subtitle">Pushing boundaries with cutting-edge solutions</p>
+                        <p class="themed-carousel-slide-description">Our innovative approach combines the latest
+                            technologies with creative thinking to deliver exceptional results.</p>
+                        <a href="#" class="themed-carousel-slide-cta">Learn More</a>
                     </div>
                 </div>
                 <div class="themed-carousel-slide themed-carousel-slide-55">
@@ -3090,60 +3250,76 @@
         <div class="slider">
             <div class="slide-track">
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/11.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/1.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/21.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/2.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/31.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/3.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/41.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/4.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/61.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/5.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/11.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/6.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/21.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/7.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/31.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/8.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/41.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/9.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/61.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/1.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/11.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/2.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/21.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/3.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/31.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/4.png" height="100" width="250"
+                        alt="" />
                 </div>
                 <div class="slide">
-                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/41.png" height="100"
-                        width="250" alt="" />
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/5.png" height="100" width="250"
+                        alt="" />
+                </div>
+                <div class="slide">
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/6.png" height="100" width="250"
+                        alt="" />
+                </div>
+                <div class="slide">
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/7.png" height="100" width="250"
+                        alt="" />
+                </div>
+                <div class="slide">
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/8.png" height="100" width="250"
+                        alt="" />
+                </div>
+                <div class="slide">
+                    <img src="https://ultimatetwistagency.com/wp-content/uploads/2025/08/9.png" height="100" width="250"
+                        alt="" />
                 </div>
             </div>
         </div>
@@ -3643,7 +3819,7 @@
                     TITLE_ROTATION: 2000,
                     SUBTITLE_ANIMATION: 1500
                 },
-                TITLE_ROTATION_INTERVAL: 300,
+                TITLE_ROTATION_INTERVAL: 500,
                 LETTER_ANIMATION_DELAY: 0.02,
                 SCROLL_THROTTLE: 16,
                 SWIPE_THRESHOLD: 50
@@ -3752,20 +3928,25 @@
             function initThemeToggle() {
                 const toggleBtn = document.querySelectorAll('.themetoggle');
                 const body = document.body;
-                const darkIcon = '🌑';
-                const lightIcon = '☀️';
+
+                const darkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="#55555" viewBox="0 0 324.694 324.694" width="24px" height="24px"><path d="M291.396,287.685c-0.646-3.021-3.045-5.356-6.077-5.925c-58.351-11.019-104.084-55.646-116.517-113.696   c-12.433-58.06,11.013-117.502,59.735-151.451c2.531-1.761,3.759-4.876,3.115-7.894c-0.647-3.018-3.046-5.355-6.078-5.933   c-21.053-3.976-42.939-3.691-64.052,0.824c-42.397,9.078-78.725,34.122-102.286,70.528   c-23.559,36.397-31.535,79.792-22.454,122.189c15.926,74.377,82.62,128.361,158.579,128.367c0.004,0,0.013,0,0.017,0   c11.396,0,22.88-1.221,34.129-3.625c21.267-4.554,41.042-13.129,58.772-25.484C290.816,293.817,292.04,290.701,291.396,287.685z    M226.294,306.07c-10.197,2.18-20.597,3.288-30.916,3.288c-0.004,0-0.007,0-0.013,0c-68.777-0.008-129.161-48.891-143.581-116.244   c-8.224-38.391-1.004-77.68,20.33-110.642c21.333-32.96,54.227-55.646,92.621-63.861c10.181-2.187,20.58-3.288,30.9-3.288   c3.119,0,6.245,0.097,9.365,0.299c-43.655,38.534-63.604,97.721-51.202,155.652c12.41,57.93,54.851,103.759,110.463,121.029   C252.376,298.597,239.663,303.209,226.294,306.07z"/></svg>';
+
+                const lightIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="#FF6A00" viewBox="0 0 405.897 405.897" width="24px" height="24px"><path d="M202.948,118.395c-46.623,0-84.561,37.931-84.561,84.554c0,46.631,37.938,84.562,84.561,84.562    c46.624,0,84.561-37.931,84.561-84.562C287.509,156.325,249.571,118.395,202.948,118.395z M202.948,259.451    c-31.155,0-56.502-25.349-56.502-56.502c0-31.148,25.347-56.495,56.502-56.495c31.155,0,56.502,25.347,56.502,56.495    C259.45,234.102,234.103,259.451,202.948,259.451z"/><path d="M202.948,98.59c7.749,0,14.03-6.282,14.03-14.029V14.03c0-7.748-6.281-14.029-14.03-14.029    c-7.748,0-14.029,6.281-14.029,14.029v70.531C188.918,92.308,195.199,98.59,202.948,98.59z"/><path d="M286.659,133.274c3.59,0,7.187-1.37,9.926-4.11l49.871-49.878c5.474-5.479,5.474-14.365-0.008-19.838    c-5.479-5.48-14.357-5.48-19.838,0l-49.871,49.877c-5.48,5.48-5.48,14.365,0,19.839    C279.479,131.904,283.069,133.274,286.659,133.274z"/><path d="M391.866,188.919l-70.531,0.007c-7.754,0-14.028,6.281-14.028,14.029s6.282,14.029,14.028,14.029l70.531-0.007    c7.748,0,14.031-6.28,14.031-14.029C405.897,195.2,399.614,188.919,391.866,188.919z"/><path d="M296.571,276.748c-5.48-5.479-14.357-5.479-19.838,0c-5.481,5.479-5.48,14.365,0,19.839l49.877,49.87    c2.74,2.74,6.33,4.109,9.92,4.109s7.186-1.369,9.926-4.109c5.474-5.479,5.474-14.365-0.008-19.838L296.571,276.748z"/><path d="M202.934,307.306c-7.748,0-14.022,6.282-14.022,14.028l0.007,70.531c0,7.748,6.281,14.031,14.036,14.031    c7.748,0,14.023-6.283,14.023-14.031l-0.008-70.531C216.97,313.589,210.688,307.306,202.934,307.306z"/><path d="M109.303,276.74L59.44,326.619c-5.474,5.479-5.474,14.365,0.007,19.838c2.74,2.74,6.329,4.109,9.919,4.109    s7.18-1.369,9.919-4.109l49.864-49.877c5.48-5.479,5.48-14.364,0-19.84C123.668,271.26,114.783,271.26,109.303,276.74z"/><path d="M98.589,202.949c0-7.748-6.282-14.029-14.029-14.029H14.029C6.281,188.92,0,195.201,0,202.949    c0,7.749,6.281,14.03,14.029,14.03H84.56C92.307,216.977,98.589,210.697,98.589,202.949z"/><path d="M109.317,129.15c2.74,2.74,6.33,4.11,9.92,4.11c3.589,0,7.179-1.37,9.919-4.11c5.48-5.48,5.48-14.365,0-19.839    L79.285,59.448c-5.479-5.48-14.365-5.48-19.845,0c-5.474,5.479-5.474,14.365,0.007,19.838L109.317,129.15z"/></svg>';
+
                 function setTheme(isLight) {
                     if (isLight) {
                         body.classList.add('light-theme');
-                        toggleBtn.forEach(btn => btn.textContent = darkIcon);
+                        toggleBtn.forEach(btn => btn.innerHTML = darkIcon);
                     } else {
                         body.classList.remove('light-theme');
-                        toggleBtn.forEach(btn => btn.textContent = lightIcon);
+                        toggleBtn.forEach(btn => btn.innerHTML = lightIcon);
                     }
                 }
+
                 // Load preference
                 const saved = localStorage.getItem('theme');
                 setTheme(saved === 'light');
+
                 toggleBtn.forEach(btn => btn.addEventListener('click', function () {
                     const isLight = !body.classList.contains('light-theme');
                     setTheme(isLight);
@@ -3979,6 +4160,227 @@
             init();
         })();
     </script>
+    <script>
+        // ===== TOUCH-ENABLED THEMED CAROUSEL =====
+        (function () {
+            'use strict';
+
+            class TouchThemedCarousel {
+                constructor() {
+                    this.touchSlides = document.getElementById('carouselSlides');
+                    this.touchIndicators = document.querySelectorAll('.themed-carousel-indicator');
+                    this.touchNavLeft = document.getElementById('navLeft');
+                    this.touchNavRight = document.getElementById('navRight');
+                    this.currentTouchSlide = 0;
+                    this.totalTouchSlides = 7;
+
+                    // Touch/swipe properties
+                    this.touchStartX = 0;
+                    this.touchStartY = 0;
+                    this.touchCurrentX = 0;
+                    this.touchCurrentY = 0;
+                    this.isTouchDragging = false;
+                    this.minTouchSwipeDistance = 50; // Minimum distance for a swipe
+                    this.maxTouchVerticalDistance = 100; // Maximum vertical movement to still count as horizontal swipe
+
+                    this.initTouchCarousel();
+                }
+
+                initTouchCarousel() {
+                    // Mouse/click events
+                    this.touchNavLeft.addEventListener('click', () => this.previousTouchSlide());
+                    this.touchNavRight.addEventListener('click', () => this.nextTouchSlide());
+
+                    this.touchIndicators.forEach((indicator, index) => {
+                        indicator.addEventListener('click', () => this.goToTouchSlide(index));
+                    });
+
+                    // Touch events
+                    this.touchSlides.addEventListener('touchstart', (e) => this.handleTouchCarouselStart(e), { passive: true });
+                    this.touchSlides.addEventListener('touchmove', (e) => this.handleTouchCarouselMove(e), { passive: false });
+                    this.touchSlides.addEventListener('touchend', (e) => this.handleTouchCarouselEnd(e), { passive: true });
+
+                    // Mouse events for desktop drag
+                    this.touchSlides.addEventListener('mousedown', (e) => this.handleTouchCarouselMouseDown(e));
+                    this.touchSlides.addEventListener('mousemove', (e) => this.handleTouchCarouselMouseMove(e));
+                    this.touchSlides.addEventListener('mouseup', (e) => this.handleTouchCarouselMouseUp(e));
+                    this.touchSlides.addEventListener('mouseleave', (e) => this.handleTouchCarouselMouseUp(e));
+
+                    // Prevent context menu on long press
+                    this.touchSlides.addEventListener('contextmenu', (e) => e.preventDefault());
+                }
+
+                // Touch event handlers
+                handleTouchCarouselStart(e) {
+                    this.touchStartX = e.touches[0].clientX;
+                    this.touchStartY = e.touches[0].clientY;
+                    this.isTouchDragging = true;
+                }
+
+                handleTouchCarouselMove(e) {
+                    if (!this.isTouchDragging) return;
+
+                    this.touchCurrentX = e.touches[0].clientX;
+                    this.touchCurrentY = e.touches[0].clientY;
+
+                    // Prevent scrolling if this is a horizontal swipe
+                    const deltaX = Math.abs(this.touchCurrentX - this.touchStartX);
+                    const deltaY = Math.abs(this.touchCurrentY - this.touchStartY);
+
+                    if (deltaX > deltaY && deltaX > 10) {
+                        e.preventDefault();
+                    }
+                }
+
+                handleTouchCarouselEnd(e) {
+                    if (!this.isTouchDragging) return;
+
+                    const deltaX = this.touchCurrentX - this.touchStartX;
+                    const deltaY = Math.abs(this.touchCurrentY - this.touchStartY);
+
+                    // Check if it's a valid horizontal swipe
+                    if (Math.abs(deltaX) > this.minTouchSwipeDistance && deltaY < this.maxTouchVerticalDistance) {
+                        if (deltaX > 0) {
+                            this.previousTouchSlide(); // Swipe right - go to previous slide
+                        } else {
+                            this.nextTouchSlide(); // Swipe left - go to next slide
+                        }
+                    }
+
+                    this.isTouchDragging = false;
+                    this.touchStartX = 0;
+                    this.touchStartY = 0;
+                    this.touchCurrentX = 0;
+                    this.touchCurrentY = 0;
+                }
+
+                // Mouse event handlers for desktop drag
+                handleTouchCarouselMouseDown(e) {
+                    e.preventDefault(); // Prevent text selection
+                    this.touchStartX = e.clientX;
+                    this.touchStartY = e.clientY;
+                    this.isTouchDragging = true;
+                    this.touchSlides.style.cursor = 'grabbing';
+                }
+
+                handleTouchCarouselMouseMove(e) {
+                    if (!this.isTouchDragging) return;
+
+                    this.touchCurrentX = e.clientX;
+                    this.touchCurrentY = e.clientY;
+                }
+
+                handleTouchCarouselMouseUp(e) {
+                    if (!this.isTouchDragging) return;
+
+                    const deltaX = this.touchCurrentX - this.touchStartX;
+                    const deltaY = Math.abs(this.touchCurrentY - this.touchStartY);
+
+                    // Check if it's a valid horizontal drag
+                    if (Math.abs(deltaX) > this.minTouchSwipeDistance && deltaY < this.maxTouchVerticalDistance) {
+                        if (deltaX > 0) {
+                            this.previousTouchSlide(); // Drag right - go to previous slide
+                        } else {
+                            this.nextTouchSlide(); // Drag left - go to next slide
+                        }
+                    }
+
+                    this.isTouchDragging = false;
+                    this.touchStartX = 0;
+                    this.touchStartY = 0;
+                    this.touchCurrentX = 0;
+                    this.touchCurrentY = 0;
+                    this.touchSlides.style.cursor = 'grab';
+                }
+
+                nextTouchSlide() {
+                    this.currentTouchSlide = (this.currentTouchSlide + 1) % this.totalTouchSlides;
+                    this.updateTouchSlides();
+                }
+
+                previousTouchSlide() {
+                    this.currentTouchSlide = (this.currentTouchSlide - 1 + this.totalTouchSlides) % this.totalTouchSlides;
+                    this.updateTouchSlides();
+                }
+
+                goToTouchSlide(index) {
+                    this.currentTouchSlide = index;
+                    this.updateTouchSlides();
+                }
+
+                updateTouchSlides() {
+                    const translateX = -this.currentTouchSlide * 100;
+                    this.touchSlides.style.transform = `translateX(${translateX}%)`;
+
+                    this.touchIndicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === this.currentTouchSlide);
+                    });
+
+                    this.updateTouchSlideNumbers();
+                }
+
+                updateTouchSlideNumbers() {
+                    document.querySelectorAll('.themed-carousel-slide-number').forEach((number, index) => {
+                        number.textContent = `${String(index + 1).padStart(2, '0')} / ${String(this.totalTouchSlides).padStart(2, '0')}`;
+                    });
+                }
+            }
+
+            // Initialize touch carousel when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                new TouchThemedCarousel();
+            });
+        })();
+    </script>
+
+    <script>
+        // ===== TOUCH-AWARE 3D ROTATION EFFECT =====
+        (function () {
+            'use strict';
+
+            const touchCarouselCard = document.querySelector('.themed-carousel-container');
+            let touchCarouselBounds;
+
+            function rotateCarouselToMouse(e) {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                const leftX = mouseX - touchCarouselBounds.x;
+                const topY = mouseY - touchCarouselBounds.y;
+                const center = {
+                    x: leftX - touchCarouselBounds.width / 2,
+                    y: topY - touchCarouselBounds.height / 2
+                };
+                const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+                touchCarouselCard.style.transform = `
+                    scale3d(1.07, 1.07, 1.07)
+                    rotate3d(
+                        ${center.y / 100},
+                        ${-center.x / 100},
+                        0,
+                        ${Math.log(distance) * 2}deg
+                    )
+                `;
+            }
+
+            function handleTouchCarouselMouseEnter() {
+                touchCarouselBounds = touchCarouselCard.getBoundingClientRect();
+                document.addEventListener('mousemove', rotateCarouselToMouse);
+            }
+
+            function handleTouchCarouselMouseLeave() {
+                document.removeEventListener('mousemove', rotateCarouselToMouse);
+                touchCarouselCard.style.transform = '';
+                touchCarouselCard.style.background = '';
+            }
+
+            // Initialize 3D rotation (only for non-touch devices to avoid conflicts)
+            if (!('ontouchstart' in window)) {
+                touchCarouselCard.addEventListener('mouseenter', handleTouchCarouselMouseEnter);
+                touchCarouselCard.addEventListener('mouseleave', handleTouchCarouselMouseLeave);
+            }
+        })();
+    </script>
 
     <script>
         // ===== THEMED CAROUSEL =====
@@ -4094,7 +4496,7 @@
     </script>
 
     <script>
-        // ===== CAROUSEL WRAPPER CURSOR AND CLICK HANDLING =====
+        /*// ===== CAROUSEL WRAPPER CURSOR AND CLICK HANDLING =====
         (function () {
             'use strict';
 
@@ -4183,7 +4585,7 @@
                     }
                 });
             }, 1000); // Wait for carousel to be fully initialized
-        })();
+        })();*/
     </script>
 
     <script>
@@ -4215,7 +4617,15 @@
             } else {
                 track.style.transition = 'none';
             }
-            track.style.transform = `translateX(${translate}px)`;
+
+            // Add centering offset for mobile
+            let finalTranslate = translate;
+            if (window.innerWidth <= 600) {
+                const centerOffset = (window.innerWidth - (window.innerWidth * 0.8)) / 2; // Center the 90vw card
+                finalTranslate = translate + centerOffset;
+            }
+
+            track.style.transform = `translateX(${finalTranslate}px)`;
 
             // Stretch effect on new active card
             /*setTimeout(() => {
@@ -4292,23 +4702,23 @@
                 video.onended = null; // Remove previous handlers
             });
 
-            if (cards[activeIdx]) {
+            /*if (cards[activeIdx]) {
                 let img = cards[activeIdx].querySelector('.media-item');
                 if (img.complete) {
-                    extractAndApplyColors(img)
+                    //extractAndApplyColors(img)
                 } else {
                     img.addEventListener('load', function () {
-                        extractAndApplyColors(img)
+                        //extractAndApplyColors(img)
                     });
                 }
-            }
+            }*/
 
             // Play video in the active card, if any
             let videoInActive = null;
             if (cards[activeIdx]) {
                 const video = cards[activeIdx].querySelector('video');
                 if (video) {
-                    extractVideoColors(video);
+                    //extractVideoColors(video);
                     videoInActive = video;
                     video.play();
                     pauseAutoSlide();
@@ -4322,24 +4732,26 @@
                 resumeAutoSlide();
             }
             // Dynamically size/position nav overlays
-            const slider = document.getElementById('slider-container');
-            const leftZone = document.querySelector('.slider-nav-left');
-            const rightZone = document.querySelector('.slider-nav-right');
-            const sliderRect = slider.getBoundingClientRect();
-            if (cards[activeIdx]) {
-                const cardRect = cards[activeIdx].getBoundingClientRect();
-                // Left zone: from left edge of slider to left edge of card
-                leftZone.style.left = '0px';
-                leftZone.style.width = (cardRect.left - sliderRect.left) + 'px';
-                // Right zone: from right edge of card to right edge of slider
-                rightZone.style.left = (cardRect.right - sliderRect.left) + 'px';
-                rightZone.style.width = (sliderRect.right - cardRect.right) + 'px';
-            } else {
-                // Fallback: cover half each
-                leftZone.style.left = '0px';
-                leftZone.style.width = '50vw';
-                rightZone.style.left = '50vw';
-                rightZone.style.width = '50vw';
+            if (window.innerWidth > 600) {
+                const slider = document.getElementById('slider-container');
+                const leftZone = document.querySelector('.slider-nav-left');
+                const rightZone = document.querySelector('.slider-nav-right');
+                const sliderRect = slider.getBoundingClientRect();
+                if (cards[activeIdx]) {
+                    const cardRect = cards[activeIdx].getBoundingClientRect();
+                    // Left zone: from left edge of slider to left edge of card
+                    leftZone.style.left = '0px';
+                    leftZone.style.width = (cardRect.left - sliderRect.left) + 'px';
+                    // Right zone: from right edge of card to right edge of slider
+                    rightZone.style.left = (cardRect.right - sliderRect.left) + 'px';
+                    rightZone.style.width = (sliderRect.right - cardRect.right) + 'px';
+                } else {
+                    // Fallback: cover half each
+                    leftZone.style.left = '0px';
+                    leftZone.style.width = '50vw';
+                    rightZone.style.left = '50vw';
+                    rightZone.style.width = '50vw';
+                }
             }
 
 
@@ -4352,7 +4764,7 @@
         // Update overlays after slider transition ends
         track.addEventListener('transitionend', updateActiveCardZones);
         // Navigation overlays
-        document.querySelector('.slider-nav-left').onclick = function () {
+        /*document.querySelector('.slider-nav-left').onclick = function () {
             movePrevCard();
             resumeAutoSlide();
         };
@@ -4372,7 +4784,100 @@
         document.getElementById('slider-arrow-right').onclick = function () {
             moveNextCard();
             resumeAutoSlide();
-        };
+        };*/
+        const leftNavZone = document.querySelector('.slider-nav-left');
+        const rightNavZone = document.querySelector('.slider-nav-right');
+
+        if (leftNavZone) {
+            leftNavZone.onclick = function () {
+                if (window.innerWidth > 600) { // Only work on desktop
+                    movePrevCard();
+                    resumeAutoSlide();
+                }
+            };
+        }
+
+        if (rightNavZone) {
+            rightNavZone.onclick = function () {
+                if (window.innerWidth > 600) { // Only work on desktop
+                    moveNextCard();
+                    resumeAutoSlide();
+                }
+            };
+        }
+
+        // Pause/resume auto-slide on slider hover (desktop only)
+        const sliderContainer = document.getElementById('slider-container');
+        sliderContainer.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 600) {
+                pauseAutoSlide();
+            }
+        });
+        sliderContainer.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 600) {
+                resumeAutoSlide();
+            }
+        });
+
+        // Custom arrow button event listeners (work on both desktop and mobile)
+        const leftArrow = document.getElementById('slider-arrow-left');
+        const rightArrow = document.getElementById('slider-arrow-right');
+
+        if (leftArrow) {
+            leftArrow.onclick = function () {
+                movePrevCard();
+                resumeAutoSlide();
+            };
+        }
+
+        if (rightArrow) {
+            rightArrow.onclick = function () {
+                moveNextCard();
+                resumeAutoSlide();
+            };
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        sliderContainer.addEventListener('touchstart', (e) => {
+            if (window.innerWidth <= 600) {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                pauseAutoSlide();
+            }
+        });
+
+        sliderContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging || window.innerWidth > 600) return;
+            currentX = e.touches[0].clientX;
+            e.preventDefault(); // Prevent scrolling
+        });
+
+        sliderContainer.addEventListener('touchend', (e) => {
+            if (!isDragging || window.innerWidth > 600) return;
+
+            const deltaX = startX - currentX;
+            const threshold = 50; // Minimum swipe distance
+
+            if (Math.abs(deltaX) > threshold) {
+                if (deltaX > 0) {
+                    // Swiped left - go to next card
+                    moveNextCard();
+                } else {
+                    // Swiped right - go to previous card
+                    movePrevCard();
+                }
+            }
+
+            isDragging = false;
+            resumeAutoSlide();
+        });
+
+        // Initial setup
+        updateActiveCardZones();
     </script>
 
 
@@ -4478,19 +4983,19 @@
     <script>
         let lastScrollY = window.scrollY;
 
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
+        window.addEventListener("scroll", () => {
+            const navbar = document.querySelector(".navbar");
 
-  if (window.scrollY > lastScrollY) {
-    // scrolling down → hide
-    navbar.classList.add("hide");
-  } else {
-    // scrolling up → show
-    navbar.classList.remove("hide");
-  }
+            if (window.scrollY > lastScrollY) {
+                // scrolling down → hide
+                navbar.classList.add("hide");
+            } else {
+                // scrolling up → show
+                navbar.classList.remove("hide");
+            }
 
-  lastScrollY = window.scrollY;
-});
+            lastScrollY = window.scrollY;
+        });
     </script>
 </body>
 
